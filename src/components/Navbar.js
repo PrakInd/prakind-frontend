@@ -8,7 +8,7 @@ export default function Navbar() {
         className="navbar navbar-expand-lg navbar-dark bg-default fixed-top"
         id="mainNav"
       >
-        <a className="navbar-brand" href="/">
+        <a className="navbar-brand" href="/dashboard">
           <img
             src="img/logo2.png"
             data-retina="true"
@@ -36,7 +36,7 @@ export default function Navbar() {
               data-placement="right"
               title="Dashboard"
             >
-              <a className="nav-link" href="/">
+              <a className="nav-link" href="dashboard">
                 <i className="fa fa-fw fa-dashboard" />
                 <span className="nav-link-text">Dashboard</span>
               </a>
@@ -46,9 +46,9 @@ export default function Navbar() {
               data-toggle="tooltip"
               data-placement="right"
               title
-              data-original-title="Bookings"
+              data-original-title="List Applicants"
             >
-              <a className="nav-link" href="/booking">
+              <a className="nav-link" href="/list-applicants">
                 <i className="fa fa-fw fa-calendar-check-o" />
                 <span className="nav-link-text">
                   Applicants{" "}
@@ -60,7 +60,7 @@ export default function Navbar() {
               className="nav-item"
               data-toggle="tooltip"
               data-placement="right"
-              title="My listings"
+              title="List Applicants"
             >
               <a
                 className="nav-link nav-link-collapse collapsed"
@@ -69,7 +69,7 @@ export default function Navbar() {
                 data-parent="#mylistings"
               >
                 <i className="fa fa-fw fa-list" />
-                <span className="nav-link-text">My Vacancies</span>
+                <span className="nav-link-text">List Vacancies</span>
               </a>
               <ul
                 className="sidenav-second-level collapse"
@@ -82,13 +82,13 @@ export default function Navbar() {
                   </a>
                 </li> */}
                 <li>
-                  <a href="/listing">
+                  <a href="/list-vacancy">
                     Active{" "}
                     <span className="badge badge-pill badge-success">6</span>
                   </a>
                 </li>
                 <li>
-                  <a href="/listing">
+                  <a href="/list-vacancy">
                     Expired{" "}
                     <span className="badge badge-pill badge-danger">6</span>
                   </a>
@@ -99,9 +99,9 @@ export default function Navbar() {
               className="nav-item"
               data-toggle="tooltip"
               data-placement="right"
-              title="Add listing"
+              title="Add vacancy"
             >
-              <a className="nav-link" href="/add-list">
+              <a className="nav-link" href="/add-vacancy">
                 <i className="fa fa-fw fa-plus-circle" />
                 <span className="nav-link-text">Add Vacancy</span>
               </a>
@@ -110,9 +110,9 @@ export default function Navbar() {
               className="nav-item"
               data-toggle="tooltip"
               data-placement="right"
-              title="My profile"
+              title="Company profile"
             >
-              <a className="nav-link" href="/user-profile">
+              <a className="nav-link" href="/company-profile">
                 <i className="fa fa-fw fa-user" />
                 <span className="nav-link-text">Company Profile</span>
               </a>
@@ -121,16 +121,27 @@ export default function Navbar() {
               className="nav-item"
               data-toggle="tooltip"
               data-placement="right"
+              title="Apprentice"
+            >
+              <a className="nav-link" href="/table">
+                <i className="fa fa-fw fa-gear" />
+                <span className="nav-link-text">Apprentice</span>
+              </a>
+            </li>
+            {/* <li
+              className="nav-item"
+              data-toggle="tooltip"
+              data-placement="right"
               title="Components"
             >
               <a
                 className="nav-link nav-link-collapse collapsed"
                 data-toggle="collapse"
-                href="#collapseComponents"
+                href="/table"
                 data-parent="#Components"
               >
                 <i className="fa fa-fw fa-gear" />
-                <span className="nav-link-text">Components</span>
+                <span className="nav-link-text">Apprentice</span>
               </a>
               <ul
                 className="sidenav-second-level collapse"
@@ -143,7 +154,7 @@ export default function Navbar() {
                   <a href="/table">Tables</a>
                 </li>
               </ul>
-            </li>
+            </li> */}
           </ul>
           <ul className="navbar-nav sidenav-toggler">
             <li className="nav-item">

@@ -6,7 +6,7 @@ import Routes from './components/Routes';
 function App() {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes />
     </div>
   );
