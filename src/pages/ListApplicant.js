@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../components/Footer";
 
-export default function ListApplicants() {
+export default function ListApplicant() {
   return (
     <div>
       <div className="content-wrapper">
