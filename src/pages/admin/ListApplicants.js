@@ -1,9 +1,11 @@
 import React from "react";
-import Footer from "../components/Footer";
+import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
 
 export default function ListApplicants() {
   return (
     <div>
+      <Navbar />
       <div className="content-wrapper">
         <div className="container-fluid">
           {/* Breadcrumbs*/}
@@ -32,7 +34,7 @@ export default function ListApplicants() {
                     <img src="img/avatar1.jpg" alt />
                   </figure>
                   <h4>
-                    Galih Primayasa 
+                    Galih Primayasa
                     {/* <i className="pending">Pending</i> */}
                   </h4>
                   <ul className="booking_list">
@@ -74,7 +76,7 @@ export default function ListApplicants() {
                     <img src="img/avatar2.jpg" alt />
                   </figure>
                   <h4>
-                    Aisyah Ardelia 
+                    Aisyah Ardelia
                     {/* <i className="cancel">Cancelled</i> */}
                   </h4>
                   <ul className="booking_list">
@@ -116,7 +118,7 @@ export default function ListApplicants() {
                     <img src="img/avatar3.jpg" alt />
                   </figure>
                   <h4>
-                    Faza Baharsyah 
+                    Faza Baharsyah
                     {/* <i className="approved">Approved</i> */}
                   </h4>
                   <ul className="booking_list">

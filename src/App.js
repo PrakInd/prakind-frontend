@@ -1,4 +1,4 @@
-import './App.css';
+// import './App.css';
 import { APP_ROUTE } from "./routes";
 import PrivateRoute from "./utils/PrivateRoute";
 import PublicRoute from './utils/PublicRoute';
@@ -6,6 +6,7 @@ import {
   BrowserRouter as Router,
   Switch,
 } from "react-router-dom";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               )
             } else {
               return (
+                // <><Navbar />
                 <PublicRoute
                   key={value.name}
                   restricted={value.restricted}

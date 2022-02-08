@@ -8,7 +8,7 @@ export default function Navbar() {
         className="navbar navbar-expand-lg navbar-dark bg-default fixed-top"
         id="mainNav"
       >
-        <a className="navbar-brand" href="/dashboard">
+        <a className="navbar-brand" href="/">
           <img
             src="img/logo2.png"
             data-retina="true"
@@ -36,7 +36,7 @@ export default function Navbar() {
               data-placement="right"
               title="Dashboard"
             >
-              <a className="nav-link" href="dashboard">
+              <a className="nav-link" href="/">
                 <i className="fa fa-fw fa-dashboard" />
                 <span className="nav-link-text">Dashboard</span>
               </a>
