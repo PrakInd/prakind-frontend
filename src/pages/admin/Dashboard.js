@@ -1,9 +1,11 @@
 import React from "react";
-import Footer from "../components/Footer";
+import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
 
 export default function Dashboard() {
   return (
     <div>
+      <Navbar />
       <div className="content-wrapper">
         <div className="container-fluid">
           {/* Breadcrumbs*/}

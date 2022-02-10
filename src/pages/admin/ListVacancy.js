@@ -1,9 +1,11 @@
 import React from "react";
-import Footer from "../components/Footer";
+import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
 
 export default function ListVacancy() {
   return (
     <div>
+      <Navbar />
       <div className="content-wrapper">
         <div className="container-fluid">
           {/* Breadcrumbs*/}
@@ -58,8 +60,8 @@ export default function ListVacancy() {
                   <small>IT Software</small>
                   <h4>Frontend Developer</h4>
                   <p>
-                  Mahir dalam HTML, CSS, Javascript, JSON, Java.
-                  Mengerti React-Ntv, Graphql.
+                    Mahir dalam HTML, CSS, Javascript, JSON, Java.
+                    Mengerti React-Ntv, Graphql.
                   </p>
                   <p>
                     <a href="#0" className="btn_1 gray">
@@ -81,10 +83,10 @@ export default function ListVacancy() {
                   <small>IT Software</small>
                   <h4>Mobile Developer</h4>
                   <p>
-                  Berpengelaman menggunakan Flutter / Java / C# / Kotlin Programming (Android) / Swift iOS.
-                  Menguasai web services (SOAP/REST), multithreading, HTML, CSS, Javascript, JQuery and Android Studio / Eclipse, Microsoft Visual Studio.
-                  Memiliki pengetahuan terhadap Github.
-                  Memiliki pengetahuan terhadap Android SDK menjadi nilai plus.
+                    Berpengelaman menggunakan Flutter / Java / C# / Kotlin Programming (Android) / Swift iOS.
+                    Menguasai web services (SOAP/REST), multithreading, HTML, CSS, Javascript, JQuery and Android Studio / Eclipse, Microsoft Visual Studio.
+                    Memiliki pengetahuan terhadap Github.
+                    Memiliki pengetahuan terhadap Android SDK menjadi nilai plus.
                   </p>
                   <p>
                     <a href="#0" className="btn_1 gray">
