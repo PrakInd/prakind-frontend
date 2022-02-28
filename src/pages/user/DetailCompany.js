@@ -23,18 +23,18 @@ const DetailCompany = () => {
                 <div className="room_type first">
                   <div className="row">
                     <div className="col-md-4">
-                      <img src="img/gallery/hotel_list_1.jpg" className="img-fluid" alt />
+                      <img src="img/gallery/hotel_list_1.jpg" className="img-fluid" alt="my-img" />
                     </div>
                     <div className="col-md-8">
                       <h4>Single Room</h4>
                       <p>Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate
                         pertinacia eum at.</p>
                       <ul className="hotel_facilities">
-                        <li><img src="img/hotel_facilites_icon_2.svg" alt />Single Bed</li>
-                        <li><img src="img/hotel_facilites_icon_4.svg" alt />Free Wifi</li>
-                        <li><img src="img/hotel_facilites_icon_5.svg" alt />Shower</li>
-                        <li><img src="img/hotel_facilites_icon_7.svg" alt />Air Condition</li>
-                        <li><img src="img/hotel_facilites_icon_8.svg" alt />Hairdryer</li>
+                        <li><img src="img/hotel_facilites_icon_2.svg" alt="my-img" />Single Bed</li>
+                        <li><img src="img/hotel_facilites_icon_4.svg" alt="my-img" />Free Wifi</li>
+                        <li><img src="img/hotel_facilites_icon_5.svg" alt="my-img" />Shower</li>
+                        <li><img src="img/hotel_facilites_icon_7.svg" alt="my-img" />Air Condition</li>
+                        <li><img src="img/hotel_facilites_icon_8.svg" alt="my-img" />Hairdryer</li>
                       </ul>
                     </div>
                   </div>
@@ -44,18 +44,18 @@ const DetailCompany = () => {
                 <div className="room_type gray">
                   <div className="row">
                     <div className="col-md-4">
-                      <img src="img/gallery/hotel_list_2.jpg" className="img-fluid" alt />
+                      <img src="img/gallery/hotel_list_2.jpg" className="img-fluid" alt="my-img" />
                     </div>
                     <div className="col-md-8">
                       <h4>Double Room</h4>
                       <p>Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate
                         pertinacia eum at.</p>
                       <ul className="hotel_facilities">
-                        <li><img src="img/hotel_facilites_icon_3.svg" alt />Double Bed</li>
-                        <li><img src="img/hotel_facilites_icon_4.svg" alt />Free Wifi</li>
-                        <li><img src="img/hotel_facilites_icon_6.svg" alt />Bathtub</li>
-                        <li><img src="img/hotel_facilites_icon_7.svg" alt />Air Condition</li>
-                        <li><img src="img/hotel_facilites_icon_8.svg" alt />Hairdryer</li>
+                        <li><img src="img/hotel_facilites_icon_3.svg" alt="my-img" />Double Bed</li>
+                        <li><img src="img/hotel_facilites_icon_4.svg" alt="my-img" />Free Wifi</li>
+                        <li><img src="img/hotel_facilites_icon_6.svg" alt="my-img" />Bathtub</li>
+                        <li><img src="img/hotel_facilites_icon_7.svg" alt="my-img" />Air Condition</li>
+                        <li><img src="img/hotel_facilites_icon_8.svg" alt="my-img" />Hairdryer</li>
                       </ul>
                     </div>
                   </div>
@@ -65,19 +65,19 @@ const DetailCompany = () => {
                 <div className="room_type last">
                   <div className="row">
                     <div className="col-md-4">
-                      <img src="img/gallery/hotel_list_3.jpg" className="img-fluid" alt />
+                      <img src="img/gallery/hotel_list_3.jpg" className="img-fluid" alt="my-img" />
                     </div>
                     <div className="col-md-8">
                       <h4>Suite Room</h4>
                       <p>Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate
                         pertinacia eum at.</p>
                       <ul className="hotel_facilities">
-                        <li><img src="img/hotel_facilites_icon_3.svg" alt />King size Bed</li>
-                        <li><img src="img/hotel_facilites_icon_4.svg" alt />Free Wifi</li>
-                        <li><img src="img/hotel_facilites_icon_6.svg" alt />Bathtub</li>
-                        <li><img src="img/hotel_facilites_icon_7.svg" alt />Air Condition</li>
-                        <li><img src="img/hotel_facilites_icon_9.svg" alt />Swimming pool</li>
-                        <li><img src="img/hotel_facilites_icon_3.svg" alt />Hairdryer</li>
+                        <li><img src="img/hotel_facilites_icon_3.svg" alt="my-img" />King size Bed</li>
+                        <li><img src="img/hotel_facilites_icon_4.svg" alt="my-img" />Free Wifi</li>
+                        <li><img src="img/hotel_facilites_icon_6.svg" alt="my-img" />Bathtub</li>
+                        <li><img src="img/hotel_facilites_icon_7.svg" alt="my-img" />Air Condition</li>
+                        <li><img src="img/hotel_facilites_icon_9.svg" alt="my-img" />Swimming pool</li>
+                        <li><img src="img/hotel_facilites_icon_3.svg" alt="my-img" />Hairdryer</li>
                       </ul>
                     </div>
                   </div>
@@ -95,7 +95,7 @@ const DetailCompany = () => {
                   <span>Profile Perusahaan</span>
                 </div>
                 <div>
-                  <img src="img/prakind/laptop.jpeg" alt height={120} width={120} />
+                  <img src="img/prakind/laptop.jpeg" alt="my-img" height={120} width={120} />
                 </div>
                 <p />
                 <div className="form-group input-dates">
@@ -103,7 +103,7 @@ const DetailCompany = () => {
                   <i className="icon_calendar" />
                 </div>
                 <div className="panel-dropdown">
-                  <a href="#">Guests <span className="qtyTotal">1</span></a>
+                  <a href="/#">Guests <span className="qtyTotal">1</span></a>
                   <div className="panel-dropdown-content right">
                     <div className="qtyButtons">
                       <label>Adults</label>

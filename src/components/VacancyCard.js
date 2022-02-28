@@ -1,6 +1,7 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
-const VacancyCard = () => {
+const VacancyCard = ({ vacancy }) => {
   return (
     <div className="isotope-wrapper">
       <div className="box_list isotope-item latest">
@@ -13,13 +14,10 @@ const VacancyCard = () => {
           <div className="col-lg-10">
             <div className="wrapper">
               <a href="#0" className="wish_bt" />
-              <h3><a href="/magang-detail-vacancy">UI/UX Designer</a></h3>
-              <h5><a href="hotel-detail.html">PT OTAK KANAN</a></h5>
-              <p>Dicam diceret ut ius, no epicuri dissentiet philosophia vix. Id usu zril tacimates neglegentur.
-                Eam
-                id legimus torquatos cotidieque, usu decore percipitur definitiones ex, nihil utinam recusabo mel
-                no.</p>
-              <span className="period">Periode <strong>Januari - Februari</strong></span>
+              <h3><NavLink to={'/lowongan/' + vacancy.id}>{vacancy.name}</NavLink></h3>
+              <h5><NavLink to="hotel-detail.html">{vacancy.company.name}</NavLink></h5>
+              <p>{vacancy.description}</p>
+              <span className="period">Periode <strong>{vacancy.period_start}</strong> - <strong>{vacancy.period_end}</strong></span>
             </div>
           </div>
         </div>

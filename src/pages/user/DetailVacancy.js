@@ -1,124 +1,142 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import FooterUser from "../../components/FooterUser";
 import Filter from "../../components/Filter";
+import axios from "axios";
+import { SHOW_VACANCY } from "../../constants/urls";
+import { useParams } from "react-router-dom";
 
 const DetailVacancy = () => {
+  const { id } = useParams();
+  const [vacancy, setVacancy] = useState({});
+
+  useEffect(() => {
+    axios
+      .get(SHOW_VACANCY(id))
+      .then(res => {
+        setVacancy(res.data.data);
+      })
+      .catch(err => console.log(err))
+
+    return () => {
+      setVacancy({});
+    }
+  }, []);
+
   return (
     <div>
       <Header />
       <Filter />
       <div>
         <div className="bg_color_1">
-          <nav className="secondary_nav sticky_horizontal">
-            <div className="container">
-              <ul className="clearfix">
-                <li><a href="#description" className="active">Description</a></li>
-                <li><a href="#reviews">Reviews</a></li>
-                <li><a href="#sidebar">Booking</a></li>
-              </ul>
-            </div>
-          </nav>
           <div className="container margin_60_35">
             <div className="row">
               <div className="col-lg-8">
                 <section id="description">
-                  <h2>Description</h2>
-                  <p>Per consequat adolescens ex, cu nibh commune <strong>temporibus vim</strong>, ad sumo viris
-                    eloquentiam sed. Mea appareat omittantur eloquentiam ad, nam ei quas oportere democritum. Prima causae
-                    admodum id est, ei timeam inimicus sed. Sit an meis aliquam, cetero inermis vel ut. An sit illum
-                    euismod facilisis, tamquam vulputate pertinacia eum at.</p>
-                  <p>Cum et probo menandri. Officiis consulatu pro et, ne sea sale invidunt, sed ut sint
-                    <strong>blandit</strong> efficiendi. Atomorum explicari eu qui, est enim quaerendum te. Quo harum
-                    viris id. Per ne quando dolore evertitur, pro ad cibo commune.
-                  </p>
-                  <div className="row">
-                    <div className="col-lg-6">
-                      <ul className="bullets">
-                        <li>Dolorem mediocritatem</li>
-                        <li>Mea appareat</li>
-                        <li>Prima causae</li>
-                        <li>Singulis indoctum</li>
-                      </ul>
+                  <div style={{ marginBottom: '10px', marginTop: '-40px' }}>
+                    <h2>{vacancy.name}</h2>
+                    <h6>PT Otak Kanan</h6>
+                    <h6>{vacancy.location}</h6>
+                  </div>
+                  <hr />
+                  <div style={{ marginBottom: '20px' }}>
+                    <div style={{ marginBottom: '-20px' }}>
+                      <span style={{ color: '#bcbcbc' }}>Periode Kegiatan</span>
+                      <p><b>{vacancy.period_start} - {vacancy.period_end}</b></p>
                     </div>
-                    <div className="col-lg-6">
+                    <div style={{ marginBottom: '-20px' }}>
+                      <span style={{ color: '#bcbcbc' }}>Kegiatan Magang</span>
+                      <p><b>{vacancy.type}</b></p>
+                    </div>
+                    <div>
+                      <span style={{ color: '#bcbcbc' }}>Uang Saku</span>
+                      <p><b>{vacancy.paid}</b></p>
+                    </div>
+                  </div>
+                  <hr />
+                  <div>
+                    <h4>Deskripsi Kegiatan</h4>
+                    <p>{vacancy.description}</p>
+                  </div>
+                  <hr />
+                  <div>
+                    <h4>Kriteria Peserta</h4>
+                    <p style={{ marginBottom: 0 }}>{vacancy.requirements}</p>
+                    <div className="col-lg-12">
                       <ul className="bullets">
-                        <li>Timeam inimicus</li>
-                        <li>Oportere democritum</li>
-                        <li>Cetero inermis</li>
-                        <li>Pertinacia eum</li>
+                        <li>Mampu mengoperasikan software editing dan tools seperti Figma,
+                          Adobe XD, Adobe Photoshop dan Adobe illustrator</li>
+                        <li>Memiliki pemahaman behavior design untuk Android dan iOS</li>
+                        <li>Mampu membuat desain prototype, Low fidelity dan High fidelity</li>
+                        <li>Memiliki portofolio dari hasil desain eksplorasi</li>
                       </ul>
                     </div>
                   </div>
+
                   {/* /row */}
                   <hr />
-                  <h3>Instagram photos feed</h3>
-                  <div id="instagram-feed-hotel" className="clearfix" />
-                  <hr />
-                  <div className="room_type first">
-                    <div className="row">
-                      <div className="col-md-4">
-                        <img src="img/gallery/hotel_list_1.jpg" className="img-fluid" alt />
+                  <h3>Lowongan magang lainnya</h3>
+                  <div id="instagram-feed-hotel" className="clearfix" style={{ border: '1px solid #f1f1f1', paddingTop: '20px' }}>
+                    <div className="room_type first">
+                      <div className="row">
+                        <div className="col-md-12">
+                          <div className="row">
+                            <ul style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                              <li><h4>Frontend</h4></li>
+                              <li>
+                                <p>Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate
+                                  pertinacia eum at.</p></li>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
-                      <div className="col-md-8">
-                        <h4>Single Room</h4>
-                        <p>Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate
-                          pertinacia eum at.</p>
-                        <ul className="hotel_facilities">
-                          <li><img src="img/hotel_facilites_icon_2.svg" alt />Single Bed</li>
-                          <li><img src="img/hotel_facilites_icon_4.svg" alt />Free Wifi</li>
-                          <li><img src="img/hotel_facilites_icon_5.svg" alt />Shower</li>
-                          <li><img src="img/hotel_facilites_icon_7.svg" alt />Air Condition</li>
-                          <li><img src="img/hotel_facilites_icon_8.svg" alt />Hairdryer</li>
-                        </ul>
-                      </div>
+                      {/* /row */}
                     </div>
-                    {/* /row */}
-                  </div>
-                  {/* /rom_type */}
-                  <div className="room_type gray">
-                    <div className="row">
-                      <div className="col-md-4">
-                        <img src="img/gallery/hotel_list_2.jpg" className="img-fluid" alt />
+                    {/* /rom_type */}
+                    <div className="room_type gray">
+                      <div className="row">
+                        <div className="col-md-4">
+                          <img src="img/gallery/hotel_list_2.jpg" className="img-fluid" alt />
+                        </div>
+                        <div className="col-md-8">
+                          <h4>Double Room</h4>
+                          <p>Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate
+                            pertinacia eum at.</p>
+                          <ul className="hotel_facilities">
+                            <li><img src="img/hotel_facilites_icon_3.svg" alt />Double Bed</li>
+                            <li><img src="img/hotel_facilites_icon_4.svg" alt />Free Wifi</li>
+                            <li><img src="img/hotel_facilites_icon_6.svg" alt />Bathtub</li>
+                            <li><img src="img/hotel_facilites_icon_7.svg" alt />Air Condition</li>
+                            <li><img src="img/hotel_facilites_icon_8.svg" alt />Hairdryer</li>
+                          </ul>
+                        </div>
                       </div>
-                      <div className="col-md-8">
-                        <h4>Double Room</h4>
-                        <p>Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate
-                          pertinacia eum at.</p>
-                        <ul className="hotel_facilities">
-                          <li><img src="img/hotel_facilites_icon_3.svg" alt />Double Bed</li>
-                          <li><img src="img/hotel_facilites_icon_4.svg" alt />Free Wifi</li>
-                          <li><img src="img/hotel_facilites_icon_6.svg" alt />Bathtub</li>
-                          <li><img src="img/hotel_facilites_icon_7.svg" alt />Air Condition</li>
-                          <li><img src="img/hotel_facilites_icon_8.svg" alt />Hairdryer</li>
-                        </ul>
-                      </div>
+                      {/* /row */}
                     </div>
-                    {/* /row */}
-                  </div>
-                  {/* /rom_type */}
-                  <div className="room_type last">
-                    <div className="row">
-                      <div className="col-md-4">
-                        <img src="img/gallery/hotel_list_3.jpg" className="img-fluid" alt />
+                    {/* /rom_type */}
+                    <div className="room_type last">
+                      <div className="row">
+                        <div className="col-md-4">
+                          <img src="img/gallery/hotel_list_3.jpg" className="img-fluid" alt />
+                        </div>
+                        <div className="col-md-8">
+                          <h4>Suite Room</h4>
+                          <p>Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate
+                            pertinacia eum at.</p>
+                          <ul className="hotel_facilities">
+                            <li><img src="img/hotel_facilites_icon_3.svg" alt />King size Bed</li>
+                            <li><img src="img/hotel_facilites_icon_4.svg" alt />Free Wifi</li>
+                            <li><img src="img/hotel_facilites_icon_6.svg" alt />Bathtub</li>
+                            <li><img src="img/hotel_facilites_icon_7.svg" alt />Air Condition</li>
+                            <li><img src="img/hotel_facilites_icon_9.svg" alt />Swimming pool</li>
+                            <li><img src="img/hotel_facilites_icon_3.svg" alt />Hairdryer</li>
+                          </ul>
+                        </div>
                       </div>
-                      <div className="col-md-8">
-                        <h4>Suite Room</h4>
-                        <p>Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate
-                          pertinacia eum at.</p>
-                        <ul className="hotel_facilities">
-                          <li><img src="img/hotel_facilites_icon_3.svg" alt />King size Bed</li>
-                          <li><img src="img/hotel_facilites_icon_4.svg" alt />Free Wifi</li>
-                          <li><img src="img/hotel_facilites_icon_6.svg" alt />Bathtub</li>
-                          <li><img src="img/hotel_facilites_icon_7.svg" alt />Air Condition</li>
-                          <li><img src="img/hotel_facilites_icon_9.svg" alt />Swimming pool</li>
-                          <li><img src="img/hotel_facilites_icon_3.svg" alt />Hairdryer</li>
-                        </ul>
-                      </div>
+                      {/* /row */}
                     </div>
-                    {/* /row */}
+                    {/* /rom_type */}
                   </div>
-                  {/* /rom_type */}
                 </section>
                 {/* /section */}
                 <hr />
@@ -130,26 +148,22 @@ const DetailVacancy = () => {
                     <span>Profile Perusahaan</span>
                   </div>
                   <div>
-                    <img src="img/prakind/laptop.jpeg" alt height={120} width={120} />
+                    <img src="img/prakind/laptop.jpeg" alt height={120} width={120} style={{ marginBottom: '10px' }} />
+                    <h5>PT Otak Kanan</h5>
+                    <p style={{ marginTop: '-10px', marginBottom: '-10px' }}>Creative and Innovative Company</p>
+                    <hr />
                   </div>
-                  <p />
-                  <div className="form-group input-dates">
-                    <input className="form-control" type="text" name="dates" placeholder="When.." />
-                    <i className="icon_calendar" />
-                  </div>
-                  <div className="panel-dropdown">
-                    <a href="#">Guests <span className="qtyTotal">1</span></a>
-                    <div className="panel-dropdown-content right">
-                      <div className="qtyButtons">
-                        <label>Adults</label>
-                        <input type="text" name="qtyInput" defaultValue={1} />
-                      </div>
-                      <div className="qtyButtons">
-                        <label>Childrens</label>
-                        <input type="text" name="qtyInput" defaultValue={0} />
-                      </div>
+                  <div style={{ marginTop: '-10px' }}>
+                    <div style={{ marginBottom: '-10px' }}>
+                      <span>Ukuran Perusahaan</span>
+                      <p><b>100 pekerja</b></p>
+                    </div>
+                    <div style={{ marginBottom: '-10px' }}>
+                      <span>Kantor Pusat</span>
+                      <p><b>Kota Surabaya</b></p>
                     </div>
                   </div>
+
                   <div className="form-group clearfix">
                     <div className="custom-select-form">
                       <select className="wide">
@@ -160,16 +174,12 @@ const DetailVacancy = () => {
                       </select>
                     </div>
                   </div>
-                  <a href="cart-1.html" className=" add_top_30 btn_1 full-width purchase">Purchase</a>
-                  <a href="wishlist.html" className="btn_1 full-width outline wishlist"><i className="icon_heart" /> Add to
-                    wishlist</a>
-                  <div className="text-center"><small>No money charged in this step</small></div>
                 </div>
-                <ul className="share-buttons">
+                {/* <ul className="share-buttons">
                   <li><a className="fb-share" href="#0"><i className="social_facebook" /> Share</a></li>
                   <li><a className="twitter-share" href="#0"><i className="social_twitter" /> Tweet</a></li>
                   <li><a className="gplus-share" href="#0"><i className="social_googleplus" /> Share</a></li>
-                </ul>
+                </ul> */}
               </aside>
             </div>
             {/* /row */}

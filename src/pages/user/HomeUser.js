@@ -51,7 +51,7 @@ const HomeUser = () => {
             <div className="row">
               <div className="col-xl-2 col-lg-6 col-md-6">
                 <a className="grid_item" href="#0">
-                  <figure><img src="img/teknologi.jpeg" alt="" style={{ height: 120, width: 120 }} />
+                  <figure><img src="img/teknologi.jpeg" alt="my-img" style={{ height: 120, width: 120 }} />
                   </figure>
                   <h6>Teknologi</h6>
                 </a>
@@ -59,7 +59,7 @@ const HomeUser = () => {
               {/* /box_news */}
               <div className="col-xl-2 col-lg-6 col-md-6">
                 <a className="grid_item" href="#0">
-                  <figure><img src="img/health.png" alt="" style={{ height: 120, width: 120 }} />
+                  <figure><img src="img/health.png" alt="my-img" style={{ height: 120, width: 120 }} />
                   </figure>
                   <h6>Kesehatan</h6>
                 </a>
@@ -67,7 +67,7 @@ const HomeUser = () => {
               {/* /box_news */}
               <div className="col-xl-2 col-lg-6 col-md-6">
                 <a className="grid_item" href="#0">
-                  <figure><img src="img/news_home_3.jpg" alt />
+                  <figure><img src="img/news_home_3.jpg" alt="my-img" />
                   </figure>
                   <h6>Jasa</h6>
                 </a>
@@ -75,7 +75,7 @@ const HomeUser = () => {
               {/* /grid_item */}
               <div className="col-xl-2 col-lg-6 col-md-6">
                 <a className="grid_item" href="#0">
-                  <figure><img src="img/news_home_4.jpg" alt />
+                  <figure><img src="img/news_home_4.jpg" alt="my-img" />
                   </figure>
                   <h6>Lainnya</h6>
                 </a>
@@ -84,7 +84,7 @@ const HomeUser = () => {
               {/* /grid_item */}
               <div className="col-xl-2 col-lg-6 col-md-6">
                 <a className="grid_item" href="#0">
-                  <figure><img src="img/news_home_4.jpg" alt />
+                  <figure><img src="img/news_home_4.jpg" alt="my-img" />
                   </figure>
                   <h6>Lainnya</h6>
                 </a>
@@ -93,7 +93,7 @@ const HomeUser = () => {
               {/* /grid_item */}
               <div className="col-xl-2 col-lg-6 col-md-6">
                 <a className="grid_item" href="#0">
-                  <figure><img src="img/news_home_4.jpg" alt />
+                  <figure><img src="img/news_home_4.jpg" alt="my-img" />
                   </figure>
                   <h6>Lainnya</h6>
                 </a>
@@ -108,7 +108,6 @@ const HomeUser = () => {
       <FooterUser />
     </div>
   )
-
 }
 
 export default HomeUser;
