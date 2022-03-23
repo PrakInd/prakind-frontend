@@ -64,13 +64,13 @@ const Navbar = () => {
             </Link>
           </li>
           <li className='nav-item'>
-            <Link to='/upload-dokumen' className='nav-links' onClick={closeMobileMenu}>
+            <Link to='/pelamar/upload-dokumen' className='nav-links' onClick={closeMobileMenu}>
               Dokumen
             </Link>
           </li>
 
           <li className='nav-item'>
-            <Link to='/form-register' className='nav-links' onClick={closeMobileMenu}>
+            <Link to='/pelamar/form-register' className='nav-links' onClick={closeMobileMenu}>
               Form
             </Link>
           </li>
@@ -78,7 +78,7 @@ const Navbar = () => {
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
           >
-            <Link to='/profil-saya' className='nav-links' onClick={closeMobileMenu}>
+            <Link to='/pelamar/profil' className='nav-links' onClick={closeMobileMenu}>
               Profil <i className='fas fa-caret-down' />
             </Link>
             {dropdown && <Dropdown />}
