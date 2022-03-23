@@ -1,7 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const VacancyCard = ({ vacancy }) => {
+const VacancyCard = ({
+  vacancy,
+  // company
+}) => {
   return (
     <div className="isotope-wrapper">
       <div className="box_list isotope-item latest">
@@ -15,7 +18,8 @@ const VacancyCard = ({ vacancy }) => {
             <div className="wrapper">
               <a href="#0" className="wish_bt" />
               <h3><NavLink to={'/lowongan/' + vacancy.id}>{vacancy.name}</NavLink></h3>
-              <h5><NavLink to="hotel-detail.html">{vacancy.company.name}</NavLink></h5>
+              {/* <h5><NavLink to={'/detail-perusahaan/' + company.id}>{vacancy.company.name}</NavLink></h5> */}
+              <h5><NavLink to={'/detail-perusahaan/' + vacancy.company.id}>{vacancy.company.name}</NavLink></h5>
               <p>{vacancy.description}</p>
               <span className="period">Periode <strong>{vacancy.period_start}</strong> - <strong>{vacancy.period_end}</strong></span>
             </div>

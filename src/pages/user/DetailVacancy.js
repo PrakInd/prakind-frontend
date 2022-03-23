@@ -1,31 +1,99 @@
 import React, { useState, useEffect } from "react";
-import Header from "../../components/Header";
 import FooterUser from "../../components/FooterUser";
 import Filter from "../../components/Filter";
 import axios from "axios";
-import { SHOW_VACANCY } from "../../constants/urls";
+import { SHOW_VACANCY, SHOW_COMPANY } from "../../constants/urls";
 import { useParams } from "react-router-dom";
+import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
+import PrimaryButton from "../../components/button/PrimaryButton";
+import ShareIcon from '@mui/icons-material/Share';
+import SecondaryButton from "../../components/button/SecondaryButton";
+import { BookmarkBorder } from "@material-ui/icons";
+import PhoneIcon from '@mui/icons-material/Phone';
+import { NavLink } from "react-router-dom";
+import Navbar from "../../components/user/Navbar";
+import { Dialog, DialogTitle, DialogActions, DialogContent, Menu, MenuItem, Fade, Button } from "@mui/material";
 
 const DetailVacancy = () => {
   const { id } = useParams();
   const [vacancy, setVacancy] = useState({});
+  const [company, setCompany] = useState({
+    address: "",
+    description: "",
+    logo: "",
+    name: "",
+    number_of_employee: "",
+    phone: "",
+    website: "",
+  });
+
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  }
 
   useEffect(() => {
     axios
       .get(SHOW_VACANCY(id))
       .then(res => {
+        console.log(res)
         setVacancy(res.data.data);
+        setCompany(res.data.data.company);
       })
       .catch(err => console.log(err))
 
     return () => {
       setVacancy({});
+      setCompany({});
     }
   }, []);
 
+  // const changeColor = (index) => {
+  //   if index % 2 == 0
+  //     return 'white'
+
+  //   return 'gray'
+  // }
+
+  const dialog = (
+    <Dialog open={open} onClose={handleClose} >
+      <DialogTitle>Pilih Kategori</DialogTitle>
+      <DialogContent>
+        <Button
+          id="fade-button"
+          aria-controls={open ? 'fade-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          onClick={handleClickOpen}
+        >
+          Pilih Kategori
+        </Button>
+        <Menu
+          id="fade-menu"
+          MenuListProps={{
+            'aria-labelledby': 'fade-button',
+          }}
+          open={open}
+          onClose={handleClose}
+          TransitionComponent={Fade}
+        >
+          <MenuItem onClick={handleClose}>Individu</MenuItem>
+          <MenuItem onClick={handleClose}>Kelompok</MenuItem>
+        </Menu>
+      </DialogContent>
+      <DialogActions></DialogActions>
+    </Dialog>
+  )
+
+
   return (
-    <div>
-      <Header />
+    <>
+      <Navbar />
       <Filter />
       <div>
         <div className="bg_color_1">
@@ -35,7 +103,8 @@ const DetailVacancy = () => {
                 <section id="description">
                   <div style={{ marginBottom: '10px', marginTop: '-40px' }}>
                     <h2>{vacancy.name}</h2>
-                    <h6>PT Otak Kanan</h6>
+                    {/* <h6>{vacancy.company.name}</h6> */}
+                    <h6>{company.name}</h6>
                     <h6>{vacancy.location}</h6>
                   </div>
                   <hr />
@@ -51,6 +120,18 @@ const DetailVacancy = () => {
                     <div>
                       <span style={{ color: '#bcbcbc' }}>Uang Saku</span>
                       <p><b>{vacancy.paid}</b></p>
+                    </div>
+                    <div className="col-lg-6" style={{ display: "flex", marginLeft: 0, justifyContent: "space-between" }}>
+                      <PrimaryButton style={{ width: '30%' }} onClick={handleClickOpen}>
+                        {/* <NavLink to="/daftar-magang"><span style={{ color: "#000" }}>Daftar</span></NavLink> */}
+                        Daftar
+                      </PrimaryButton>
+                      <SecondaryButton>
+                        <ShareIcon fontSize="small" /> &ensp;Bagikan
+                      </SecondaryButton>
+                      <SecondaryButton>
+                        <BookmarkBorder fontSize="small" /> &ensp;Simpan
+                      </SecondaryButton>
                     </div>
                   </div>
                   <hr />
@@ -73,24 +154,31 @@ const DetailVacancy = () => {
                     </div>
                   </div>
 
+
+
                   {/* /row */}
                   <hr />
                   <h3>Lowongan magang lainnya</h3>
                   <div id="instagram-feed-hotel" className="clearfix" style={{ border: '1px solid #f1f1f1', paddingTop: '20px' }}>
                     <div className="room_type first">
                       <div className="row">
-                        <div className="col-md-12">
-                          <div className="row">
-                            <ul style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                              <li><h4>Frontend</h4></li>
-                              <li>
-                                <p>Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate
-                                  pertinacia eum at.</p></li>
-                            </ul>
-                          </div>
+                        <div className="col-lg-4">
+                          <ul>
+                            <li><h4>Frontend</h4></li>
+                            <p>Periode: 28 Jan - 28 May</p>
+                          </ul>
+                        </div>
+                        <div className="col-lg-4">
+                          <ul>
+                            <li>di Kota Surabaya</li>
+                          </ul>
+                        </div>
+                        <div className="col-lg-4">
+                          <ul>
+                            <li>Kerja dari Rumah</li>
+                          </ul>
                         </div>
                       </div>
-                      {/* /row */}
                     </div>
                     {/* /rom_type */}
                     <div className="room_type gray">
@@ -137,10 +225,43 @@ const DetailVacancy = () => {
                     </div>
                     {/* /rom_type */}
                   </div>
+
+                  {/* {
+
+
+lue, index) => a {
+                      if index 2 == 0 % dreturn(
+                        <div id="instagram-feed-hotel" className="clearfix" style={{ b backgroundColor: changeColor(index),order: '1px solid #f1f1f1', paddingTop: '20px' }} >
+                          <div className="room_type first">
+                            <div className="row">
+                              <div className="col-lg-4">
+                                <ul>
+                                  <li><h4>Frontend</h4></li>
+                                  <p>Periode: 28 Jan - 28 May</p>
+                                </ul>
+                              </div>
+                              <div className="col-lg-4">
+                                <ul>
+                                  <li>di Kota Surabaya</li>
+                                </ul>
+                              </div>
+                              <div className="col-lg-4">
+                                <ul>
+                                  <li>Kerja dari Rumah</li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                    )v >
+
+                    */}
                 </section>
+
                 {/* /section */}
                 <hr />
               </div>
+              {/* /col */}
+              < hr />
               {/* /col */}
               <aside className="col-lg-4">
                 <div className="box_detail booking">
@@ -149,19 +270,27 @@ const DetailVacancy = () => {
                   </div>
                   <div>
                     <img src="img/prakind/laptop.jpeg" alt height={120} width={120} style={{ marginBottom: '10px' }} />
-                    <h5>PT Otak Kanan</h5>
-                    <p style={{ marginTop: '-10px', marginBottom: '-10px' }}>Creative and Innovative Company</p>
+                    {/* <h5>PT. Otak Kanan</h5> */}
+                    <h5>{company.name}</h5>
+                    <p style={{ marginTop: '-10px', marginBottom: '-10px' }}>{company.description}</p>
                     <hr />
                   </div>
                   <div style={{ marginTop: '-10px' }}>
                     <div style={{ marginBottom: '-10px' }}>
                       <span>Ukuran Perusahaan</span>
-                      <p><b>100 pekerja</b></p>
+                      <p><b>100</b></p>
                     </div>
                     <div style={{ marginBottom: '-10px' }}>
-                      <span>Kantor Pusat</span>
-                      <p><b>Kota Surabaya</b></p>
+                      <span>Alamat Kantor</span>
+                      <p><b>Surabaya</b></p>
                     </div>
+                    <hr />
+                  </div>
+                  <div>
+                    <LanguageOutlinedIcon />
+                    <a href="https://otakkanan.co.id/id/" target="_blank" style={{ color: "#000000" }}>&ensp;www.otakkanan.co.id</a>
+                    <br />
+                    <PhoneIcon /> <font style={{ color: "#000000" }}>&ensp;087750</font>
                   </div>
 
                   <div className="form-group clearfix">
@@ -187,10 +316,10 @@ const DetailVacancy = () => {
           {/* /container */}
         </div>
         {/* /bg_color_1 */}
-
+        {dialog}
       </div>
       <FooterUser />
-    </div>
+    </>
   )
 
 
