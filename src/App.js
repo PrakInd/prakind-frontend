@@ -13,12 +13,14 @@ import Vacancy from "./pages/user/Vacancy";
 import DetailVacancy from "./pages/user/DetailVacancy";
 import DetailCompany from "./pages/user/DetailCompany";
 import ErrorPage from "./pages/ErrorPage";
+// import FormRegister from "./pages/user/FormRegister";
 
 function App() {
   const prefix = [
-    '/form-biodata',
+    '/form-register',
     '/upload-dokumen',
-    '/akun-saya',
+    '/profil-saya',
+    '/daftar-magang',
   ];
 
   return (
@@ -52,6 +54,8 @@ function App() {
           <Route exact path="/lowongan" component={Vacancy} />
           <Route exact path="/lowongan/:id" component={DetailVacancy} />
           <Route exact path="/detail-perusahaan/:id" component={DetailCompany} />
+          {/* <Route exact path="/form-register" component={FormRegister} /> */}
+
           {APP_ROUTE.map((val) => (
             <PublicRoute
               key={val.name}

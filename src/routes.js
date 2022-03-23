@@ -8,10 +8,11 @@
 // import ListApplicants from "./pages/admin/ListApplicants"
 // import ListVacancy from "./pages/admin/ListVacancy"
 // import Table from "./pages/admin/Table"
-import ProfileForm from "./pages/user/ProfileForm";
+import FormRegister from "./pages/user/FormRegister";
 import Login from "./pages/Login";
 import UploadDocs from "./pages/user/UploadDocs";
-import Account from "./pages/user/Account";
+import Profil from "./pages/user/Profil";
+import Apply from "./pages/user/Apply";
 
 export const APP_ROUTE = [
   // === PUBLIC ===
@@ -71,10 +72,10 @@ export const APP_ROUTE = [
 export const PRIVATE_ROUTE = [
   // === USER ===
   {
-    name: "Form Biodata",
-    path: "/form-biodata",
+    name: "Form Register",
+    path: "/form-register",
     exact: true,
-    component: ProfileForm,
+    component: FormRegister,
     restricted: false,
     private: true,
   },
@@ -87,10 +88,18 @@ export const PRIVATE_ROUTE = [
     private: true,
   },
   {
-    name: "Akun Saya",
-    path: "/akun-saya",
+    name: "Profil Saya",
+    path: "/profil-saya",
     exact: true,
-    component: Account,
+    component: Profil,
+    restricted: false,
+    private: true,
+  },
+  {
+    name: "Daftar Magang",
+    path: "/daftar-magang",
+    exact: true,
+    component: Apply,
     restricted: false,
     private: true,
   },

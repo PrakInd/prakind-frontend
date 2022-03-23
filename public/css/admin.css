@@ -41,9 +41,9 @@ body.sticky-footer .content-wrapper {
   min-height: calc(100vh - 62px - 62px);
 }
 
-body.fixed-nav {
+/* body.fixed-nav {
   padding-top: 56px;
-}
+} */
 
 .content-wrapper {
   min-height: calc(100vh - 62px);

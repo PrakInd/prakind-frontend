@@ -1,17 +1,20 @@
 import React from "react";
 import FooterUser from "../../components/FooterUser";
-import Header from "../../components/Header";
+// import Header from "../../components/Header";
+import Navbar from "../../components/user/Navbar";
+import { Link } from "react-router-dom";
+import PrimaryButton from "../../components/button/PrimaryButton";
 
 const HomeUser = () => {
   return (
-    <div>
-      <Header />
+    <div style={{ marginTop: 0 }}>
+      <Navbar />
       <div>
         <section className="hero_single version_2">
           <div className="wrapper">
+            <h3>Praktik Industri</h3>
+            <p>Temukan lowongan magang</p>
             <div className="container">
-              <h3>Praktik Industri</h3>
-              <p>Temukan lowongan magang</p>
               <form>
                 <div className="row no-gutters custom-search-input-2">
                   <div className="col-lg-4">
@@ -39,71 +42,12 @@ const HomeUser = () => {
                 {/* /row */}
               </form>
             </div>
+            <Link className="grid_item" to="/lowongan">
+              <PrimaryButton style={{ width: "15%", marginLeft: "auto", marginRight: "auto" }}>              Lihat Info Magang
+              </PrimaryButton>
+            </Link>
           </div>
         </section>
-        <div className="bg_color_1">
-          <div className="container margin_80_55">
-            <div className="main_title_2">
-              <span><em /></span>
-              <h3>Sektor Bidang Lowongan</h3>
-              <p>Pilih sektor bidang yang kamu banget.</p>
-            </div>
-            <div className="row">
-              <div className="col-xl-2 col-lg-6 col-md-6">
-                <a className="grid_item" href="#0">
-                  <figure><img src="img/teknologi.jpeg" alt="my-img" style={{ height: 120, width: 120 }} />
-                  </figure>
-                  <h6>Teknologi</h6>
-                </a>
-              </div>
-              {/* /box_news */}
-              <div className="col-xl-2 col-lg-6 col-md-6">
-                <a className="grid_item" href="#0">
-                  <figure><img src="img/health.png" alt="my-img" style={{ height: 120, width: 120 }} />
-                  </figure>
-                  <h6>Kesehatan</h6>
-                </a>
-              </div>
-              {/* /box_news */}
-              <div className="col-xl-2 col-lg-6 col-md-6">
-                <a className="grid_item" href="#0">
-                  <figure><img src="img/news_home_3.jpg" alt="my-img" />
-                  </figure>
-                  <h6>Jasa</h6>
-                </a>
-              </div>
-              {/* /grid_item */}
-              <div className="col-xl-2 col-lg-6 col-md-6">
-                <a className="grid_item" href="#0">
-                  <figure><img src="img/news_home_4.jpg" alt="my-img" />
-                  </figure>
-                  <h6>Lainnya</h6>
-                </a>
-              </div>
-              {/* /box_news */}
-              {/* /grid_item */}
-              <div className="col-xl-2 col-lg-6 col-md-6">
-                <a className="grid_item" href="#0">
-                  <figure><img src="img/news_home_4.jpg" alt="my-img" />
-                  </figure>
-                  <h6>Lainnya</h6>
-                </a>
-              </div>
-              {/* /box_news */}
-              {/* /grid_item */}
-              <div className="col-xl-2 col-lg-6 col-md-6">
-                <a className="grid_item" href="#0">
-                  <figure><img src="img/news_home_4.jpg" alt="my-img" />
-                  </figure>
-                  <h6>Lainnya</h6>
-                </a>
-              </div>
-              {/* /box_news */}
-            </div>
-          </div>
-          {/* /container */}
-        </div>
-        {/* /bg_color_1 */}
       </div>
       <FooterUser />
     </div>
