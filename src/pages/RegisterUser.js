@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 //import { useHistory } from "react-router-dom";
 import { REGISTER_API } from "../constants/urls";
@@ -15,34 +15,34 @@ export default function RegisterUser() {
   const [errPassword, setErrPassword] = useState(null);
   const [errPasswdVal, setErrPasswdVal] = useState(null);
 
-  const isAvailable = useSelector((state) => state.auth.isAvailable);
+  // const isAvailable = useSelector((state) => state.auth.isAvailable);
   const [checkLoad, setCheckLoad] = useState(false);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handleRegister = (e) => {
     e.preventDefault();
     setLoading(true);
-    dispatch(register(name, email, password, passwordValidate))
-      .then(() => {
-        Swal.fire({
-          title: "Registered berhasil",
-          text: "Cek alamat email Anda untuk verifikasi",
-          icon: "sukses",
-        });
-        setName("");
-        setEmail("");
-        setPassword("");
-        setPasswordValidate("");
-        setLoading(false);
-      })
-      .catch(() => {
-        Toast.fire({
-          icon: "warning",
-          title: "Data harus lengkap",
-        });
-        setLoading(false);
-      });
+    // dispatch(register(name, email, password, passwordValidate))
+    //   .then(() => {
+    //     Swal.fire({
+    //       title: "Registered berhasil",
+    //       text: "Cek alamat email Anda untuk verifikasi",
+    //       icon: "sukses",
+    //     });
+    //     setName("");
+    //     setEmail("");
+    //     setPassword("");
+    //     setPasswordValidate("");
+    //     setLoading(false);
+    //   })
+    //   .catch(() => {
+    //     Toast.fire({
+    //       icon: "warning",
+    //       title: "Data harus lengkap",
+    //     });
+    //     setLoading(false);
+    //   });
   };
 
   useEffect(() => {

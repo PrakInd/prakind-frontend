@@ -16,6 +16,22 @@ export const isLogin = () => {
   return false;
 };
 
+export const isAdmin = () => {
+  if (Cookies.getJSON("USER")?.role_id === 1) {
+    return true;
+  }
+  
+  return false;
+};
+
+export const isUser = () => {
+  if (Cookies.getJSON("USER")?.role_id === 2) {
+    return true;
+  }
+
+  return false;
+};
+
 export const getToken = () => {
   return Cookies.get("JWT");
 }
