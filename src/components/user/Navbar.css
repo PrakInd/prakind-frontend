@@ -6,9 +6,8 @@
   align-items: center;
   font-size: 1.2rem;
   position: sticky;
-  top: 0;
+  top: 8px;
   z-index: 999;
-  
 }
 
 .navbar-container {
@@ -27,7 +26,7 @@
 .nav-menu {
   display: grid;
   grid-template-columns: repeat(4, auto);
-  grid-gap: 10px;
+  grid-gap: 8px;
   list-style: none;
   text-align: center;
   width: 70vw;

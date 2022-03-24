@@ -11,13 +11,13 @@ export default function ListApplicant() {
           {/* Breadcrumbs*/}
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <a href="#">Dashboard</a>
+              <a href="#">List Pelamar</a>
             </li>
-            <li className="breadcrumb-item active">Applicants list</li>
+            <li className="breadcrumb-item active">List Pelamar</li>
           </ol>
           <div className="box_general">
             <div className="header_box">
-              <h2 className="d-inline-block">Applicants list</h2>
+              <h2 className="d-inline-block">List Pelamar</h2>
               <div className="filter">
                 <select name="orderby" className="selectbox">
                   <option value="Any status">All</option>

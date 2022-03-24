@@ -35,7 +35,6 @@ const Sidebar = () => {
                         <ListItemIcon sx={{ color: "white" }}>
                             <LogoutOutlined />
                         </ListItemIcon>
-                        <ListItemText>Logout</ListItemText>
                     </ListItem>
                 </Link>
             </div>

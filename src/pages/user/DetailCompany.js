@@ -4,7 +4,7 @@ import Filter from "../../components/Filter";
 import PhoneIcon from '@mui/icons-material/Phone';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import axios from "axios";
-import { SHOW_COMPANY } from "../../constans/urls";
+import { SHOW_COMPANY } from "../../constants/urls";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/user/Navbar";
 

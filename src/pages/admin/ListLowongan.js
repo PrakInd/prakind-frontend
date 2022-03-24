@@ -3,7 +3,6 @@ import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import Button from '@mui/material/Button';
 
-
 export default function ListVacancy() {
   return (
     <div>
@@ -15,11 +14,11 @@ export default function ListVacancy() {
             <li className="breadcrumb-item">
               <a href="#">Dashboard</a>
             </li>
-            <li className="breadcrumb-item active">List Vacancy</li>
+            <li className="breadcrumb-item active">List Lowongan</li>
           </ol>
           <div className="box_general">
             <div className="header_box">
-              <h2 className="d-inline-block">List Vacancy</h2>
+              <h2 className="d-inline-block">List Lowongan</h2>
               <Button sx={{marginLeft: "740px", }} variant="contained" >Buat Lowongan</Button>
               {/* <div className="filter">
                 <select name="orderby" className="selectbox">

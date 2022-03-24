@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 //import { useHistory } from "react-router-dom";
-import { REGISTER_API } from "../constants/urls";
-import { Message } from "@material-ui/icons";
+import { CREATE_COMPANY } from "../constants/urls";
 
-const RegisterUser = () => {
-  const [role, setRole] = React.useState("");
+const RegisterPerusahaan = () => {
   const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = React.useState("");
+  const [address, setAddress] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+  const [website, setWebsite] = React.useState("");
+  const [mountEmp, setMount] = React.useState("");
+  const [desc, setDesc] = React.useState("");
   const [errorName, setErrorName] = React.useState("");
-  const [errorEmail, setErrorEmail] = React.useState("");
-  const [errorPassword, setErrorPassword] = React.useState("");
-  const [
-    errorPasswordConfirmation,
-    setErrorPasswordConfirmation,
-  ] = React.useState("");
+  const [errorAddress, setErrorAddress] = React.useState("");
+  const [errorPhone, setErrorPhone] = React.useState("");
+  const [errorWebsite, setErrorWebsite] = React.useState("");
+  const [errorMountemp, setErrorMount] = React.useState("");
+  const [errorDesc, setErrorDesc ] = React.useState("");
+  
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
@@ -24,27 +24,35 @@ const RegisterUser = () => {
     if (name) {
       setErrorName("");
     }
-    if (email) {
-      setErrorEmail("");
+    if (address) {
+      setErrorAddress("");
     }
-    if (password) {
-      setErrorPassword("");
+    if (phone) {
+      setErrorPhone("");
     }
-    if (passwordConfirmation) {
-      setErrorPasswordConfirmation("");
+    if (website) {
+      setErrorWebsite("");
+    }
+    if (mountEmp) {
+      setErrorMount("");
+    }
+    if (desc) {
+      setErrorDesc("");
     }
     return () => {};
-  }, [name, email, password, passwordConfirmation]);
+  }, [name, address, phone, website, mail, mountEmp, desc]);
 
   const _onSubmit = () => {
     setLoading(true);
     axios
-      .post(REGISTER_API, {
+      .post(CREATE_COMPANY, {
         name: name,
-        email: email,
-        password: password,
-        password_confirmation: passwordConfirmation,
-        role: "User",
+        address: address,
+        phone: phone,
+        website: website,
+        mountEmp: mountEmp,
+        desc: desc,
+        role: "Admin",
       })
       .then((res) => {
         setUserLogin({
@@ -65,6 +73,9 @@ const RegisterUser = () => {
           );
           setErrorPassword(
             err.response.data?.password ? err.response.data.password : ""
+          );
+          setErrorPhone(
+            err.response.data?.phone ? err.response.data.phone : ""
           );
           setErrorPassword(
             err.response.data?.password ? err.response.data.password : ""
@@ -102,33 +113,33 @@ const RegisterUser = () => {
           </figure>
           <form autoComplete="off">
             <div className="form-group">
-              <label>Foto Profil</label>
-              <input className="form-control" type="file" />
-              <i className="ti-user" />
-            </div>
-            <div className="form-group">
-              <label>Nama Anda</label>
+              <label>Nama Perusahaan</label>
               <input className="form-control" type="text" />
               <i className="ti-user" />
             </div>
-            {/* <div className="form-group">
-              <label>Your Last Name</label>
-              <input className="form-control" type="text" />
-              <i className="ti-user" />
-            </div> */}
             <div className="form-group">
-              <label>Email</label>
+              <label>Alamat Perusahaan</label>
               <input className="form-control" type="email" />
               <i className="icon_mail_alt" />
             </div>
             <div className="form-group">
-              <label>Password</label>
-              <input className="form-control" type="password" id="password1" />
+              <label>Telepon</label>
+              <input className="form-control" type="text" id="text" />
               <i className="icon_lock_alt" />
             </div>
             <div className="form-group">
-              <label>Konfirmasi Password</label>
-              <input className="form-control" type="password" id="password2" />
+              <label>Website</label>
+              <input className="form-control" type="text" id="text" />
+              <i className="icon_lock_alt" />
+            </div>
+            <div className="form-group">
+              <label>Jumlah Karyawan</label>
+              <input className="form-control" type="text" id="text" />
+              <i className="icon_lock_alt" />
+            </div>
+            <div className="form-group">
+              <label>Deskripsi</label>
+              <input className="form-control" type="text" id="text" />
               <i className="icon_lock_alt" />
             </div>
             <div id="pass-info" className="clearfix" />
@@ -138,7 +149,7 @@ const RegisterUser = () => {
             <div className="text-center add_top_10">
               Sudah punya akun ?{" "}
               <strong>
-                <a href="login.html">Datfar</a>
+                <a href="login.html">Daftar</a>
               </strong>
             </div>
           </form>

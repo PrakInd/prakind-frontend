@@ -8,25 +8,30 @@ import {
 
 const routes = [
     {
-        title: "Appointment",
-        path: "/appointment-create",
+        title: "Dashboard",
+        path: "/perusahaan/dashboard",
         exact: true,
         icon: <DescriptionOutlined />,
     },
     {
-        title: "Guest",
-        path: "/guest-list",
-        icon: <PeopleAltOutlined />,
-    },
-    {
-        title: "Users",
-        path: "/user-list",
+        title: "List Lowongan",
+        path: "/perusahaan/lowongan",
         icon: <PersonAddAlt1Outlined />,
     },
     {
-        title: "History",
-        path: "/appointment-history",
+        title: "Profil Perusahaan",
+        path: "/perusahaan/profil",
         icon: <HistoryOutlined />,
+    },
+    {
+        title: "Daftar Pelamar",
+        path: "/perusahaan/pelamar",
+        icon: <PeopleAltOutlined />,
+    },
+    {
+        title: "Tabel Magang",
+        path: "/perusahaan/table",
+        icon: <PeopleAltOutlined />,
     },
 ];
 

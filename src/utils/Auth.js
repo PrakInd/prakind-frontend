@@ -1,5 +1,13 @@
 import Cookies from "js-cookie";
 
+export const setUserLogin = (user) => {
+  Cookies.set("USER", user);
+};
+
+export const setRole = (role) => {
+  Cookies.set("ROLE", role);
+}; 
+
 export const login = (jwt) => {
   Cookies.set("JWT", jwt);
 };
@@ -17,7 +25,7 @@ export const isLogin = () => {
 };
 
 export const isAdmin = () => {
-  if (Cookies.getJSON("USER")?.role_id === 1) {
+  if (Cookies.get("ROLE") === "1") {
     return true;
   }
   
@@ -25,7 +33,7 @@ export const isAdmin = () => {
 };
 
 export const isUser = () => {
-  if (Cookies.getJSON("USER")?.role_id === 2) {
+  if (Cookies.get("ROLE") === "2") {
     return true;
   }
 

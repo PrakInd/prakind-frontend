@@ -11,9 +11,9 @@ export default function CompanyProfile() {
           {/* Breadcrumbs*/}
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <a href="#">Dashboard</a>
+              <a href="#">Profil Perusahaan</a>
             </li>
-            <li className="breadcrumb-item active">Add listing</li>
+            <li className="breadcrumb-item active">Detail</li>
           </ol>
           <div className="box_general padding_bottom">
             <div className="header_box version_2">

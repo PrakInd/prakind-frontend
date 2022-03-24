@@ -1,33 +1,26 @@
-/*
-  Ini komponen PrivateRoute, tujuannya dia ngecek kalo user belum login nanti 
-  redirect ke halaman login
-*/
-
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { isLogin, isAdmin } from "../utils/Auth";
 
 const AdminRoute = ({ component: Component, ...rest }) => {
   return (
-    // Show the component only when the user is logged in
-    // Otherwise, redirect the user to /signin page
     <Route
       {...rest}
       render={(props) =>
         isLogin() ? (
           isAdmin() ? (
             !rest.isNotFound ? (
-              <Component />
+              <Component {...props} />
             ) : (
               <>
                 <Redirect to="/error" />
-                <Component />
+                <Component {...props} />
               </>
             )
           ) : (
             <>
               <Redirect to="/pelamar/profil" />
-              <Component />
+              <Component {...props} />
             </>
           )
         ) : (
@@ -35,6 +28,24 @@ const AdminRoute = ({ component: Component, ...rest }) => {
         )
       }
     />
+
+    // <Route
+    //   {...rest}
+    //   render={(props) =>
+    //     isLogin() ? (
+    //       isAdmin() ? (
+    //         <Component {...props} />
+    //       ) : (
+    //         <>
+    //           <Redirect to="/pelamar/profil" />
+    //           <Component {...props} />
+    //         </>
+    //       )
+    //     ) : (
+    //       <Redirect to="/login" />
+    //     )
+    //   }
+    // />
   );
 };
 
