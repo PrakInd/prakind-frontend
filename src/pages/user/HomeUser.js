@@ -43,7 +43,7 @@ const HomeUser = () => {
               </form>
             </div>
             <Link className="grid_item" to="/lowongan">
-              <PrimaryButton style={{ width: "15%", marginLeft: "auto", marginRight: "auto" }}>              Lihat Info Magang
+              <PrimaryButton style={{ width: "15%", marginLeft: "auto", marginRight: "auto", marginTop: "18px"}}>Lihat Info Magang
               </PrimaryButton>
             </Link>
           </div>

@@ -1,34 +1,35 @@
 // import './App.css';
-import { APP_ROUTES } from "./routes";
-import PrivateRoute from "./utils/PrivateRoute";
-import PublicRoute from './utils/PublicRoute';
+// import { APP_ROUTES } from "./routes";
+// import PrivateRoute from "./utils/PrivateRoute";
+// import PublicRoute from './utils/PublicRoute';
 import {
   Route,
   BrowserRouter as Router,
   Switch,
-  Redirect
+  // Redirect
 } from "react-router-dom";
-// import Navbar from "./components/Navbar";
-// import HomeUser from "./pages/user/HomeUser";
-// import Vacancy from "./pages/user/Vacancy";
-// import DetailVacancy from "./pages/user/DetailVacancy";
-// import DetailCompany from "./pages/user/DetailCompany";
-// import ErrorPage from "./pages/ErrorPage";
-// import FormRegister from "./pages/user/FormRegister";
+import Login from "./pages/Login";
+import ErrorPage from "./pages/ErrorPage";
+import Vacancy from "./pages/user/Vacancy";
+import HomeUser from "./pages/user/HomeUser";
+import DetailVacancy from "./pages/user/DetailVacancy";
+import DetailCompany from "./pages/user/DetailCompany";
+import UserContainer from "./components/UserContainer";
+import AdminContainer from "./components/AdminContainer";
 
 function App() {
-  const prefix = [
-    '/form-register',
-    '/upload-dokumen',
-    '/profil-saya',
-    '/daftar-magang',
-  ];
+  // const prefix = [
+  //   '/form-register',
+  //   '/upload-dokumen',
+  //   '/profil-saya',
+  //   '/daftar-magang',
+  // ];
 
   return (
     <div className="App">
       <Router>
         <Switch>
-          {APP_ROUTES.map((value, index) => {
+          {/* {APP_ROUTES.map((value, index) => {
             return (
               <PublicRoute
                 key={value.name}
@@ -40,14 +41,20 @@ function App() {
               />
             );
           })}
+          
           <Route path="/">
             <Redirect to="/login" />
-          </Route>
-          {/* <Route exact path="/" component={HomeUser} />
-          <Route exact path="/lowongan" component={Vacancy} />
-          <Route exact path="/lowongan/:id" component={DetailVacancy} />
-          <Route exact path="/detail-perusahaan/:id" component={DetailCompany} /> */}
-          {/* <Route exact path="/form-register" component={FormRegister} /> */}
+          </Route> */}
+
+          <Route exact restricted path="/" component={HomeUser} />
+          <Route exact restricted path="/login" component={Login} />
+          <Route exact restricted path="/lowongan" component={Vacancy} />
+          <Route exact restricted path="/lowongan/:id" component={DetailVacancy} />
+          <Route exact restricted path="/detail-perusahaan/:id" component={DetailCompany} />
+          <Route isUser private path="/pelamar" component={UserContainer} />
+          <Route isAdmin private path="/perusahaan" component={AdminContainer} />
+          <Route exact private isNotFound restricted path="/*" component={ErrorPage} />
+          <Route exact private isNotFound restricted path="/error" component={ErrorPage} />
         </Switch>
       </Router>
     </div>

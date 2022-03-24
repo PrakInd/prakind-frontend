@@ -11,9 +11,11 @@ export default function AddVacancy() {
           {/* Breadcrumbs*/}
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <a href="#">Dashboard</a>
+              <a href="#">Lowongan</a>
             </li>
-            <li className="breadcrumb-item active">Add Vacancy</li>
+            <li className="breadcrumb-item active">Buat Lowongan</li>
+            {/* <li className="breadcrumb-item active">Detail Lowongan</li> */}
+            {/* <p className="font-bold text-xl md:text-2xl text-center">{(schedule.schedule?.id && "Detail") || "New Schedule"}</p> */}
           </ol>
           <div className="box_general padding_bottom">
             <div className="header_box version_2">
@@ -543,7 +545,7 @@ export default function AddVacancy() {
           {/* /box_general*/}
           <p>
             <a href="#0" className="btn_1 medium">
-              Save
+              Simpan
             </a>
           </p>
         </div>

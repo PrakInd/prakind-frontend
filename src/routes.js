@@ -36,13 +36,13 @@ export const APP_ROUTES = [
     component: Login,
     restricted: true,
   },
-  {
-    name: "Login",
-    path: "/",
-    exact: true,
-    component: Login,
-    restricted: true,
-  },
+  // {
+  //   name: "Login",
+  //   path: "/",
+  //   exact: true,
+  //   component: Login,
+  //   restricted: true,
+  // },
   // {
   //   name: "User Register",
   //   path: "/registrasi-pelamar",
@@ -83,7 +83,6 @@ export const APP_ROUTES = [
   {
     name: "Master Layout Admin",
     path: "/perusahaan",
-    // exact: true,
     component: AdminContainer,
     private: true,
     isAdmin: true,
@@ -91,7 +90,6 @@ export const APP_ROUTES = [
   {
     name: "Master Layout User",
     path: "/pelamar",
-    // exact: true,
     component: UserContainer,
     private: true,
     isUser: true,
@@ -113,88 +111,3 @@ export const APP_ROUTES = [
     isNotFound: true,
   },
 ];
-
-// export const PRIVATE_ROUTE = [
-//   // === USER ===
-//   {
-//     name: "Form Register",
-//     path: "/form-register",
-//     exact: true,
-//     component: FormRegister,
-//     restricted: false,
-//     private: true,
-//   },
-//   {
-//     name: "Upload Dokumen",
-//     path: "/upload-dokumen",
-//     exact: true,
-//     component: UploadDocs,
-//     restricted: false,
-//     private: true,
-//   },
-//   {
-//     name: "Profil Saya",
-//     path: "/profil-saya",
-//     exact: true,
-//     component: Profil,
-//     restricted: false,
-//     private: true,
-//   },
-//   {
-//     name: "Daftar Magang",
-//     path: "/daftar-magang",
-//     exact: true,
-//     component: Apply,
-//     restricted: false,
-//     private: true,
-//   },
-
-  // === ADMIN ===
-  // {
-  //   name: "Dashboard",
-  //   path: "/perusahaan",
-  //   exact: true,
-  //   component: Dashboard,
-  //   restricted: false,
-  //   private: true,
-  // },
-  // {
-  //   name: "Tambah Lowongan",
-  //   path: "/perusahaan/lowongan/tambah",
-  //   exact: true,
-  //   component: AddVacancy,
-  //   restricted: false,
-  //   private: true,
-  // },
-  // {
-  //   name: "List Lowongan",
-  //   path: "/perusahaan/lowongan",
-  //   exact: true,
-  //   component: ListVacancy,
-  //   restricted: false,
-  //   private: true,
-  // },
-  // {
-  //   name: "Profil Perusahaan",
-  //   path: "/perusahaan/profil",
-  //   exact: true,
-  //   component: CompanyProfile,
-  //   restricted: false,
-  //   private: true,
-  // },
-  // {
-  //   name: "Daftar Pelamar",
-  //   path: "/perusahaan/pelamar",
-  //   exact: true,
-  //   component: ListApplicants,
-  //   restricted: false,
-  //   private: true,
-  // },
-  // {
-  //   name: "Table",
-  //   path: "/table",
-  //   exact: true,
-  //   component: Table,
-  //   restricted: false,
-  //   private: true,
-  // },

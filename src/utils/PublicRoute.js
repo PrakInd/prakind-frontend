@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import { isLogin, isUser } from "./Auth";
+import { isLogin, isUser, isAdmin } from "./Auth";
 
 // const PublicRoute = ({ component: Component, restricted, ...rest }) => {
 //   return (
@@ -24,10 +24,14 @@ const PublicRoute = ({ component: Component, isNotFound, restricted, ...rest }) 
       render={(props) =>
         isLogin() && restricted ? (
           !isNotFound ? (
-            isUser() ? (
-              <Redirect to="/pelamar/profil" />
+            isAdmin() ? (
+              <>
+                <Redirect to="/perusahaan" />
+              </>
             ) : (
-              <Redirect to="/perusahaan/dashboard" />
+              <>
+                <Redirect to="/pelamar/profil" />
+              </>
             )
           ) : (
             <>

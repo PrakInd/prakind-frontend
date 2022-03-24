@@ -12,7 +12,7 @@ import { BookmarkBorder } from "@material-ui/icons";
 import PhoneIcon from '@mui/icons-material/Phone';
 import { NavLink } from "react-router-dom";
 import Navbar from "../../components/user/Navbar";
-import { Dialog, DialogTitle, DialogActions, DialogContent, Menu, MenuItem, Fade, Button } from "@mui/material";
+import { Dialog, FormControl, InputLabel, Select, DialogTitle, DialogActions, DialogContent, Menu, MenuItem, Fade, Button } from "@mui/material";
 
 const DetailVacancy = () => {
   const { id } = useParams();
@@ -62,9 +62,9 @@ const DetailVacancy = () => {
 
   const dialog = (
     <Dialog open={open} onClose={handleClose} >
-      <DialogTitle>Pilih Kategori</DialogTitle>
+      <DialogTitle>Kategori Magang</DialogTitle>
       <DialogContent>
-        <Button
+        {/* <Button
           id="fade-button"
           aria-controls={open ? 'fade-menu' : undefined}
           aria-haspopup="true"
@@ -84,7 +84,17 @@ const DetailVacancy = () => {
         >
           <MenuItem onClick={handleClose}>Individu</MenuItem>
           <MenuItem onClick={handleClose}>Kelompok</MenuItem>
-        </Menu>
+        </Menu> */}
+
+        <FormControl style={{ width: '150px', marginTop: 10 }} >
+          <InputLabel>
+            Pilih Kategori
+          </InputLabel>
+          <Select>
+            <MenuItem>Individu</MenuItem>
+            <MenuItem>Kelompok</MenuItem>
+          </Select>
+        </FormControl>
       </DialogContent>
       <DialogActions></DialogActions>
     </Dialog>
