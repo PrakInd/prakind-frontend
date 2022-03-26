@@ -46,6 +46,7 @@ export default function Login() {
         } else if (Cookies.get("ROLE") === "2") {
           history.push("/pelamar/profil");
         }
+        // console.log("role_id: " + (Cookies.getJSON("USER")?.role_id === 1))
 
         // history.push("/");
       })

@@ -5,7 +5,7 @@ import Navbar from "../../components/Navbar";
 export default function Dashboard() {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="content-wrapper">
         <div className="container-fluid">
           {/* Breadcrumbs*/}

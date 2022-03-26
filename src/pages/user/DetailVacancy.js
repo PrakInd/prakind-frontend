@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
-import FooterUser from "../../components/FooterUser";
-import Filter from "../../components/Filter";
 import axios from "axios";
-import { SHOW_VACANCY, SHOW_COMPANY } from "../../constants/urls";
 import { useParams } from "react-router-dom";
-import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
-import PrimaryButton from "../../components/button/PrimaryButton";
-import ShareIcon from '@mui/icons-material/Share';
-import SecondaryButton from "../../components/button/SecondaryButton";
-import { BookmarkBorder } from "@material-ui/icons";
+import Filter from "../../components/Filter";
 import PhoneIcon from '@mui/icons-material/Phone';
-import { NavLink } from "react-router-dom";
+import ShareIcon from '@mui/icons-material/Share';
 import Navbar from "../../components/user/Navbar";
-import { Dialog, FormControl, InputLabel, Select, DialogTitle, DialogActions, DialogContent, Menu, MenuItem, Fade, Button } from "@mui/material";
+import { SHOW_VACANCY } from "../../constants/urls";
+import { BookmarkBorder } from "@material-ui/icons";
+import FooterUser from "../../components/FooterUser";
+import PrimaryButton from "../../components/button/PrimaryButton";
+import SecondaryButton from "../../components/button/SecondaryButton";
+import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
+import { Dialog, FormControl, InputLabel, Select, DialogTitle, DialogActions, DialogContent, MenuItem } from "@mui/material";
 
 const DetailVacancy = () => {
   const { id } = useParams();
@@ -51,7 +50,7 @@ const DetailVacancy = () => {
       setVacancy({});
       setCompany({});
     }
-  }, []);
+  }, [id]);
 
   // const changeColor = (index) => {
   //   if index % 2 == 0
@@ -194,18 +193,18 @@ const DetailVacancy = () => {
                     <div className="room_type gray">
                       <div className="row">
                         <div className="col-md-4">
-                          <img src="img/gallery/hotel_list_2.jpg" className="img-fluid" alt />
+                          <img src="img/gallery/hotel_list_2.jpg" className="img-fluid" alt="my-img" />
                         </div>
                         <div className="col-md-8">
                           <h4>Double Room</h4>
                           <p>Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate
                             pertinacia eum at.</p>
                           <ul className="hotel_facilities">
-                            <li><img src="img/hotel_facilites_icon_3.svg" alt />Double Bed</li>
-                            <li><img src="img/hotel_facilites_icon_4.svg" alt />Free Wifi</li>
-                            <li><img src="img/hotel_facilites_icon_6.svg" alt />Bathtub</li>
-                            <li><img src="img/hotel_facilites_icon_7.svg" alt />Air Condition</li>
-                            <li><img src="img/hotel_facilites_icon_8.svg" alt />Hairdryer</li>
+                            <li><img src="img/hotel_facilites_icon_3.svg" alt="my-img" />Double Bed</li>
+                            <li><img src="img/hotel_facilites_icon_4.svg" alt="my-img" />Free Wifi</li>
+                            <li><img src="img/hotel_facilites_icon_6.svg" alt="my-img" />Bathtub</li>
+                            <li><img src="img/hotel_facilites_icon_7.svg" alt="my-img" />Air Condition</li>
+                            <li><img src="img/hotel_facilites_icon_8.svg" alt="my-img" />Hairdryer</li>
                           </ul>
                         </div>
                       </div>
@@ -215,19 +214,19 @@ const DetailVacancy = () => {
                     <div className="room_type last">
                       <div className="row">
                         <div className="col-md-4">
-                          <img src="img/gallery/hotel_list_3.jpg" className="img-fluid" alt />
+                          <img src="img/gallery/hotel_list_3.jpg" className="img-fluid" alt="my-img" />
                         </div>
                         <div className="col-md-8">
                           <h4>Suite Room</h4>
                           <p>Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate
                             pertinacia eum at.</p>
                           <ul className="hotel_facilities">
-                            <li><img src="img/hotel_facilites_icon_3.svg" alt />King size Bed</li>
-                            <li><img src="img/hotel_facilites_icon_4.svg" alt />Free Wifi</li>
-                            <li><img src="img/hotel_facilites_icon_6.svg" alt />Bathtub</li>
-                            <li><img src="img/hotel_facilites_icon_7.svg" alt />Air Condition</li>
-                            <li><img src="img/hotel_facilites_icon_9.svg" alt />Swimming pool</li>
-                            <li><img src="img/hotel_facilites_icon_3.svg" alt />Hairdryer</li>
+                            <li><img src="img/hotel_facilites_icon_3.svg" alt="my-img" />King size Bed</li>
+                            <li><img src="img/hotel_facilites_icon_4.svg" alt="my-img" />Free Wifi</li>
+                            <li><img src="img/hotel_facilites_icon_6.svg" alt="my-img" />Bathtub</li>
+                            <li><img src="img/hotel_facilites_icon_7.svg" alt="my-img" />Air Condition</li>
+                            <li><img src="img/hotel_facilites_icon_9.svg" alt="my-img" />Swimming pool</li>
+                            <li><img src="img/hotel_facilites_icon_3.svg" alt="my-img" />Hairdryer</li>
                           </ul>
                         </div>
                       </div>
@@ -279,7 +278,7 @@ lue, index) => a {
                     <span>Profile Perusahaan</span>
                   </div>
                   <div>
-                    <img src="img/prakind/laptop.jpeg" alt height={120} width={120} style={{ marginBottom: '10px' }} />
+                    <img src="img/prakind/laptop.jpeg" alt="my-img" height={120} width={120} style={{ marginBottom: '10px' }} />
                     {/* <h5>PT. Otak Kanan</h5> */}
                     <h5>{company.name}</h5>
                     <p style={{ marginTop: '-10px', marginBottom: '-10px' }}>{company.description}</p>
@@ -298,7 +297,7 @@ lue, index) => a {
                   </div>
                   <div>
                     <LanguageOutlinedIcon />
-                    <a href="https://otakkanan.co.id/id/" target="_blank" style={{ color: "#000000" }}>&ensp;www.otakkanan.co.id</a>
+                    <a href="https://otakkanan.co.id/id/" style={{ color: "#000000" }}>&ensp;www.otakkanan.co.id</a>
                     <br />
                     <PhoneIcon /> <font style={{ color: "#000000" }}>&ensp;087750</font>
                   </div>

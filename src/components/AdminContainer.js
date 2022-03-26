@@ -87,20 +87,20 @@ function AdminContainer(props) {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar
+      {/* <CssBaseline /> */}
+      {/* <AppBar
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        {/* <Toolbar>
+        <Toolbar>
           <Typography variant="h6" noWrap component="div">
             Responsive drawer
           </Typography>
-        </Toolbar> */}
-      </AppBar>
+        </Toolbar>
+      </AppBar> */}
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
@@ -143,11 +143,10 @@ function AdminContainer(props) {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
-        <Toolbar />
+        {/* <Toolbar /> */}
         <Switch>
           {ADMIN_ROUTES.map((value, key) => {
             return (
@@ -162,7 +161,6 @@ function AdminContainer(props) {
             );
           })}
         </Switch>
-        <h1>Halaman Admin Container</h1>
       </Box>
     </Box>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import GoTop from "./GoTop";
+// import GoTop from "./GoTop";
 
 const FooterUser = () => {
   return (
@@ -7,13 +7,12 @@ const FooterUser = () => {
       <div className="container margin_60_35">
         <div className="row">
           <div className="col-lg-5 col-md-12 p-r-5">
-            <p><img src="img/logo2.png" width={150} height={36} alt /></p>
+            <p><img src="img/logo2.png" width={150} height={36} alt="my-img" /></p>
             <p>Praktik Industri atau PrakInd merupakan portal magang yang diperuntukkan untuk siswa/i ataupun
               mahasiswa/i.
             </p>
             <hr />
             Portal ini di support oleh PT OTAK KANAN - INDONESIA.
-            <p><img src /></p>
 
           </div>
           <div className="col-lg-3 col-md-6 ml-lg-auto">
@@ -49,7 +48,7 @@ const FooterUser = () => {
           </div>
         </div>
       </div>
-      <GoTop />
+      {/* <GoTop /> */}
 
     </footer>
   );
