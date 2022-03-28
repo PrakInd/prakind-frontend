@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
 import Filter from "../../components/Filter";
 import Navbar from "../../components/user/Navbar";
 import FooterUser from "../../components/FooterUser";
 import { SHOW_VACANCIES } from "../../constants/urls";
 import SearchResults from "../../components/SearchResults";
+import { SearchContext } from "../../components/SearchContext/SearchContext";
 
 const Vacancy = () => {
+  const [search] = useContext(SearchContext);
   const [vacancies, setVacancies] = useState([]);
-  const { position, company, location } = useLocation().state;
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
     axios
       .get(SHOW_VACANCIES)
       .then(res => {
-        if (position || company || location) {
+        if (search.position !== '' || search.company !== '' || search.location !== '') {
           let newFilter = res.data.data.filter(value => {
-            let filterPos = value.name.toLowerCase().includes(position);
-            let filterCom = value.company.name.toLowerCase().includes(company);
-            let filterLoc = value.location.toLowerCase().includes(location);
+            let filterPos = value.name.toLowerCase().includes(search.position);
+            let filterCom = value.company.name.toLowerCase().includes(search.company);
+            let filterLoc = value.location.toLowerCase().includes(search.location);
       
             return filterPos && filterCom & filterLoc;
           });
@@ -36,7 +36,7 @@ const Vacancy = () => {
       setVacancies([]);
       setFilteredData([]);
     }
-  }, [position, company, location]);
+  }, [search.position, search.company, search.location]);
 
   const getFilteredData = data => {
     setFilteredData(data);
@@ -46,9 +46,9 @@ const Vacancy = () => {
     <>
       <Navbar />
       <Filter 
-        position={position}
-        company={company}
-        location={location}
+        position={search.position}
+        company={search.company}
+        location={search.location}
         data={vacancies}
         getFilteredData={getFilteredData}
       />

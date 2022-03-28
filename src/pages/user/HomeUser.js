@@ -1,30 +1,18 @@
-import React, { useState } from "react";
-import { 
-  useHistory, 
-  // Link 
-} from "react-router-dom";
+import React, { useContext } from "react";
+import { useHistory, Link } from "react-router-dom";
 // import Header from "../../components/Header";
 import Navbar from "../../components/user/Navbar";
 import FooterUser from "../../components/FooterUser";
-// import PrimaryButton from "../../components/button/PrimaryButton";
+import PrimaryButton from "../../components/button/PrimaryButton";
+import { SearchContext } from "../../components/SearchContext/SearchContext";
 
 const HomeUser = () => {
   const history = useHistory();
-  const [position, setPosition] = useState('');
-  const [company, setCompany] = useState('');
-  const [location, setLocation] = useState('');
+  const [search, setSearch] = useContext(SearchContext);
 
   const onSubmit = e => {
     e.preventDefault();
-
-    history.push({
-      pathname: "/lowongan",
-      state: {
-        position: position,
-        company: company,
-        location: location,
-      }
-    });
+    history.push("/lowongan");
   };
 
   return (
@@ -45,7 +33,7 @@ const HomeUser = () => {
                         className="form-control" 
                         type="text" 
                         placeholder="Cari posisi"
-                        onChange={e => setPosition(e.target.value)}
+                        onChange={e => setSearch({ ...search, position: e.target.value })}
                       />
                       <i className="icon_search" />
                     </div>
@@ -56,7 +44,7 @@ const HomeUser = () => {
                         className="form-control" 
                         type="text" 
                         placeholder="Cari perusahaan"
-                        onChange={e => setCompany(e.target.value)}
+                        onChange={e => setSearch({ ...search, company: e.target.value })}
                       />
                       <i className="icon_building" />
                     </div>
@@ -67,7 +55,7 @@ const HomeUser = () => {
                         className="form-control" 
                         type="text" 
                         placeholder="Cari lokasi"
-                        onChange={e => setLocation(e.target.value)}
+                        onChange={e => setSearch({ ...search, location: e.target.value })}
                       />
                       <i className="icon_pin_alt" />
                     </div>
@@ -83,10 +71,18 @@ const HomeUser = () => {
               
             </div>
 
-            {/* <Link className="grid_item" to="/lowongan">
-              <PrimaryButton style={{ width: "15%", marginLeft: "auto", marginRight: "auto", marginTop: "18px"}}>Lihat Info Magang
+            <Link className="grid_item" to="/lowongan">
+              <PrimaryButton 
+                style={{ 
+                  width: "15%", 
+                  marginLeft: "auto", 
+                  marginRight: "auto", 
+                  marginTop: "18px"
+                }}
+              >
+                Lihat Info Magang
               </PrimaryButton>
-            </Link> */}
+            </Link>
 
           </div>
         </section>
