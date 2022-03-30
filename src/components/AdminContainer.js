@@ -65,6 +65,7 @@ function AdminContainer(props) {
           "List Lowongan",
           "Profil Perusahaan",
           "List Magang",
+          "Pengaturan Admin",
         ].map((text, index) => (
           <ListItem button key={text}>
             <ListItemText primary={text} />

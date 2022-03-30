@@ -4,7 +4,14 @@ import {
   BrowserRouter as Router,
   Switch,
 } from "react-router-dom";
+import {
+  createTheme,
+  StyledEngineProvider,
+  ThemeProvider,
+} from '@mui/material/styles';
 import Login from "./pages/Login";
+import RegisterUser from "./pages/RegisterUser";
+import RegisterPerusahaan from "./pages/RegisterPerusahaan";
 import ErrorPage from "./pages/ErrorPage";
 import Vacancy from "./pages/user/Vacancy";
 import HomeUser from "./pages/user/HomeUser";
@@ -13,6 +20,42 @@ import DetailCompany from "./pages/user/DetailCompany";
 import UserContainer from "./components/UserContainer";
 import AdminContainer from "./components/AdminContainer";
 import { SearchProvider } from "./components/SearchContext/SearchContext";
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+    }
+  },
+  components: {
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          background: '#2D3246',
+          fontFamily: 'Inter',
+        },
+      },
+    },
+  },
+  typography: {
+    fontFamily: [
+      "Roboto",
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(","),
+  },
+})
 
 function App() {
   return (
@@ -39,6 +82,8 @@ function App() {
 
             <Route exact restricted path="/" component={HomeUser} />
             <Route exact restricted path="/login" component={Login} />
+            <Route exact restricted path="/register" component={RegisterUser} />
+            <Route exact restricted path="/regist-perusahaan" component={RegisterPerusahaan} />
             <Route exact restricted path="/lowongan" component={Vacancy} />
             <Route exact restricted path="/lowongan/:id" component={DetailVacancy} />
             <Route exact restricted path="/detail-perusahaan/:id" component={DetailCompany} />

@@ -1,103 +1,49 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-//import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { CREATE_COMPANY } from "../constants/urls";
+import Button from '@mui/material/Button';
 
-const RegisterPerusahaan = () => {
-  const [name, setName] = React.useState("");
-  const [address, setAddress] = React.useState("");
-  const [phone, setPhone] = React.useState("");
-  const [website, setWebsite] = React.useState("");
-  const [mountEmp, setMount] = React.useState("");
-  const [desc, setDesc] = React.useState("");
-  const [errorName, setErrorName] = React.useState("");
-  const [errorAddress, setErrorAddress] = React.useState("");
-  const [errorPhone, setErrorPhone] = React.useState("");
-  const [errorWebsite, setErrorWebsite] = React.useState("");
-  const [errorMountemp, setErrorMount] = React.useState("");
-  const [errorDesc, setErrorDesc ] = React.useState("");
-  
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
+export default function RegisterPerusahaan() {
+    const [logo, setLogo] = useState("");
+    const [name, setName] = useState("");
+    const [address, setAddress] = useState("");
+    const [phone, setPhone] = useState("");
+    const [website, setWebsite] = useState("");
+    const [mountEmp, setMount] = useState("");
+    const [desc, setDesc] = useState("");
 
-  React.useEffect(() => {
-    if (name) {
-      setErrorName("");
-    }
-    if (address) {
-      setErrorAddress("");
-    }
-    if (phone) {
-      setErrorPhone("");
-    }
-    if (website) {
-      setErrorWebsite("");
-    }
-    if (mountEmp) {
-      setErrorMount("");
-    }
-    if (desc) {
-      setErrorDesc("");
-    }
-    return () => {};
-  }, [name, address, phone, website, mail, mountEmp, desc]);
+    const [validation, setValidation] = useState([]);
 
-  const _onSubmit = () => {
-    setLoading(true);
-    axios
-      .post(CREATE_COMPANY, {
-        name: name,
-        address: address,
-        phone: phone,
-        website: website,
-        mountEmp: mountEmp,
-        desc: desc,
-        role: "Admin",
-      })
-      .then((res) => {
-        setUserLogin({
-          token: res.data.access_token,
-          email: res.data.user.email,
-          role: res.data.user.role,
+    const history = useHistory();
+
+    const registerPerusahaanHandler = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+
+        formData.append('logo', logo);
+        formData.append('name', name);
+        formData.append('address', address);
+        formData.append('phone', phone);
+        formData.append('website', website);
+        formData.append('mountEmp', mountEmp);
+        formData.append('desc', desc);
+
+        //send data to server
+        await axios.post(CREATE_COMPANY, formData)
+        .then(() => {
+            history.push('/');
+        })
+        .catch((error) => {
+            setValidation(error.response.data);
         });
-        setIsLoggedIn(true);
-        setLoading(false);
-        window.location = "/";
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-        if (err.response.data) {
-          setErrorName(err.response.data?.name ? err.response.data.name : "");
-          setErrorEmail(
-            err.response.data?.email ? err.response.data.email : ""
-          );
-          setErrorPassword(
-            err.response.data?.password ? err.response.data.password : ""
-          );
-          setErrorPhone(
-            err.response.data?.phone ? err.response.data.phone : ""
-          );
-          setErrorPassword(
-            err.response.data?.password ? err.response.data.password : ""
-          );
-          setErrorPasswordConfirmation(
-            err.response.data?.password_confirmation
-              ? err.response.data.password_confirmation
-              : ""
-          );
-        }
-        setLoading(false);
-      });
-  };
+    };
 
   return (
     <div id="login_bg">
       <nav id="menu" className="fake_menu" />
-      <div id="preloader">
-        <div data-loader="circle-side" />
-      </div>
-      {/* End Preload */}
-      <div id="login">
+      <div id="register">
         <aside>
           <figure>
             <a href="index.html">
@@ -111,54 +57,150 @@ const RegisterPerusahaan = () => {
               />
             </a>
           </figure>
-          <form autoComplete="off">
-            <div className="form-group">
-              <label>Nama Perusahaan</label>
-              <input className="form-control" type="text" />
-              <i className="ti-user" />
+          <div className="content-wrapper">
+            <div className="box_general padding_bottom">
+              <div className="row">
+                <div className="col-md-4">
+                  <div className="form-group">
+                    <label>Logo Perusahaan</label>
+                    <input
+                      accept="image/*"
+                      className="form-control"
+                      type="file"
+                      value={logo}
+                      onChange={(e) => setLogo(e.target.value)} />
+                    {validation.logo && (
+                      <div className="alert alert-danger">
+                        {validation.logo[0]}
+                      </div>
+                    )}
+                    {/* <form action="/file-upload" className="dropzone" /> */}
+                  </div>
+                </div>
+                <div className="col-md-8 add_top_30">
+                  <div className="row">
+                    <div className="col-md-12">
+                      <div className="form-group">
+                        <label>Nama Perusahaan</label>
+                        <input
+                          className="form-control"
+                          type="text"
+                          placeholder="Masukkan Nama Perusahaan"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)} />
+                        {validation.name && (
+                          <div className="alert alert-danger">
+                            {validation.name[0]}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-md-12">
+                      <div className="form-group">
+                        <label>Alamat Perusahaan</label>
+                        <input
+                          className="form-control"
+                          type="text"
+                          placeholder="Masukkan Alamat Perusahaan"
+                          value={address}
+                          onChange={(e) => setAddress(e.target.value)} />
+                        {validation.address && (
+                          <div className="alert alert-danger">
+                            {validation.address[0]}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-md-12">
+                      <div className="form-group">
+                        <label>Website Perusahaan</label>
+                        <input
+                          className="form-control"
+                          type="text"
+                          placeholder="Masukkan Website Perusahaan"
+                          value={website}
+                          onChange={(e) => setWebsite(e.target.value)} />
+                        {validation.website && (
+                          <div className="alert alert-danger">
+                            {validation.website[0]}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label>Telepon Perusahaan</label>
+                        <input
+                          className="form-control"
+                          type="tel"
+                          placeholder="Masukkan No Telepon Perusahaan"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)} />
+                        {validation.phone && (
+                          <div className="alert alert-danger">
+                            {validation.phone[0]}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label>Jumlah Karyawan Perusahaan</label>
+                        <input
+                          className="form-control"
+                          type="number"
+                          placeholder="Masukkan Jumlah Karyawan Perusahaan"
+                          value={mountEmp}
+                          onChange={(e) => setMount(e.target.value)} />
+                        {validation.mountEmp && (
+                          <div className="alert alert-danger">
+                            {validation.mountEmp[0]}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-md-12">
+                      <div className="form-group">
+                        <label>Deskripsi Perusahaan</label>
+                        <textarea
+                          style={{ height: 100 }}
+                          className="form-control"
+                          placeholder="Masukkan Deskripsi Perusahaan"
+                          value={desc}
+                          onChange={(e) => setDesc(e.target.value)} />
+                        {validation.desc && (
+                          <div className="alert alert-danger">
+                            {validation.desc[0]}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <Button sx={{
+                  marginX: "12px",
+                  width: "100%",
+                  backgroundColor: "#FC9400", 
+                  '&:hover':{ backgroundColor: "#FFC300", 
+                  color: "#3F4456"}}} 
+                  variant="contained" 
+                  onClick={registerPerusahaanHandler}
+                >
+                  Daftar Perusahaan</Button>
+              </div>
             </div>
-            <div className="form-group">
-              <label>Alamat Perusahaan</label>
-              <input className="form-control" type="email" />
-              <i className="icon_mail_alt" />
-            </div>
-            <div className="form-group">
-              <label>Telepon</label>
-              <input className="form-control" type="text" id="text" />
-              <i className="icon_lock_alt" />
-            </div>
-            <div className="form-group">
-              <label>Website</label>
-              <input className="form-control" type="text" id="text" />
-              <i className="icon_lock_alt" />
-            </div>
-            <div className="form-group">
-              <label>Jumlah Karyawan</label>
-              <input className="form-control" type="text" id="text" />
-              <i className="icon_lock_alt" />
-            </div>
-            <div className="form-group">
-              <label>Deskripsi</label>
-              <input className="form-control" type="text" id="text" />
-              <i className="icon_lock_alt" />
-            </div>
-            <div id="pass-info" className="clearfix" />
-            <a href="#0" className="btn_1 rounded full-width add_top_30">
-              Daftar Sekarang!
-            </a>
-            <div className="text-center add_top_10">
-              Sudah punya akun ?{" "}
-              <strong>
-                <a href="login.html">Daftar</a>
-              </strong>
-            </div>
-          </form>
+        </div>
           <div className="copy">© 2022 PrakInd</div>
         </aside>
       </div>
-      {/* /login */}
-      {/* COMMON SCRIPTS */}
-      {/* SPECIFIC SCRIPTS */}
     </div>
   );
 }

@@ -154,18 +154,11 @@ export default function Login() {
             >
               Login ke PrakInd
             </Button>
-
-            {/* <button href="/#" className="btn_1 rounded full-width">
-              Login ke PrakInd
-            </button> */}
             <div className="text-center add_top_10">
-              Anda Baru di Prakind ?{" "}
-              <Link to="/registerUser">
-                <p sx={{ fontWeight: "600", display: "flex", fontColor: "#FC9400" }}>Daftar</p>
+              Anda baru di Prakind ?{" "}
+              <Link to="/register">
+                <p sx={{fontWeight: "600", display: "flex", fontColor: "#FC9400"}}>Daftar</p>
               </Link>
-              {/* <strong>
-                <a href="register.html">Sign up!</a>
-              </strong> */}
             </div>
           </form>
           <div className="copy">© 2022 PrakInd</div>

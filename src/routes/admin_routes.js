@@ -5,6 +5,8 @@ import ListPelamar from "../pages/admin/ListPelamar";
 import TabelMagang from "../pages/admin/TabelMagang";
 import ListLowongan from "../pages/admin/ListLowongan";
 import ProfilPerusahaan from "../pages/admin/ProfilPerusahaan";
+import PengaturanAdmin from "../pages/admin/PengaturanAdmin";
+import DetailPelamar from "../pages/admin/DetailPelamar";
 
 export const ADMIN_ROUTES = [
   {
@@ -48,10 +50,26 @@ export const ADMIN_ROUTES = [
     isAdmin: true,
   },
   {
+    name: "Detail Pelamar",
+    path: "/perusahaan/pelamar/detail",
+    exact: true,
+    component: DetailPelamar,
+    private: true,
+    isAdmin: true,
+  },
+  {
     name: "Tabel",
     path: "/perusahaan/table",
     exact: true,
     component: TabelMagang,
+    private: true,
+    isAdmin: true,
+  },
+  {
+    name: "Pengaturan Admin",
+    path: "/perusahaan/admin",
+    exact: true,
+    component: PengaturanAdmin,
     private: true,
     isAdmin: true,
   },

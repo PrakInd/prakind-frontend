@@ -1,19 +1,15 @@
 import React from "react";
-import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar";
+import Chip from '@mui/material/Chip';
 
-export default function ListApplicant() {
+export default function ListPelamar() {
   return (
     <div>
-      <Navbar />
       <div className="content-wrapper">
         <div className="container-fluid">
-          {/* Breadcrumbs*/}
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <a href="#">List Pelamar</a>
+              List Pelamar
             </li>
-            <li className="breadcrumb-item active">List Pelamar</li>
           </ol>
           <div className="box_general">
             <div className="header_box">
@@ -77,6 +73,10 @@ export default function ListApplicant() {
                   </figure>
                   <h4>
                     Aisyah Ardelia
+                    <Chip sx={{
+                      backgroundColor: "#FC9400", 
+                      color: "#FFFFFF"}} 
+                      label="Berkelompok" color="primary" />
                     {/* <i className="cancel">Cancelled</i> */}
                   </h4>
                   <ul className="booking_list">
@@ -188,12 +188,8 @@ export default function ListApplicant() {
               </li>
             </ul>
           </nav>
-          {/* /pagination*/}
         </div>
-        {/* /container-fluid*/}
       </div>
-      {/* /container-wrapper*/}
-      <Footer />
     </div>
   );
 }

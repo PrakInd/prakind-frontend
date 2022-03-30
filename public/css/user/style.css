@@ -4641,8 +4641,7 @@ ul.hotel_facilities li img {
     padding: 15px 60px 20px 60px;
   }
 }
-#login aside,
-#register aside {
+#login aside {
   width: 430px;
   padding: 45px 60px 60px 60px;
   position: absolute;
@@ -4652,6 +4651,18 @@ ul.hotel_facilities li img {
   background-color: #fff;
   min-height: 100vh;
 }
+
+#register aside {
+  width: 100%;
+  padding: 45px 60px 60px 60px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow-y: auto;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
 @media (max-width: 767px) {
   #login aside,
   #register aside {

@@ -1,39 +1,48 @@
-import React from "react";
-import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar";
+import React, { useState, useEffect } from "react";
+import Button from '@mui/material/Button';
+import axios from "axios";
+import { SHOW_COMPANY } from "../../constants/urls";
 
-export default function CompanyProfile() {
+export default function ProfilPerusahaan() {
+  const [company, setCompany] = useState([]);
+
+  useEffect(() => {
+    axios
+    .get(SHOW_COMPANY)
+    .then(res => {
+      setCompany(res.data.data)
+    })
+    .catch(err => console.log(err))
+  })
+
   return (
     <div>
-      <Navbar />
       <div className="content-wrapper">
         <div className="container-fluid">
-          {/* Breadcrumbs*/}
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <a href="#">Profil Perusahaan</a>
+              Profil Perusahaan
             </li>
-            <li className="breadcrumb-item active">Detail</li>
           </ol>
           <div className="box_general padding_bottom">
             <div className="header_box version_2">
               <h2>
                 <i className="fa fa-user" />
-                Profile details
+                Detail Profil
               </h2>
             </div>
             <div className="row">
               <div className="col-md-4">
                 <div className="form-group">
-                  <label>Your photo</label>
+                  <label>Logo Perusahaan</label>
                   <form action="/file-upload" className="dropzone" />
                 </div>
               </div>
               <div className="col-md-8 add_top_30">
                 <div className="row">
-                  <div className="col-md-6">
+                  <div className="col-md-12">
                     <div className="form-group">
-                      <label>Name</label>
+                      <label>Nama Perusahaan</label>
                       <input
                         type="text"
                         className="form-control"
@@ -41,22 +50,35 @@ export default function CompanyProfile() {
                       />
                     </div>
                   </div>
-                  <div className="col-md-6">
+                </div>
+                <div className="row">
+                  <div className="col-md-12">
                     <div className="form-group">
-                      <label>Last name</label>
+                      <label>Alamat Perusahaan</label>
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Your last name"
+                        placeholder="Your telephone number"
                       />
                     </div>
                   </div>
                 </div>
-                {/* /row*/}
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <label>Website Perusahaan</label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        placeholder="Your email"
+                      />
+                    </div>
+                  </div>
+                </div>
                 <div className="row">
                   <div className="col-md-6">
                     <div className="form-group">
-                      <label>Telephone</label>
+                      <label>Telepon Perusahaan</label>
                       <input
                         type="text"
                         className="form-control"
@@ -66,7 +88,7 @@ export default function CompanyProfile() {
                   </div>
                   <div className="col-md-6">
                     <div className="form-group">
-                      <label>Email</label>
+                      <label>Jumlah Karyawan Perusahaan</label>
                       <input
                         type="email"
                         className="form-control"
@@ -75,11 +97,10 @@ export default function CompanyProfile() {
                     </div>
                   </div>
                 </div>
-                {/* /row*/}
                 <div className="row">
                   <div className="col-md-12">
                     <div className="form-group">
-                      <label>Personal info</label>
+                      <label>Deskripsi Perusahaan</label>
                       <textarea
                         style={{ height: 100 }}
                         className="form-control"
@@ -89,83 +110,17 @@ export default function CompanyProfile() {
                     </div>
                   </div>
                 </div>
-                {/* /row*/}
               </div>
+              <Button sx={{
+                marginX: "12px",
+                width: "100%",
+                backgroundColor: "#FC9400", 
+                '&:hover':{ backgroundColor: "#FFC300", color: "#3F4456"}}} 
+                variant="contained" >Simpan</Button>
             </div>
           </div>
-          {/* /box_general*/}
-          <div className="row">
-            <div className="col-md-6">
-              <div className="box_general padding_bottom">
-                <div className="header_box version_2">
-                  <h2>
-                    <i className="fa fa-lock" />
-                    Change password
-                  </h2>
-                </div>
-                <div className="form-group">
-                  <label>Old password</label>
-                  <input className="form-control" type="password" />
-                </div>
-                <div className="form-group">
-                  <label>New password</label>
-                  <input className="form-control" type="password" />
-                </div>
-                <div className="form-group">
-                  <label>Confirm new password</label>
-                  <input className="form-control" type="password" />
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="box_general padding_bottom">
-                <div className="header_box version_2">
-                  <h2>
-                    <i className="fa fa-envelope" />
-                    Change email
-                  </h2>
-                </div>
-                <div className="form-group">
-                  <label>Old email</label>
-                  <input
-                    className="form-control"
-                    name="old_email"
-                    id="old_email"
-                    type="email"
-                  />
-                </div>
-                <div className="form-group">
-                  <label>New email</label>
-                  <input
-                    className="form-control"
-                    name="new_email"
-                    id="new_email"
-                    type="email"
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Confirm new email</label>
-                  <input
-                    className="form-control"
-                    name="confirm_new_email"
-                    id="confirm_new_email"
-                    type="email"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* /row*/}
-          <p>
-            <a href="#0" className="btn_1 medium">
-              Save
-            </a>
-          </p>
         </div>
-        {/* /.container-fluid*/}
       </div>
-      {/* /.container-wrapper*/}
-      <Footer />
     </div>
   );
 }

@@ -1,25 +1,24 @@
 import React from "react";
-import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar";
 import Button from '@mui/material/Button';
 
-export default function ListVacancy() {
+export default function ListLowongan() {
   return (
     <div>
-      <Navbar />
       <div className="content-wrapper">
         <div className="container-fluid">
-          {/* Breadcrumbs*/}
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <a href="#">Dashboard</a>
+              List Lowongan
             </li>
-            <li className="breadcrumb-item active">List Lowongan</li>
           </ol>
           <div className="box_general">
             <div className="header_box">
               <h2 className="d-inline-block">List Lowongan</h2>
-              <Button sx={{marginLeft: "740px", }} variant="contained" >Buat Lowongan</Button>
+              <Button sx={{
+                marginLeft: "720px", 
+                backgroundColor: "#FC9400", 
+                '&:hover':{ backgroundColor: "#FFC300", color: "#3F4456"}}} 
+                variant="contained" >Buat Lowongan</Button>
               {/* <div className="filter">
                 <select name="orderby" className="selectbox">
                   <option value="Any time">Any time</option>
@@ -42,8 +41,14 @@ export default function ListVacancy() {
                     Design, Maintain dan Integrasi database.
                     Testing dan debugging code sebelum deployment.
                   </p>
-                  <Button sx={{marginLeft: "0px", }} variant="contained" >Edit</Button>
-                  <Button sx={{marginLeft: "40px", backgroundColor: "#CC0000", '&:hover':{backgroundColor: "#CC0000"}}} variant="contained" >Hapus</Button>
+                  <Button sx={{
+                    marginLeft: "0px", 
+                    backgroundColor: "#FC9400", 
+                    '&:hover':{ backgroundColor: "#FFC300", color: "#3F4456"}}} variant="contained" >Edit</Button>
+                  <Button sx={{
+                    marginLeft: "40px", 
+                    backgroundColor: "#EF4444", 
+                    '&:hover':{backgroundColor: "#CC0000"}}} variant="contained" >Hapus</Button>
                   {/* <p>
                     <a href="#0" className="btn_1 gray">
                       <i className="fa fa-fw fa-eye" /> Edit
@@ -138,12 +143,8 @@ export default function ListVacancy() {
               </li>
             </ul>
           </nav>
-          {/* /pagination*/}
         </div>
-        {/* /container-fluid*/}
       </div>
-      {/* /container-wrapper*/}
-      <Footer />
     </div>
   );
 }

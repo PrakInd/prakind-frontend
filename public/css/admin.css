@@ -46,7 +46,8 @@ body.sticky-footer .content-wrapper {
 } */
 
 .content-wrapper {
-  min-height: calc(100vh - 62px);
+  height: auto;
+  padding-top: 0px;
 }
 
 .scroll-to-top {

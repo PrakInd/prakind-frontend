@@ -1,21 +1,15 @@
 import React from "react";
-import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar";
 
 export default function Dashboard() {
   return (
     <div>
-      {/* <Navbar /> */}
       <div className="content-wrapper">
         <div className="container-fluid">
-          {/* Breadcrumbs*/}
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <a href="#">Dashboard</a>
+              Dashboard
             </li>
-            <li className="breadcrumb-item active">My Dashboard</li>
           </ol>
-          {/* Icon Cards*/}
           <div className="row">
             <div className="col-xl-3 col-sm-6 mb-3">
               <div className="card dashboard text-white bg-primary o-hidden h-100">
@@ -105,27 +99,8 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
-          {/* /cards */}
-          <h2 />
-          {/* <div className="box_general padding_bottom">
-            <div className="header_box version_2">
-              <h2>
-                <i className="fa fa-bar-chart" />
-                Statistic
-              </h2>
-            </div>
-            <canvas
-              id="myAreaChart"
-              width="100%"
-              height={30}
-              style={{ margin: "45px 0 15px 0" }}
-            />
-          </div> */}
         </div>
-        {/* /.container-fluid*/}
       </div>
-      {/* /.container-wrapper*/}
-      <Footer />
     </div>
   );
 }
