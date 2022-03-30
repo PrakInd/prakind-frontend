@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-// import { RadioGroup, FormControlLabel, Radio } from "@mui/material";
 import Button from '@mui/material/Button';
 import { CREATE_VACANCY } from "../../constants/urls";
 
-export default function Lowongan() {
+const Lowongan = () => {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [requirement, setRequirement] = useState("");
@@ -15,9 +14,7 @@ export default function Lowongan() {
   const [paid, setPaid] = useState("");
   const [periodStart, setStart] = useState("");
   const [periodEnd, setEnd] = useState("");
-  
   const [validation, setValidation] = useState([]);
-
   const history = useHistory();
 
   const makeVacancy = async (e) => {
@@ -219,4 +216,6 @@ export default function Lowongan() {
       </div>
     </div>
   );
-}
+};
+
+export default Lowongan;

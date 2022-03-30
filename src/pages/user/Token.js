@@ -7,8 +7,13 @@ import SecondaryButton from "../../components/button/SecondaryButton";
 
 const Token = () => {
   const [open, setOpen] = useState(false);
+  const [openMember, setOpenMember] = useState(false);
 
   const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClickOpenMember = () => {
     setOpen(true);
   };
 
@@ -24,7 +29,19 @@ const Token = () => {
         2222xxx
       </DialogContent>
       <DialogActions style={{ margin: "auto" }}>
-        <a href="/pelamar/profil-review"><PrimaryButton style={{ color: "#fff", fontWeight: "normal" }}>Selanjutnya</PrimaryButton></a>
+        <a href="/pelamar/upload-dokumen"><PrimaryButton style={{ color: "#fff", fontWeight: "normal" }}>Selanjutnya</PrimaryButton></a>
+      </DialogActions>
+    </Dialog >
+  )
+
+  const dialog2 = (
+    <Dialog open={openMember} onClose={handleClose} >
+      <DialogTitle>Yeay! Pendaftaran Berhasil</DialogTitle>
+      <DialogContent style={{ margin: "auto" }}>
+        <h6>Silahkan kelompok Anda</h6>
+      </DialogContent>
+      <DialogActions style={{ margin: "auto" }}>
+        <a href="/pelamar/upload-dokumen"><PrimaryButton style={{ color: "#fff", fontWeight: "normal" }}>Selanjutnya</PrimaryButton></a>
       </DialogActions>
     </Dialog >
   )
@@ -71,7 +88,7 @@ const Token = () => {
                       </div>
                       <div className="col-md-6 ">
                         <div className="form-group">
-                          <a href="/pelamar/profil-review-anggota"> <SecondaryButton style={{ width: "100%" }}>Selanjutnya</SecondaryButton> </a>
+                        <SecondaryButton style={{ width: "100%" }} onClick={handleClickOpenMember}>Selanjutnya</SecondaryButton>
                         </div>
                       </div>
                     </div>
@@ -79,6 +96,7 @@ const Token = () => {
                 </form>
               </div>
               {dialog}
+              {dialog2}
             </div>
           </div>
         </div>

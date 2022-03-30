@@ -4,31 +4,6 @@ import { isLogin, isUser } from "../utils/Auth";
 
 const UserRoute = ({ component: Component, ...rest }) => {
   return (
-    // <Route
-    //   {...rest}
-    //   render={(props) =>
-    //     isLogin() ? (
-    //       !rest.isNotFound ? (
-    //         !isUser() ? (
-    //           <>
-    //             <Redirect to="/perusahaan" />
-    //             <Component {...props} />
-    //           </>
-    //         ) : (
-    //           <Component {...props} />
-    //         )
-    //       ) : (
-    //         <>
-    //           <Redirect to="/error" />
-    //           <Component {...props} />
-    //         </>
-    //       )
-    //     ) : (
-    //       <Redirect to="/login" />
-    //     )
-    //   }
-    // />
-
     <Route
       {...rest}
       render={(props) =>

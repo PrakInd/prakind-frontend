@@ -5,7 +5,6 @@ import FormRegister from "../pages/user/FormRegister";
 import HomeUser from "../pages/user/HomeUser";
 import ProfileRead from "../pages/user/ProfileRead";
 import Token from "../pages/user/Token";
-import ProfileReadMember from "../pages/user/ProfileReadMember";
 import MyActivity from "../pages/user/MyActivity";
 
 export const USER_ROUTES = [
@@ -58,14 +57,6 @@ export const USER_ROUTES = [
     isUser: true,
   },
   {
-    name: "Akun Saya",
-    path: "/pelamar/profil-review-anggota",
-    exact: true,
-    component: ProfileReadMember,
-    private: true,
-    isUser: true,
-  },
-  {
     name: "Aktifitasku",
     path: "/pelamar/aktifitasku",
     exact: true,
@@ -73,14 +64,6 @@ export const USER_ROUTES = [
     private: true,
     isUser: true,
   },
-  // {
-  // name: "Daftar Magang",
-  //   path: "/pelamar/daftar-magang",
-  //   exact: true,
-  //   component: Account,
-  //   private: true,
-  //   isUser: true,
-  // },
   {
     name: "Error Page",
     path: "/pelamar/*",

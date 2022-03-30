@@ -1,10 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const NotifikasiCard = ({
-  notifikasi,
-  
-}) => {
+const NotifikasiCard = ({ notifikasi }) => {
   return (
     <div className="col-xl-3 col-sm-6 mb-3">
         <div className="card dashboard text-white bg-primary o-hidden h-100">
@@ -24,8 +21,7 @@ const NotifikasiCard = ({
             </a>
         </div>
     </div>
-  )
-}
+  );
+};
 
-export default VacancyCard;
-
+export default NotifikasiCard;

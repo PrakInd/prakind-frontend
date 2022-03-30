@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const SearchResult = (props) => {
+const SearchResult = props => {
   const { data } = props;
 
   return (

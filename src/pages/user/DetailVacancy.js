@@ -91,8 +91,8 @@ const DetailVacancy = () => {
                       <span style={{ color: '#bcbcbc' }}>Uang Saku</span>
                       <p><b>{vacancy.paid}</b></p>
                     </div>
-                    <div className="col-lg-6" style={{ display: "flex", marginLeft: 0, justifyContent: "space-between" }}>
-                      <Button
+                    <div className="col-lg-8" style={{ display: "flex", marginLeft: 0 }}>
+                      <Button className="col-lg-6"
                         id="basic-button"
                         aria-controls={open ? 'basic-menu' : undefined}
                         aria-haspopup="true"
@@ -131,7 +131,7 @@ const DetailVacancy = () => {
                         <a href="/pelamar/profil-review"><MenuItem onClick={handleClose}>Individu</MenuItem></a>
                         <a href="/pelamar/generate-token"><MenuItem onClick={handleClose}>Kelompok</MenuItem></a>
                       </Menu>
-                      <SecondaryButton>
+                      <SecondaryButton className="col-lg-4" style={{ marginLeft: 10 }}>
                         <ShareIcon fontSize="small" /> &ensp;Bagikan
                       </SecondaryButton>
                       {/* <SecondaryButton>

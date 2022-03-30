@@ -1,10 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const VacancyCard = ({
-  vacancy,
-  // company
-}) => {
+const VacancyCard = ({ vacancy }) => {
   return (
     <div className="isotope-wrapper">
       <div className="box_list isotope-item latest">
@@ -27,9 +24,7 @@ const VacancyCard = ({
         </div>
       </div>
     </div>
-
-  )
-
-}
+  );
+};
 
 export default VacancyCard;

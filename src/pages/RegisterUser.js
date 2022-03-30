@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { REGISTER_API } from "../constants/urls";
 import Button from '@mui/material/Button';
+import PrimaryButton from ".././components/button/PrimaryButton";
 // import { Message } from "@material-ui/icons";
 
 const RegisterUser = () => {
-  const { userType } = useLocation().state;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [validation, setValidation] = useState([]);
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState(null);
   const history = useHistory();
 
-  const registerHandler = (e) => {
+  const registerHandler = e => {
     e.preventDefault();
 
     // let formData = new FormData();
@@ -26,22 +26,26 @@ const RegisterUser = () => {
     // formData.append('password', password);
     // formData.append('password_confirmation', passwordConfirmation);
 
+    console.log("name", name);
+    console.log("role", role);
+    console.log("email", email);
+
     // send data to server
-    axios
-      .post(REGISTER_API, {
-        name: name,
-        role_id: userType,
-        email: email,
-        password: password,
-        password_confrmation: passwordConfirmation
-      })
-      .then((res) => {
-        console.log("response regsiter:", res);
-        history.push('/login');
-      })
-      .catch((error) => {
-        setValidation(error.response.data);
-      });
+    // axios
+    //   .post(REGISTER_API, {
+    //     name: name,
+    //     role_id: role,
+    //     email: email,
+    //     password: password,
+    //     password_confrmation: passwordConfirmation
+    //   })
+    //   .then((res) => {
+    //     console.log("response regsiter:", res);
+    //     history.push('/login');
+    //   })
+    //   .catch((error) => {
+    //     setValidation(error.response.data);
+    //   });
   };
 
   return (
@@ -60,6 +64,27 @@ const RegisterUser = () => {
                 className="logo_sticky" />
             </a>
           </figure>
+          <div>
+            <PrimaryButton 
+              style={{ 
+                color: "#fff",  
+                display: "flex", 
+              }}
+              onClick={() => { setRole(2); }}
+            >
+              Pelamar
+            </PrimaryButton>
+
+            <PrimaryButton 
+              style={{ 
+                color: "#fff",  
+                 
+              }}
+              onClick={() => { setRole(1); }}
+            >
+              Admin
+            </PrimaryButton>
+          </div>
           <form autoComplete="off">
             <div className="form-group">
               <label>Nama Anda</label>
@@ -67,7 +92,6 @@ const RegisterUser = () => {
                 className="form-control"
                 type="text"
                 placeholder="Masukkan Nama Lengkap"
-                // value={name}
                 onChange={(e) => setName(e.target.value)} />
               {validation.name && (
                 <div className="alert alert-danger">
@@ -82,7 +106,6 @@ const RegisterUser = () => {
                 className="form-control"
                 type="email"
                 placeholder="Masukkan Alamat Email"
-                // value={email}
                 onChange={(e) => setEmail(e.target.value)} />
               {validation.email && (
                 <div className="alert alert-danger">
@@ -97,7 +120,6 @@ const RegisterUser = () => {
                 className="form-control"
                 type="password"
                 placeholder="Masukkan Password"
-                // value={password}
                 onChange={(e) => setPassword(e.target.value)} />
               {validation.password && (
                 <div className="alert alert-danger">
@@ -112,10 +134,10 @@ const RegisterUser = () => {
                 className="form-control"
                 type="password"
                 placeholder="Masukkan Konfirmasi Password"
-                // value={passwordConfirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)} />
               <i className="icon_lock_alt" />
             </div>
+            
             <div id="pass-info" className="clearfix" />
             <Button
               sx={{
@@ -134,25 +156,17 @@ const RegisterUser = () => {
             >
               Daftar Sekarang
             </Button>
-            {/* <a href="#0" className="btn_1 rounded full-width add_top_30">
-              Daftar Sekarang!
-            </a> */}
             <div className="text-center add_top_10">
               Sudah punya akun ?{" "}
               <Link to="/login">
                 <p sx={{fontWeight: "600", display: "flex", fontColor: "#FC9400"}}>Masuk</p>
               </Link>
-              {/* <strong>
-                <a href="login.html">Masuk</a>
-              </strong> */}
             </div>
           </form>
           <div className="copy">© 2022 PrakInd</div>
         </aside>
       </div>
- 
-
-export default RegisterUSer;   </div>
+    </div>
   );
 };
 

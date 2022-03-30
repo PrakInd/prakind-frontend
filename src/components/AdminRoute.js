@@ -28,24 +28,6 @@ const AdminRoute = ({ component: Component, ...rest }) => {
         )
       }
     />
-
-    // <Route
-    //   {...rest}
-    //   render={(props) =>
-    //     isLogin() ? (
-    //       isAdmin() ? (
-    //         <Component {...props} />
-    //       ) : (
-    //         <>
-    //           <Redirect to="/pelamar/profil" />
-    //           <Component {...props} />
-    //         </>
-    //       )
-    //     ) : (
-    //       <Redirect to="/login" />
-    //     )
-    //   }
-    // />
   );
 };
 
