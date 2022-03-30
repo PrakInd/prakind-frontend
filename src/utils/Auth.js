@@ -6,11 +6,19 @@ export const setUserLogin = (user) => {
 
 export const setRole = (role) => {
   Cookies.set("ROLE", role);
-}; 
+};
 
 export const login = (jwt) => {
   Cookies.set("JWT", jwt);
 };
+
+export const setUserId = (id) => {
+  Cookies.set("USERID", id);
+}
+
+export const getUserId = () => {
+  return Cookies.get("USERID");
+}
 
 export const logout = () => {
   Cookies.remove("JWT");
@@ -28,7 +36,7 @@ export const isAdmin = () => {
   if (Cookies.get("ROLE") === "1") {
     return true;
   }
-  
+
   return false;
 };
 

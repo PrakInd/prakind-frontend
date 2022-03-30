@@ -4,18 +4,20 @@ import { useParams } from "react-router-dom";
 import Filter from "../../components/Filter";
 import PhoneIcon from '@mui/icons-material/Phone';
 import ShareIcon from '@mui/icons-material/Share';
-import Navbar from "../../components/user/Navbar";
 import { SHOW_VACANCY } from "../../constants/urls";
 import { BookmarkBorder } from "@material-ui/icons";
 import FooterUser from "../../components/FooterUser";
-import PrimaryButton from "../../components/button/PrimaryButton";
 import SecondaryButton from "../../components/button/SecondaryButton";
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
-import { Dialog, FormControl, InputLabel, Select, DialogTitle, DialogActions, DialogContent, MenuItem } from "@mui/material";
+import { Button, Menu, MenuItem, Divider } from "@mui/material";
+import Header from "../../components/Header";
 
 const DetailVacancy = () => {
   const { id } = useParams();
   const [vacancy, setVacancy] = useState({});
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
   const [company, setCompany] = useState({
     address: "",
     description: "",
@@ -26,15 +28,13 @@ const DetailVacancy = () => {
     website: "",
   });
 
-  const [open, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
-    setOpen(false);
-  }
+    setAnchorEl(null);
+  };
 
   useEffect(() => {
     axios
@@ -52,58 +52,19 @@ const DetailVacancy = () => {
     }
   }, [id]);
 
-  // const changeColor = (index) => {
-  //   if index % 2 == 0
-  //     return 'white'
-
-  //   return 'gray'
-  // }
-
-  const dialog = (
-    <Dialog open={open} onClose={handleClose} >
-      <DialogTitle>Kategori Magang</DialogTitle>
-      <DialogContent>
-        {/* <Button
-          id="fade-button"
-          aria-controls={open ? 'fade-menu' : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
-          onClick={handleClickOpen}
-        >
-          Pilih Kategori
-        </Button>
-        <Menu
-          id="fade-menu"
-          MenuListProps={{
-            'aria-labelledby': 'fade-button',
-          }}
-          open={open}
-          onClose={handleClose}
-          TransitionComponent={Fade}
-        >
-          <MenuItem onClick={handleClose}>Individu</MenuItem>
-          <MenuItem onClick={handleClose}>Kelompok</MenuItem>
-        </Menu> */}
-
-        <FormControl style={{ width: '150px', marginTop: 10 }} >
-          <InputLabel>
-            Pilih Kategori
-          </InputLabel>
-          <Select>
-            <MenuItem>Individu</MenuItem>
-            <MenuItem>Kelompok</MenuItem>
-          </Select>
-        </FormControl>
-      </DialogContent>
-      <DialogActions></DialogActions>
-    </Dialog>
-  )
-
-
   return (
     <>
-      <Navbar />
-      <Filter />
+      <Header />
+      <section className="hero_in tours">
+        <div className="wrapper">
+          <div className="container">
+            <h1 className="fadeInUp">
+              <span />
+              {vacancy.name}
+            </h1>
+          </div>
+        </div>
+      </section>
       <div>
         <div className="bg_color_1">
           <div className="container margin_60_35">
@@ -131,16 +92,51 @@ const DetailVacancy = () => {
                       <p><b>{vacancy.paid}</b></p>
                     </div>
                     <div className="col-lg-6" style={{ display: "flex", marginLeft: 0, justifyContent: "space-between" }}>
-                      <PrimaryButton style={{ width: '30%' }} onClick={handleClickOpen}>
-                        {/* <NavLink to="/daftar-magang"><span style={{ color: "#000" }}>Daftar</span></NavLink> */}
+                      <Button
+                        id="basic-button"
+                        aria-controls={open ? 'basic-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                        onClick={handleClick}
+                        style={{
+                          backgroundColor: '#FC9400',
+                          borderRadius: 7,
+                          width: "30%",
+                          fontSize: '16px',
+                          textTransform: "capitalize",
+                          fontWeight: "bolder",
+                          color: "#fff",
+                          '&:hover': {
+                            backgroundColor: '#FFC300',
+                            color: '#191E24',
+                          },
+                          '&:disabled': {
+                            backgroundColor: '#FFC300',
+                          },
+                        }}
+                      >
                         Daftar
-                      </PrimaryButton>
+                      </Button>
+                      <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                        MenuListProps={{
+                          'aria-labelledby': 'basic-button',
+                        }}
+                      >
+                        <MenuItem defaultValue="" style={{ fontWeight: "bold" }}>Kategori Magang</MenuItem>
+                        <Divider />
+                        <a href="/pelamar/profil-review"><MenuItem onClick={handleClose}>Individu</MenuItem></a>
+                        <a href="/pelamar/generate-token"><MenuItem onClick={handleClose}>Kelompok</MenuItem></a>
+                      </Menu>
                       <SecondaryButton>
                         <ShareIcon fontSize="small" /> &ensp;Bagikan
                       </SecondaryButton>
-                      <SecondaryButton>
+                      {/* <SecondaryButton>
                         <BookmarkBorder fontSize="small" /> &ensp;Simpan
-                      </SecondaryButton>
+                      </SecondaryButton> */}
                     </div>
                   </div>
                   <hr />
@@ -152,15 +148,6 @@ const DetailVacancy = () => {
                   <div>
                     <h4>Kriteria Peserta</h4>
                     <p style={{ marginBottom: 0 }}>{vacancy.requirements}</p>
-                    <div className="col-lg-12">
-                      <ul className="bullets">
-                        <li>Mampu mengoperasikan software editing dan tools seperti Figma,
-                          Adobe XD, Adobe Photoshop dan Adobe illustrator</li>
-                        <li>Memiliki pemahaman behavior design untuk Android dan iOS</li>
-                        <li>Mampu membuat desain prototype, Low fidelity dan High fidelity</li>
-                        <li>Memiliki portofolio dari hasil desain eksplorasi</li>
-                      </ul>
-                    </div>
                   </div>
 
 
@@ -192,49 +179,26 @@ const DetailVacancy = () => {
                     {/* /rom_type */}
                     <div className="room_type gray">
                       <div className="row">
-                        <div className="col-md-4">
-                          <img src="img/gallery/hotel_list_2.jpg" className="img-fluid" alt="my-img" />
+                        <div className="col-lg-4">
+                          <ul>
+                            <li><h4>Frontend</h4></li>
+                            <p>Periode: 28 Jan - 28 May</p>
+                          </ul>
                         </div>
-                        <div className="col-md-8">
-                          <h4>Double Room</h4>
-                          <p>Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate
-                            pertinacia eum at.</p>
-                          <ul className="hotel_facilities">
-                            <li><img src="img/hotel_facilites_icon_3.svg" alt="my-img" />Double Bed</li>
-                            <li><img src="img/hotel_facilites_icon_4.svg" alt="my-img" />Free Wifi</li>
-                            <li><img src="img/hotel_facilites_icon_6.svg" alt="my-img" />Bathtub</li>
-                            <li><img src="img/hotel_facilites_icon_7.svg" alt="my-img" />Air Condition</li>
-                            <li><img src="img/hotel_facilites_icon_8.svg" alt="my-img" />Hairdryer</li>
+                        <div className="col-lg-4">
+                          <ul>
+                            <li>di Kota Surabaya</li>
+                          </ul>
+                        </div>
+                        <div className="col-lg-4">
+                          <ul>
+                            <li>Kerja dari Rumah</li>
                           </ul>
                         </div>
                       </div>
                       {/* /row */}
                     </div>
-                    {/* /rom_type */}
-                    <div className="room_type last">
-                      <div className="row">
-                        <div className="col-md-4">
-                          <img src="img/gallery/hotel_list_3.jpg" className="img-fluid" alt="my-img" />
-                        </div>
-                        <div className="col-md-8">
-                          <h4>Suite Room</h4>
-                          <p>Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate
-                            pertinacia eum at.</p>
-                          <ul className="hotel_facilities">
-                            <li><img src="img/hotel_facilites_icon_3.svg" alt="my-img" />King size Bed</li>
-                            <li><img src="img/hotel_facilites_icon_4.svg" alt="my-img" />Free Wifi</li>
-                            <li><img src="img/hotel_facilites_icon_6.svg" alt="my-img" />Bathtub</li>
-                            <li><img src="img/hotel_facilites_icon_7.svg" alt="my-img" />Air Condition</li>
-                            <li><img src="img/hotel_facilites_icon_9.svg" alt="my-img" />Swimming pool</li>
-                            <li><img src="img/hotel_facilites_icon_3.svg" alt="my-img" />Hairdryer</li>
-                          </ul>
-                        </div>
-                      </div>
-                      {/* /row */}
-                    </div>
-                    {/* /rom_type */}
                   </div>
-
                   {/* {
 
 
@@ -278,7 +242,7 @@ lue, index) => a {
                     <span>Profile Perusahaan</span>
                   </div>
                   <div>
-                    <img src="img/prakind/laptop.jpeg" alt="my-img" height={120} width={120} style={{ marginBottom: '10px' }} />
+                    <img src={company.logo} alt="my-img" height={120} width={120} style={{ marginBottom: '10px' }} />
                     {/* <h5>PT. Otak Kanan</h5> */}
                     <h5>{company.name}</h5>
                     <p style={{ marginTop: '-10px', marginBottom: '-10px' }}>{company.description}</p>
@@ -287,19 +251,19 @@ lue, index) => a {
                   <div style={{ marginTop: '-10px' }}>
                     <div style={{ marginBottom: '-10px' }}>
                       <span>Ukuran Perusahaan</span>
-                      <p><b>100</b></p>
+                      <p><b>{company.number_of_employee}</b></p>
                     </div>
                     <div style={{ marginBottom: '-10px' }}>
                       <span>Alamat Kantor</span>
-                      <p><b>Surabaya</b></p>
+                      <p><b>{company.address}</b></p>
                     </div>
                     <hr />
                   </div>
                   <div>
                     <LanguageOutlinedIcon />
-                    <a href="https://otakkanan.co.id/id/" style={{ color: "#000000" }}>&ensp;www.otakkanan.co.id</a>
+                    <a href="https://otakkanan.co.id/id/" style={{ color: "#000000" }}>&ensp;{company.website}</a>
                     <br />
-                    <PhoneIcon /> <font style={{ color: "#000000" }}>&ensp;087750</font>
+                    <PhoneIcon /> <font style={{ color: "#000000" }}>&ensp;{company.phone}</font>
                   </div>
 
                   <div className="form-group clearfix">
@@ -325,13 +289,10 @@ lue, index) => a {
           {/* /container */}
         </div>
         {/* /bg_color_1 */}
-        {dialog}
+        {/* {dialog} */}
       </div>
       <FooterUser />
     </>
   )
-
-
 }
-
 export default DetailVacancy;

@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom";
 import PhoneIcon from '@mui/icons-material/Phone';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import Filter from "../../components/Filter";
-import Navbar from "../../components/user/Navbar";
 import { SHOW_COMPANY } from "../../constants/urls";
 import FooterUser from "../../components/FooterUser";
+import Header from "../../components/Header"
 
 const DetailCompany = () => {
   const { id } = useParams();
@@ -27,8 +27,17 @@ const DetailCompany = () => {
 
   return (
     <div>
-      <Navbar />
-      <Filter />
+      <Header />
+      <section className="hero_in tours">
+        <div className="wrapper">
+          <div className="container">
+            <h1 className="fadeInUp">
+              <span />
+              {company.name}
+            </h1>
+          </div>
+        </div>
+      </section>
       <div>
         <div className="bg_color_1">
           <div className="container margin_60_35">
@@ -63,43 +72,23 @@ const DetailCompany = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="room_type gray">
                       <div className="row">
-                        <div className="col-md-4">
-                          <img src="img/gallery/hotel_list_2.jpg" className="img-fluid" alt="my-img" />
-                        </div>
-                        <div className="col-md-8">
-                          <h4>Double Room</h4>
-                          <p>Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate
-                            pertinacia eum at.</p>
-                          <ul className="hotel_facilities">
-                            <li><img src="img/hotel_facilites_icon_3.svg" alt="my-img" />Double Bed</li>
-                            <li><img src="img/hotel_facilites_icon_4.svg" alt="my-img" />Free Wifi</li>
-                            <li><img src="img/hotel_facilites_icon_6.svg" alt="my-img" />Bathtub</li>
-                            <li><img src="img/hotel_facilites_icon_7.svg" alt="my-img" />Air Condition</li>
-                            <li><img src="img/hotel_facilites_icon_8.svg" alt="my-img" />Hairdryer</li>
+                        <div className="col-lg-4">
+                          <ul>
+                            <li><h4>Frontend</h4></li>
+                            <p>Periode: 28 Jan - 28 May</p>
                           </ul>
                         </div>
-                      </div>
-                    </div>
-
-                    <div className="room_type last">
-                      <div className="row">
-                        <div className="col-md-4">
-                          <img src="img/gallery/hotel_list_3.jpg" className="img-fluid" alt="my-img" />
+                        <div className="col-lg-4">
+                          <ul>
+                            <li>di Kota Surabaya</li>
+                          </ul>
                         </div>
-                        <div className="col-md-8">
-                          <h4>Suite Room</h4>
-                          <p>Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate
-                            pertinacia eum at.</p>
-                          <ul className="hotel_facilities">
-                            <li><img src="img/hotel_facilites_icon_3.svg" alt="my-img" />King size Bed</li>
-                            <li><img src="img/hotel_facilites_icon_4.svg" alt="my-img" />Free Wifi</li>
-                            <li><img src="img/hotel_facilites_icon_6.svg" alt="my-img" />Bathtub</li>
-                            <li><img src="img/hotel_facilites_icon_7.svg" alt="my-img" />Air Condition</li>
-                            <li><img src="img/hotel_facilites_icon_9.svg" alt="my-img" />Swimming pool</li>
-                            <li><img src="img/hotel_facilites_icon_3.svg" alt="my-img" />Hairdryer</li>
+                        <div className="col-lg-4">
+                          <ul>
+                            <li>Kerja dari Rumah</li>
                           </ul>
                         </div>
                       </div>
@@ -116,7 +105,7 @@ const DetailCompany = () => {
                     <span>Profile Perusahaan</span>
                   </div>
                   <div>
-                    <img src="img/prakind/laptop.jpeg" alt="my-img" height={120} width={120} style={{ marginBottom: '10px' }} />
+                    <img src={company.logo} alt="my-img" height={120} width={120} style={{ marginBottom: '10px' }} />
                     <h5>{company.name}</h5>
                     <p style={{ marginTop: '-10px', marginBottom: '-10px' }}>Creative and Innovative Company</p>
                     <hr />
@@ -138,23 +127,7 @@ const DetailCompany = () => {
                     <br />
                     <PhoneIcon /> <font style={{ color: "#000000" }}>&ensp;{company.phone}</font>
                   </div>
-
-                  <div className="form-group clearfix">
-                    <div className="custom-select-form">
-                      <select className="wide">
-                        <option>Room Type</option>
-                        <option>Single Room</option>
-                        <option>Double Room</option>
-                        <option>Suite Room</option>
-                      </select>
-                    </div>
-                  </div>
                 </div>
-                {/* <ul className="share-buttons">
-                  <li><a className="fb-share" href="#0"><i className="social_facebook" /> Share</a></li>
-                  <li><a className="twitter-share" href="#0"><i className="social_twitter" /> Tweet</a></li>
-                  <li><a className="gplus-share" href="#0"><i className="social_googleplus" /> Share</a></li>
-                </ul> */}
               </aside>
             </div>
           </div>

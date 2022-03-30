@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Filter from "../../components/Filter";
-import Navbar from "../../components/user/Navbar";
 import FooterUser from "../../components/FooterUser";
 import { SHOW_VACANCIES } from "../../constants/urls";
 import SearchResults from "../../components/SearchResults";
 import { SearchContext } from "../../components/SearchContext/SearchContext";
+import Header from "../../components/Header";
 
 const Vacancy = () => {
   const [search] = useContext(SearchContext);
@@ -21,7 +21,7 @@ const Vacancy = () => {
             let filterPos = value.name.toLowerCase().includes(search.position);
             let filterCom = value.company.name.toLowerCase().includes(search.company);
             let filterLoc = value.location.toLowerCase().includes(search.location);
-      
+
             return filterPos && filterCom & filterLoc;
           });
 
@@ -44,16 +44,26 @@ const Vacancy = () => {
 
   return (
     <>
-      <Navbar />
-      <Filter 
+      <Header />
+      <section className="hero_in tours">
+        <div className="wrapper">
+          <div className="container">
+            <h1 className="fadeInUp">
+              <span />
+              Praktik Industri
+            </h1>
+          </div>
+        </div>
+      </section>
+      <Filter
         position={search.position}
         company={search.company}
         location={search.location}
         data={vacancies}
         getFilteredData={getFilteredData}
       />
-      <div className="container margin_60_35">
-        <SearchResults 
+      <div className="container">
+        <SearchResults
           data={(filteredData.length === 0) ? vacancies : filteredData}
         />
       </div>

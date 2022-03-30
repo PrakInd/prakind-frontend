@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { USER_UPLOAD_IMAGE, ME_API } from "../../constants/urls";
-import { InputBase, Divider, FormControl, InputLabel, Grid, TextField, FormLabel, RadioGroup, FormControlLabel, Radio, Link, Select, MenuItem, Button, Menu } from "@mui/material";
+import { RadioGroup, FormControlLabel, Radio } from "@mui/material";
 import FooterUser from "../../components/FooterUser";
 import Header from "../../components/Header";
-import { Col, Container, Row } from "react-grid-system";
+import { Container, Row } from "react-grid-system";
 import PrimaryButton from "../../components/button/PrimaryButton";
-import SecondaryButton from "../../components/button/SecondaryButton";
 
 
-const FormRegister = () => {
-  // const classes = useStyles();
+const Profil = () => {
   return (
     <div>
       <Header />
@@ -125,28 +123,6 @@ const FormRegister = () => {
                   <div className="row">
                     <div className="col-md-12 p-0">
                       <div className="form-group">
-                        <select
-                          className="w-100 input-group-select"
-                          style={{
-                            height: "42px",
-                            borderRadius: "3px",
-                            padding: "10px",
-                            borderColor: "#d2d8dd",
-                          }}
-                        >
-                          <option defaultValue="">Pilih Asal Sekolah</option>
-                          <option>Sekolah Kejuruan Menengah se-derajat</option>
-                          <option>Universitas/Politeknik</option>
-                          )
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* /row*/}
-                  <div className="row" style={{ justifyContent: "space-between" }}>
-                    <div className="col-md-7 p-0">
-                      <div className="form-group">
                         <label>Asal Sekolah</label>
                         <input
                           type="text"
@@ -158,7 +134,30 @@ const FormRegister = () => {
                         />
                       </div>
                     </div>
-                    <div className="col-md-4 p-0" style={{ marginLeft: 12 }}>
+                  </div>
+
+                  {/* /row*/}
+                  <div className="row" style={{ justifyContent: "space-between" }}>
+                    <div className="col-md-5 p-0">
+                      <div className="form-group">
+                        <label>Kategori Sekolah</label>
+                        <select
+                          className="w-100 input-group-select"
+                          style={{
+                            height: "42px",
+                            borderRadius: "3px",
+                            padding: "10px",
+                            borderColor: "#d2d8dd",
+                          }}
+                        >
+                          <option defaultValue="">Pilih Kategori Sekolah</option>
+                          <option>Sekolah Kejuruan Menengah se-derajat</option>
+                          <option>Universitas/Politeknik</option>
+                          )
+                        </select>
+                      </div>
+                    </div>
+                    <div className="col-md-3 p-0" style={{ marginLeft: 1 }}>
                       <div className="form-group">
                         <label>Semester</label>
                         <input
@@ -171,23 +170,20 @@ const FormRegister = () => {
                         />
                       </div>
                     </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-12 p-0">
+                    <div className="col-md-3 p-0" style={{ marginLeft: 1 }}>
                       <div className="form-group">
                         <label>IPK</label>
                         <input
                           type="text"
                           className="form-control"
-                          placeholder="IPK"
-                          name="gpa"
-                          id="gpa"
+                          placeholder="Semester"
+                          name="semester"
+                          id="semester"
                         // value={input.name}
                         />
                       </div>
                     </div>
                   </div>
-
                   <div className="form-group">
                     <label>Curriculum Vitae</label>
                     <div className="col-md-12 d-flex flex-row justify-content-between flex-wrap" style={{ border: "2px dotted" }}>
@@ -267,28 +263,14 @@ const FormRegister = () => {
                   </div>
 
 
-
-                  <a href="/lowongan">
-                    <SecondaryButton style={{ marginTop: 10, display: "flex", float: "right" }}>Lewati</SecondaryButton>
-                  </a>
-                  <a href="/lowongan">
-                    <PrimaryButton style={{ color: "#fff", marginTop: 10, marginRight: 10, display: "flex", float: "right" }}>Simpan</PrimaryButton>
+                  <a>
+                    <PrimaryButton style={{ color: "#fff", marginTop: 10, display: "flex", float: "right" }}>Simpan</PrimaryButton>
                   </a>
                 </div>
               </form>
             </div>
           </div>
         </div>
-        <p className="mb-0">
-          {/* <Link
-            to="/profileclient"
-            className="btn_1-admin medium"
-          >
-            Simpan
-          </Link> */}
-
-
-        </p>
       </div>
       {/* /.container-fluid*/}
       <FooterUser />
@@ -296,4 +278,4 @@ const FormRegister = () => {
   );
 }
 
-export default FormRegister;
+export default Profil;

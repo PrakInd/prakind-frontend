@@ -9,8 +9,8 @@ const SearchResult = (props) => {
       <div className="box_list isotope-item latest">
         <div className="row no-gutters">
           <div className="col-lg-2">
-            <figure>
-              <img src="img/teknologi.jpeg" className="img-fluid" alt="my-img" width={800} height={533} />
+            <figure >
+              <img src="img/teknologi.jpeg" className="img-fluid" alt="my-img" style={{ justifyContent: "center" }} />
             </figure>
           </div>
           <div className="col-lg-10">
@@ -19,9 +19,9 @@ const SearchResult = (props) => {
                 <NavLink to={"/lowongan/" + data.id}>{data.name}</NavLink>
               </h3>
               {/* <h5><NavLink to={'/detail-perusahaan/' + company.id}>{vacancy.company.name}</NavLink></h5> */}
-              <h5>
+              <h6>
                 <NavLink to={"/detail-perusahaan/" + data.company.id}>{data.company.name}</NavLink>
-              </h5>
+              </h6>
               <p>{data.description}</p>
               <span className="period">
                 Periode <strong>{data.period_start}</strong> - <strong>{data.period_end}</strong>

@@ -6,7 +6,7 @@ import Backdrop from '@mui/material/Backdrop';
 import { api } from "../utils/Api";
 import Button from '@mui/material/Button';
 import { ME_API } from "../constants/urls";
-import { getToken, setUserLogin, setRole } from "../utils/Auth";
+import { getToken, setUserLogin, setRole, setUserId } from "../utils/Auth";
 import { Link, useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -37,9 +37,11 @@ export default function Login() {
         //   name: res.data.user.name,
         //   role_id: res.data.user.role_id
         // });
+        console.log("res: ", res);
         login(res.data.access_token);
         setUser(res.data.user);
         setRole(res.data.user.role_id);
+        setUserId(res.data.user.id);
 
         if (Cookies.get("ROLE") === "1") {
           history.push("/perusahaan");
@@ -50,7 +52,7 @@ export default function Login() {
 
         // history.push("/");
       })
-      .catch(err => {console.log(err)})
+      .catch(err => { console.log(err) })
   };
 
   const validateLogin = e => {
@@ -74,7 +76,7 @@ export default function Login() {
       validateLogin(e)
     }
   }
-  
+
   return (
     <div>
       <nav id="menu" className="fake_menu" />
@@ -135,30 +137,31 @@ export default function Login() {
                 </a>
               </div> */}
             </div>
-            <Button 
+            <Button
               sx={{
-                marginLeft: "auto", 
-                marginRight: "auto", 
-                width: "100%",  
-                textAlign: "center", 
-                borderRadius: "25px", 
-                display: "block", 
-                marginBottom: "5px", 
-                backgroundColor: "#FC9400", 
-                '&:hover':{ backgroundColor: "#0054a" }}} 
+                marginLeft: "auto",
+                marginRight: "auto",
+                width: "100%",
+                textAlign: "center",
+                borderRadius: "25px",
+                display: "block",
+                marginBottom: "5px",
+                backgroundColor: "#FC9400",
+                '&:hover': { backgroundColor: "#0054a" }
+              }}
               variant="contained"
-              onClick={e => validateLogin(e)} 
+              onClick={e => validateLogin(e)}
             >
               Login ke PrakInd
             </Button>
-            
+
             {/* <button href="/#" className="btn_1 rounded full-width">
               Login ke PrakInd
             </button> */}
             <div className="text-center add_top_10">
               Anda Baru di Prakind ?{" "}
               <Link to="/registerUser">
-                <p sx={{fontWeight: "600", display: "flex", fontColor: "#FC9400"}}>Daftar</p>
+                <p sx={{ fontWeight: "600", display: "flex", fontColor: "#FC9400" }}>Daftar</p>
               </Link>
               {/* <strong>
                 <a href="register.html">Sign up!</a>

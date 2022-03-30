@@ -1,8 +1,12 @@
-import Profil from "../pages/user/Profil";
+import Profile from "../pages/user/Profile";
 import ErrorPage from "../pages/ErrorPage";
-import UploadDocs from "../pages/user/UploadDocs";
+import ApplicantFiles from "../pages/user/ApplicantFiles";
 import FormRegister from "../pages/user/FormRegister";
 import HomeUser from "../pages/user/HomeUser";
+import ProfileRead from "../pages/user/ProfileRead";
+import Token from "../pages/user/Token";
+import ProfileReadMember from "../pages/user/ProfileReadMember";
+import MyActivity from "../pages/user/MyActivity";
 
 export const USER_ROUTES = [
   {
@@ -25,7 +29,7 @@ export const USER_ROUTES = [
     name: "Upload Dokumen",
     path: "/pelamar/upload-dokumen",
     exact: true,
-    component: UploadDocs,
+    component: ApplicantFiles,
     private: true,
     isUser: true,
   },
@@ -33,7 +37,39 @@ export const USER_ROUTES = [
     name: "Akun Saya",
     path: "/pelamar/profil",
     exact: true,
-    component: Profil,
+    component: Profile,
+    private: true,
+    isUser: true,
+  },
+  {
+    name: "Akun Saya",
+    path: "/pelamar/profil-review",
+    exact: true,
+    component: ProfileRead,
+    private: true,
+    isUser: true,
+  },
+  {
+    name: "Generate Token",
+    path: "/pelamar/generate-token",
+    exact: true,
+    component: Token,
+    private: true,
+    isUser: true,
+  },
+  {
+    name: "Akun Saya",
+    path: "/pelamar/profil-review-anggota",
+    exact: true,
+    component: ProfileReadMember,
+    private: true,
+    isUser: true,
+  },
+  {
+    name: "Aktifitasku",
+    path: "/pelamar/aktifitasku",
+    exact: true,
+    component: MyActivity,
     private: true,
     isUser: true,
   },

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
-// import Header from "../../components/Header";
-import Navbar from "../../components/user/Navbar";
+import Header from "../../components/Header";
+// import Navbar from "../../components/user/Navbar";
 import FooterUser from "../../components/FooterUser";
 import PrimaryButton from "../../components/button/PrimaryButton";
 import { SearchContext } from "../../components/SearchContext/SearchContext";
@@ -17,7 +17,7 @@ const HomeUser = () => {
 
   return (
     <>
-      <Navbar />
+      <Header />
       <div>
         <section className="hero_single version_2">
           <div className="wrapper">
@@ -29,9 +29,9 @@ const HomeUser = () => {
                 <div className="row no-gutters custom-search-input-2">
                   <div className="col-lg-4">
                     <div className="form-group">
-                      <input 
-                        className="form-control" 
-                        type="text" 
+                      <input
+                        className="form-control"
+                        type="text"
                         placeholder="Cari posisi"
                         onChange={e => setSearch({ ...search, position: e.target.value })}
                       />
@@ -40,9 +40,9 @@ const HomeUser = () => {
                   </div>
                   <div className="col-lg-3">
                     <div className="form-group">
-                      <input 
-                        className="form-control" 
-                        type="text" 
+                      <input
+                        className="form-control"
+                        type="text"
                         placeholder="Cari perusahaan"
                         onChange={e => setSearch({ ...search, company: e.target.value })}
                       />
@@ -51,9 +51,9 @@ const HomeUser = () => {
                   </div>
                   <div className="col-lg-3">
                     <div className="form-group">
-                      <input 
-                        className="form-control" 
-                        type="text" 
+                      <input
+                        className="form-control"
+                        type="text"
                         placeholder="Cari lokasi"
                         onChange={e => setSearch({ ...search, location: e.target.value })}
                       />
@@ -68,21 +68,22 @@ const HomeUser = () => {
                   </div>
                 </div>
               </form>
-              
+
             </div>
 
-            <Link className="grid_item" to="/lowongan">
+            <a href="/lowongan">
               <PrimaryButton 
-                style={{ 
-                  width: "15%", 
-                  marginLeft: "auto", 
-                  marginRight: "auto", 
-                  marginTop: "18px"
+                style={{
+                  width: "15%",
+                  position: "relative",
+                  top: 100,
+                  marginLeft: "auto",
+                  marginRight: "auto",
                 }}
               >
                 Lihat Info Magang
               </PrimaryButton>
-            </Link>
+            </a>
 
           </div>
         </section>

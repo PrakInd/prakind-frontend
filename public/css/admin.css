@@ -475,14 +475,14 @@ body {
   background: #f8f8f8;
 }
 
-h1,
+/* h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
   color: #333 !important;
-}
+} */
 
 p {
   margin-bottom: 30px;
@@ -1167,3 +1167,5 @@ label.fix_spacing {
 .sbOptions .sbSub {
   padding-left: 17px;
 }
+
+

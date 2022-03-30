@@ -7,7 +7,7 @@ const SecondaryButton = (props) => {
     backgroundColor: '#fff',
     border: 'solid',
     borderWidth: 1,
-    borderColor: '#ffc300',
+    borderColor: '#FC9400',
     borderRadius: 7,
     width: props.width,
     fontSize: '16px',
@@ -15,11 +15,11 @@ const SecondaryButton = (props) => {
     fontWeight: "bolder",
     color: "#191E24",
     '&:hover': {
-      backgroundColor: '#FFD755',
+      backgroundColor: '#FFC300',
       // borderWidth: 3,
     },
     '&:disabled': {
-      backgroundColor: '#FFD755',
+      backgroundColor: '#FFC300',
     },
   })
   return (
@@ -28,3 +28,4 @@ const SecondaryButton = (props) => {
 }
 
 export default SecondaryButton;
+
