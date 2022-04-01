@@ -479,7 +479,7 @@ hr.large {
 ul,
 ol {
   list-style: none;
-  margin: 0 25px 0 25px;
+  /* margin: 0 25px 0 25px; */
   padding: 0;
 }
 

@@ -51,7 +51,7 @@ export const ADMIN_ROUTES = [
   },
   {
     name: "Detail Pelamar",
-    path: "/perusahaan/pelamar/detail",
+    path: "/perusahaan/pelamar/detail/:id",
     exact: true,
     component: DetailPelamar,
     private: true,

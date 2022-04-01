@@ -6,7 +6,7 @@ import {
     HistoryOutlined,
 } from '@mui/icons-material';
 
-const routes = [
+export const routes = [
     {
         title: "Dashboard",
         path: "/perusahaan/dashboard",
@@ -34,5 +34,3 @@ const routes = [
         icon: <PeopleAltOutlined />,
     },
 ];
-
-export default routes;

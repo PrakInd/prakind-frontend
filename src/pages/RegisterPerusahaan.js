@@ -62,19 +62,32 @@ export default function RegisterPerusahaan() {
               <div className="row">
                 <div className="col-md-4">
                   <div className="form-group">
+                    {/* <div className="row" > */}
                     <label>Logo Perusahaan</label>
+                    </div>
+                  <img
+                    src="/../../img/avatar.jpg"
+                    // src={company.logo}
+                    alt="profile-picture"
+                    style={{
+                      width: 144,
+                      height: 144,
+                      objectFit: "cover",
+                      borderRadius: 8,
+                      boxShadow: "0 0 0 1px #CED4DA",
+                      marginBottom: "24px",
+                    }}
+                  />
+                  <div className="row-md-12">
                     <input
-                      accept="image/*"
-                      className="form-control"
                       type="file"
-                      value={logo}
-                      onChange={(e) => setLogo(e.target.value)} />
-                    {validation.logo && (
-                      <div className="alert alert-danger">
-                        {validation.logo[0]}
-                      </div>
-                    )}
-                    {/* <form action="/file-upload" className="dropzone" /> */}
+                      style={{ border: "none" }}
+                      name="image"
+                      id="image"
+                      className="form-control p-0"
+                    // onChange={handleImageChange}
+                    />
+                    <label class="pt-0">Pilih file dengan ukuran maksimal 1MB</label>
                   </div>
                 </div>
                 <div className="col-md-8 add_top_30">

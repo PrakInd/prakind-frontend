@@ -22,6 +22,8 @@ export const getUserId = () => {
 
 export const logout = () => {
   Cookies.remove("JWT");
+  Cookies.remove("USERID");
+  Cookies.remove("ROLE");
 };
 
 export const isLogin = () => {

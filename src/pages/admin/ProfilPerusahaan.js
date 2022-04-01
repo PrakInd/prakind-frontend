@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { SHOW_COMPANY } from "../../constants/urls";
+import {getToken, getUserId} from "../../utils/Auth";
 
 const ProfilPerusahaan = () => {
+  const { id } = useParams();
   const [company, setCompany] = useState([]);
 
   useEffect(() => {
     axios
-    .get(SHOW_COMPANY)
+    .get(SHOW_COMPANY(getUserId()), {
+      header: {Authorization: `Bearer ${getToken()}` },
+    })
     .then(res => {
+      console.log(res)
       setCompany(res.data.data)
     })
     .catch(err => console.log(err))
-  });
+
+    return () => {
+      setCompany({});
+    }
+  }, [id]);
 
   return (
     <div className="content-wrapper">
@@ -33,8 +43,32 @@ const ProfilPerusahaan = () => {
           <div className="row">
             <div className="col-md-4">
               <div className="form-group">
+                {/* <div className="row" > */}
                 <label>Logo Perusahaan</label>
-                <form action="/file-upload" className="dropzone" />
+                </div>
+                  <img
+                    src="/../../img/avatar.jpg"
+                    // src={company.logo}
+                    alt="profile-picture"
+                    style={{
+                      width: 144,
+                      height: 144,
+                      objectFit: "cover",
+                      borderRadius: 8,
+                      boxShadow: "0 0 0 1px #CED4DA",
+                      marginBottom: "24px",
+                    }}
+                  />
+                <div className="row-md-12">
+                    <input
+                      type="file"
+                      style={{ border: "none" }}
+                      name="image"
+                      id="image"
+                      className="form-control p-0"
+                    // onChange={handleImageChange}
+                    />
+                    <label class="pt-0">Pilih file dengan ukuran maksimal 1MB</label>
               </div>
             </div>
             <div className="col-md-8 add_top_30">
@@ -46,6 +80,7 @@ const ProfilPerusahaan = () => {
                       type="text"
                       className="form-control"
                       placeholder="Your name"
+                      value={company.name}
                     />
                   </div>
                 </div>
@@ -58,6 +93,7 @@ const ProfilPerusahaan = () => {
                       type="text"
                       className="form-control"
                       placeholder="Your telephone number"
+                      value={company.address}
                     />
                   </div>
                 </div>
@@ -70,6 +106,7 @@ const ProfilPerusahaan = () => {
                       type="email"
                       className="form-control"
                       placeholder="Your email"
+                      value={company.website}
                     />
                   </div>
                 </div>
@@ -82,6 +119,7 @@ const ProfilPerusahaan = () => {
                       type="text"
                       className="form-control"
                       placeholder="Your telephone number"
+                      value={company.phone}
                     />
                   </div>
                 </div>
@@ -92,6 +130,7 @@ const ProfilPerusahaan = () => {
                       type="email"
                       className="form-control"
                       placeholder="Your email"
+                      value={company.number_of_employee}
                     />
                   </div>
                 </div>
@@ -104,7 +143,7 @@ const ProfilPerusahaan = () => {
                       style={{ height: 100 }}
                       className="form-control"
                       placeholder="Personal info"
-                      defaultValue={""}
+                      value={company.description}
                     />
                   </div>
                 </div>
@@ -115,7 +154,7 @@ const ProfilPerusahaan = () => {
               width: "100%",
               backgroundColor: "#FC9400", 
               '&:hover':{ backgroundColor: "#FFC300", color: "#3F4456"}}} 
-              variant="contained" >Simpan</Button>
+              variant="contained" >Edit</Button>
           </div>
         </div>
       </div>

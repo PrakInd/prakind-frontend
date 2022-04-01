@@ -1,7 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Chip from '@mui/material/Chip';
+import axios from "axios";
+import { SHOW_APPLICATIONS } from "../../constants/urls";
+import { getToken } from "../../utils/Auth";
+import { Link } from "react-router-dom";
 
 const ListPelamar = () => {
+  const [applications, setApplications] = useState([]);
+  const [profiles, setProfiles] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(SHOW_APPLICATIONS, {
+        headers: { Authorization: `Bearer ${getToken()}` }
+      })
+      .then(res => {
+        console.log("list pelamar:", res.data.data);
+        setApplications(res.data.data);
+        setProfiles(res.data.data.profile);
+      })
+      .catch(err => console.log(err))
+
+      return () => {
+        setApplications([]);
+        setProfiles([]);
+      }
+  }, []);
+
   return (
     <div className="content-wrapper">
       <div className="container-fluid">
@@ -22,135 +47,85 @@ const ListPelamar = () => {
               </select>
             </div>
           </div>
+
+          {/* CARD */}
           <div className="list_general">
             <ul>
-              <li>
-                <figure>
-                  <img src="img/avatar1.jpg" alt />
-                </figure>
-                <h4>
-                  Galih Primayasa
-                </h4>
-                <ul className="booking_list">
-                  <li>
-                    <strong>Institution</strong> Politeknik Elektronika Negeri Surabaya (PENS)
+            {(applications.map((val, index) => {
+              if (val.status === "dalam_seleksi") {
+                return (
+                  <li key={index}>
+                    <figure>
+                      <img 
+                        src={val.profile.user.avatar} 
+                        alt="user-img"
+                        style={{ width:"1.5rem" }}
+                      />
+                    </figure>
+                    <h4>{val.profile.user.name}</h4>
+                    <ul>
+                      <li>
+                        <label>Institution</label>
+                        <p>{val.profile.institution.name}</p>
+                      </li>
+                      <li>
+                        <label>Internship Start</label>
+                        <p>{val.period_start}</p>
+                      </li>
+                      <li>
+                        <label>Internship End</label>
+                        <p>{val.period_end}</p>
+                      </li>
+                    </ul>
+                      <Link className="btn_1 gray" to={`/perusahaan/pelamar/detail/${val.profile.user.id}`}>
+                        Lihat Detail Pelamar
+                      </Link>
                   </li>
-                  <li>
-                    <strong>Major</strong> D4 Teknik Informatika
-                  </li>
-                  <li>
-                    <strong>Start internship</strong> 22 Maret 2022
-                  </li>
-                  <li>
-                    <strong>Finished internship</strong> 22 Mei 2022
-                  </li>
-                </ul>
-                <p>
-                  <a href="#0" className="btn_1 gray">
-                    <i className="fa fa-fw fa-eye" />
-                    View Details
-                  </a>
-                </p>
-                <ul className="buttons">
-                  <li>
-                    <a href="#0" className="btn_1 gray approve">
-                      <i className="fa fa-fw fa-check-circle-o" /> Approve
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#0" className="btn_1 gray delete">
-                      <i className="fa fa-fw fa-times-circle-o" /> Refuse
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <figure>
-                  <img src="img/avatar2.jpg" alt />
-                </figure>
-                <h4>
-                  Aisyah Ardelia
-                  <Chip sx={{
-                    backgroundColor: "#FC9400", 
-                    color: "#FFFFFF"}} 
-                    label="Berkelompok" color="primary" />
-                </h4>
-                <ul className="booking_list">
-                  <li>
-                    <strong>Institution</strong> Institut Teknologi Bandung (ITB)
-                  </li>
-                  <li>
-                    <strong>Major</strong> Teknik Komputer
-                  </li>
-                  <li>
-                    <strong>Start internship</strong> 22 Mei 2022
-                  </li>
-                  <li>
-                    <strong>Finished internship</strong> 22 Juni 2022
-                  </li>
-                </ul>
-                <p>
-                  <a href="#0" className="btn_1 gray">
-                    <i className="fa fa-fw fa-eye" />
-                    View Details
-                  </a>
-                </p>
-                <ul className="buttons">
-                  <li>
-                    <a href="#0" className="btn_1 gray approve">
-                      <i className="fa fa-fw fa-check-circle-o" /> Approve
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#0" className="btn_1 gray delete">
-                      <i className="fa fa-fw fa-times-circle-o" /> Refuse
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <figure>
-                  <img src="img/avatar3.jpg" alt />
-                </figure>
-                <h4>
-                  Faza Baharsyah
-                </h4>
-                <ul className="booking_list">
-                  <li>
-                    <strong>Institution</strong> Universitas Gajah Mada (UGM)
-                  </li>
-                  <li>
-                    <strong>Major</strong> Sistem Informasi
-                  </li>
-                  <li>
-                    <strong>Start internship</strong> 22 Februari 2022
-                  </li>
-                  <li>
-                    <strong>Finished internship</strong> 22 Mei 2022
-                  </li>
-                </ul>
-                <p>
-                  <a href="#0" className="btn_1 gray">
-                    <i className="fa fa-fw fa-eye" />
-                    View Details
-                  </a>
-                </p>
-                <ul className="buttons">
-                  <li>
-                    <a href="#0" className="btn_1 gray approve">
-                      <i className="fa fa-fw fa-check-circle-o" /> Approve
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#0" className="btn_1 gray delete">
-                      <i className="fa fa-fw fa-times-circle-o" /> Refuse
-                    </a>
-                  </li>
-                </ul>
-              </li>
+                  // <li key={val.id}>
+                  //   <figure>
+                  //     <img src={val.profile.user.avatar} alt />
+                  //   </figure>
+                  //   <h4>
+                  //     {val.profile.user.name}
+                  //   </h4>
+                  //   <ul className="booking_list">
+                  //     <li>
+                  //       <strong>Institution</strong> {val.profile.institution}
+                  //     </li>
+                  //     <li>
+                  //       <strong>Start internship</strong> {val.period_start}
+                  //     </li>
+                  //     <li>
+                  //       <strong>Finished internship</strong> {val.period_end}
+                  //     </li>
+                  //   </ul>
+                  //   <p>
+                  //     <a href="#0" className="btn_1 gray">
+                  //       <i className="fa fa-fw fa-eye" />
+                  //       View Details
+                  //     </a>
+                  //   </p>
+                  //   <ul className="buttons">
+                  //     <li>
+                  //       <a href="#0" className="btn_1 gray approve">
+                  //         <i className="fa fa-fw fa-check-circle-o" /> Approve
+                  //       </a>
+                  //     </li>
+                  //     <li>
+                  //       <a href="#0" className="btn_1 gray delete">
+                  //         <i className="fa fa-fw fa-times-circle-o" /> Refuse
+                  //       </a>
+                  //     </li>
+                  //   </ul>
+                  // </li>
+                );
+              }
+            }))}
             </ul>
           </div>
         </div>
+
+        {/* PAGINATION */}
         <nav aria-label="...">
           <ul className="pagination pagination-sm add_bottom_30">
             <li className="page-item disabled">

@@ -18,34 +18,24 @@ const RegisterUser = () => {
   const registerHandler = e => {
     e.preventDefault();
 
-    // let formData = new FormData();
-    // 
-    // formData.append('name', name);
-    // formData.append('role_id', userType);
-    // formData.append('email', email);
-    // formData.append('password', password);
-    // formData.append('password_confirmation', passwordConfirmation);
-
-    console.log("name", name);
-    console.log("role", role);
-    console.log("email", email);
+    let formData = new FormData();
+    
+    formData.append('name', name);
+    formData.append('role_id', parseInt(role));
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('password_confirmation', passwordConfirmation);
 
     // send data to server
-    // axios
-    //   .post(REGISTER_API, {
-    //     name: name,
-    //     role_id: role,
-    //     email: email,
-    //     password: password,
-    //     password_confrmation: passwordConfirmation
-    //   })
-    //   .then((res) => {
-    //     console.log("response regsiter:", res);
-    //     history.push('/login');
-    //   })
-    //   .catch((error) => {
-    //     setValidation(error.response.data);
-    //   });
+    axios
+      .post(REGISTER_API, formData)
+      .then((res) => {
+        console.log("response register:", res);
+        history.push('/login');
+      })
+      .catch((error) => {
+        setValidation(error.response.data);
+      });
   };
 
   return (
@@ -65,7 +55,7 @@ const RegisterUser = () => {
             </a>
           </figure>
           <div>
-            <PrimaryButton 
+            {/* <PrimaryButton 
               style={{ 
                 color: "#fff",  
                 display: "flex", 
@@ -83,9 +73,28 @@ const RegisterUser = () => {
               onClick={() => { setRole(1); }}
             >
               Admin
-            </PrimaryButton>
+            </PrimaryButton> */}
           </div>
           <form autoComplete="off">
+            <div className="form-group">
+              <label>Tipe User</label>
+              <div 
+                style={{ 
+                  display: "flex",
+                  gap: "1em", 
+                  marginRight: "1em" 
+                }}
+              >
+                <div>
+                  <input type="radio" id="pelamar" value="2" onChange={(e) => setRole(e.target.value)} style={{ marginRight:"0.25rem" }}/>
+                  <span>Pelamar</span>
+                </div>
+                <div>
+                  <input type="radio" id="perusahaan" value="1" onChange={(e) => setRole(e.target.value)} style={{ marginRight:"0.25rem" }}/>
+                  <span>Perusahaan</span>
+                </div>
+              </div>
+            </div>
             <div className="form-group">
               <label>Nama Anda</label>
               <input
@@ -149,7 +158,7 @@ const RegisterUser = () => {
                 display: "block",
                 marginBottom: "5px",
                 backgroundColor: "#FC9400",
-                '&:hover': { backgroundColor: "#0054a" }
+                '&:hover':{ backgroundColor: "#FFC300", color: "#3F4456"}
               }}
               variant="contained"
               onClick={registerHandler}

@@ -147,7 +147,7 @@ export default function Login() {
                 display: "block",
                 marginBottom: "5px",
                 backgroundColor: "#FC9400",
-                '&:hover': { backgroundColor: "#0054a" }
+                '&:hover':{ backgroundColor: "#FFC300", color: "#3F4456"}
               }}
               variant="contained"
               onClick={e => validateLogin(e)}

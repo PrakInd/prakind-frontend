@@ -1,6 +1,6 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import { Switch } from "react-router-dom";
+import { Switch, Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import AppBar from "@mui/material/AppBar";
@@ -15,6 +15,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import AdminRoute from "./AdminRoute";
 import { ADMIN_ROUTES } from "../routes/admin_routes";
+import Sidebar from "../components/Sidebar/Sidebar";
+import { routes } from "../components/Sidebar/SidebarData";
+import { RouteSharp } from "@mui/icons-material";
+import { logout } from "../utils/Auth";
 
 const drawerWidth = 240;
 
@@ -24,6 +28,10 @@ const AdminContainer = props => {
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const onLogout = () => {
+    logout();
   };
 
   const drawer = (
@@ -43,43 +51,33 @@ const AdminContainer = props => {
         </a>
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <a
+            {/* <a
               className="nav-link"
               data-toggle="modal"
               data-target="#exampleModal"
             >
               <i className="fa fa-fw fa-sign-out" />
               Keluar
-            </a>
+            </a> */}
+            <button onClick={onLogout}>
+              <Link to="/">
+                Keluar
+              </Link>
+            </button>
           </li>
         </ul>
       </div>
-      {/* <Toolbar /> */}
-      {/* <Divider /> */}
       <List
-        style={{ backgroundColor: "#40465D", color: "#fff", height: "auto" }}
+        style={{ backgroundColor: "#40465D", height: "auto" }}
       >
-        {[
-          "Dashboard",
-          "List Pelamar",
-          "List Lowongan",
-          "Profil Perusahaan",
-          "List Magang",
-          "Pengaturan Admin",
-        ].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
-          </ListItem>
+        {routes.map((val, index) => (
+          <Link to={val.path} key={index}>
+            <ListItem button key={val.title}>
+              <ListItemText style={{ color: "#FFF" }} primary={val.title} />
+            </ListItem>
+          </Link>
         ))}
       </List>
-      {/* <Divider />
-      <List>
-        {['Keluar'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List> */}
     </div>
   );
 
