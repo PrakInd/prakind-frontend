@@ -79,9 +79,6 @@ const Header = () => {
                     <Link to="/pelamar/profil">Profil</Link>
                   </li>
                   <li>
-                    <Link to="/pelamar/upload-dokumen">Dokumen</Link>
-                  </li>
-                  <li>
                     <Link to="/login">Keluar</Link>
                   </li>
                 </ul>

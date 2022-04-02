@@ -14,7 +14,7 @@ const Token = () => {
   };
 
   const handleClickOpenMember = () => {
-    setOpen(true);
+    setOpenMember(true);
   };
 
   const handleClose = () => {
@@ -38,10 +38,10 @@ const Token = () => {
     <Dialog open={openMember} onClose={handleClose} >
       <DialogTitle>Yeay! Pendaftaran Berhasil</DialogTitle>
       <DialogContent style={{ margin: "auto" }}>
-        <h6>Silahkan kelompok Anda</h6>
+        <img src="../../img/checked.png" alt="" width={80} height={80} />
       </DialogContent>
       <DialogActions style={{ margin: "auto" }}>
-        <a href="/pelamar/upload-dokumen"><PrimaryButton style={{ color: "#fff", fontWeight: "normal" }}>Selanjutnya</PrimaryButton></a>
+        <a href="/pelamar/aktifitasku"> <PrimaryButton style={{ color: "#fff", fontWeight: "normal" }}>Selesai</PrimaryButton> </a>
       </DialogActions>
     </Dialog >
   )
@@ -88,7 +88,7 @@ const Token = () => {
                       </div>
                       <div className="col-md-6 ">
                         <div className="form-group">
-                        <SecondaryButton style={{ width: "100%" }} onClick={handleClickOpenMember}>Selanjutnya</SecondaryButton>
+                          <SecondaryButton style={{ width: "100%" }} onClick={handleClickOpenMember}>Selanjutnya</SecondaryButton>
                         </div>
                       </div>
                     </div>
@@ -107,3 +107,4 @@ const Token = () => {
 }
 
 export default Token;
+

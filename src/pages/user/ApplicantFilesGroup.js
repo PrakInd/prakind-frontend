@@ -14,7 +14,8 @@ const getWeeksAfter = (date, amount) => {
 }
 
 
-const ApplicantFiles = () => {
+
+const ApplicantFilesGroup = () => {
   const [value, setValue] = React.useState([null, null]);
   const [open, setOpen] = useState(false);
 
@@ -80,7 +81,21 @@ const ApplicantFiles = () => {
                       />
                     </LocalizationProvider>
                   </div>
-
+                  <div className="row">
+                    <div className="col-md-12 p-0">
+                      <div className="form-group">
+                        <label>Nama Kelompok</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="Nama Kelompok"
+                          name="name_group"
+                          id="name_group"
+                        // value={input.name}
+                        />
+                      </div>
+                    </div>
+                  </div>
                   <div className="form-group">
                     <label>Proposal</label>
                     <div className="col-md-12 d-flex flex-row justify-content-between flex-wrap" style={{ border: "2px dotted" }}>
@@ -92,7 +107,7 @@ const ApplicantFiles = () => {
                             <input
                               type="file"
                               style={{ border: "none" }}
-                              name="prposal"
+                              name="proposal"
                               id="proposal"
                               className="form-control p-0"
                             />
@@ -131,6 +146,7 @@ const ApplicantFiles = () => {
                     </div>
                   </div>
 
+
                   <PrimaryButton style={{ color: "#fff", marginTop: 10, display: "flex", float: "right" }} onClick={handleClickOpen}>Submit</PrimaryButton>
 
                   <a href="/pelamar/profil-review">
@@ -148,5 +164,4 @@ const ApplicantFiles = () => {
   );
 }
 
-export default ApplicantFiles;
-
+export default ApplicantFilesGroup;

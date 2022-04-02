@@ -6,6 +6,10 @@ import { BottomNavigation, BottomNavigationAction } from "@mui/material"
 const MyActivity = () => {
   const [value, setValue] = useState("");
 
+  const handleChange = (event, newValue) => {
+    setValue(newValue)
+  }
+
   return (
     <>
       <Header />
@@ -21,7 +25,7 @@ const MyActivity = () => {
               showLabels
               value={value}
               onChange={(event, newValue) => {
-                setValue(newValue);
+                handleChange(event, newValue);
               }}
               sx={{
                 color: "black",
@@ -37,12 +41,11 @@ const MyActivity = () => {
               }}
             >
               <BottomNavigationAction value="" label="Kegiatan Aktif" />
-              <BottomNavigationAction value="antri" label="Status Pendaftaran" />
+              <BottomNavigationAction value="status" label="Status Pendaftaran" />
             </BottomNavigation>
           </div>
         </div>
         <div>
-
         </div>
       </div>
       <FooterUser />
@@ -51,3 +54,4 @@ const MyActivity = () => {
 }
 
 export default MyActivity;
+

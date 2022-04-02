@@ -6,6 +6,7 @@ import HomeUser from "../pages/user/HomeUser";
 import ProfileRead from "../pages/user/ProfileRead";
 import Token from "../pages/user/Token";
 import MyActivity from "../pages/user/MyActivity";
+import ApplicantFilesGroup from "../pages/user/ApplicantFilesGroup";
 
 export const USER_ROUTES = [
   {
@@ -29,6 +30,14 @@ export const USER_ROUTES = [
     path: "/pelamar/upload-dokumen",
     exact: true,
     component: ApplicantFiles,
+    private: true,
+    isUser: true,
+  },
+  {
+    name: "Upload Dokumen Group",
+    path: "/pelamar/upload-dokumen-kelompok",
+    exact: true,
+    component: ApplicantFilesGroup,
     private: true,
     isUser: true,
   },
