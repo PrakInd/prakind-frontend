@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
-import { REGISTER_API } from "../constants/urls";
 import Button from '@mui/material/Button';
-import PrimaryButton from ".././components/button/PrimaryButton";
 // import { Message } from "@material-ui/icons";
+import { REGISTER_API } from "../constants/urls";
+import prakind_logo from "../assets/logo_orange2.svg"
+// import PrimaryButton from ".././components/button/PrimaryButton";
 
 const RegisterUser = () => {
   const [name, setName] = useState("");
@@ -44,15 +45,14 @@ const RegisterUser = () => {
       <div id="login">
         <aside>
           <figure>
-            <a href="#">
+            <Link to="/">
               <img
-                src="img/logo2.png"
-                width={155}
-                height={36}
+                src={prakind_logo}
+                style={{ height: "3rem" }}
                 data-retina="true"
-                alt
+                alt="logo"
                 className="logo_sticky" />
-            </a>
+            </Link>
           </figure>
           <div>
             {/* <PrimaryButton 

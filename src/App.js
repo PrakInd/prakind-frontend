@@ -10,15 +10,15 @@ import {
   ThemeProvider,
 } from '@mui/material/styles';
 import Login from "./pages/Login";
-import RegisterUser from "./pages/RegisterUser";
-import RegisterPerusahaan from "./pages/RegisterPerusahaan";
 import ErrorPage from "./pages/ErrorPage";
 import Vacancy from "./pages/user/Vacancy";
 import HomeUser from "./pages/user/HomeUser";
+import RegisterUser from "./pages/RegisterUser";
 import DetailVacancy from "./pages/user/DetailVacancy";
 import DetailCompany from "./pages/user/DetailCompany";
 import UserContainer from "./components/UserContainer";
 import AdminContainer from "./components/AdminContainer";
+import RegisterPerusahaan from "./pages/RegisterPerusahaan";
 import { SearchProvider } from "./components/SearchContext/SearchContext";
 
 const theme = createTheme({
@@ -44,6 +44,9 @@ const theme = createTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(","),
+    // button: {
+    //   textTransform: 'none'
+    // }
   },
 })
 
@@ -54,23 +57,6 @@ function App() {
         <SearchProvider>
           <Router>
             <Switch>
-              {/* {APP_ROUTES.map((value, index) => {
-                return (
-                  <PublicRoute
-                    key={value.name}
-                    restricted={value.restricted}
-                    path={value.path}
-                    component={value.component}
-                    exact={value.exact}
-                    isNotFound={value.isNotFound}
-                  />
-                );
-              })}
-              
-              <Route path="/">
-                <Redirect to="/login" />
-              </Route> */}
-
               <Route exact restricted path="/" component={HomeUser} />
               <Route exact restricted path="/login" component={Login} />
               <Route exact restricted path="/register" component={RegisterUser} />

@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
+import Button from '@mui/material/Button';
+import { Link, useHistory } from "react-router-dom";
 import { login } from "../utils/Auth";
 import { LOGIN_API } from "../constants/urls";
-import Backdrop from '@mui/material/Backdrop';
-import { api } from "../utils/Api";
-import Button from '@mui/material/Button';
-import { ME_API } from "../constants/urls";
-import { getToken, setUserLogin, setRole, setUserId } from "../utils/Auth";
-import { Link, useHistory } from "react-router-dom";
-import Cookies from "js-cookie";
+import prakind_logo from "../assets/logo_orange2.svg"
+import { setUserLogin, setRole, setUserId } from "../utils/Auth";
 
-export default function Login() {
+const Login = () => {
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -31,7 +29,6 @@ export default function Login() {
         password: input.password
       })
       .then(res => {
-        console.log("res: ", res);
         login(res.data.access_token);
         setUserLogin(res.data.user);
         setRole(res.data.user.role_id);
@@ -71,19 +68,15 @@ export default function Login() {
   return (
     <div>
       <nav id="menu" className="fake_menu" />
-      {/* <div id="preloader">
-        <div data-loader="circle-side" />
-      </div> */}
       <div id="login">
         <aside>
           <figure>
             <a href="/#">
               <img
-                src="img/logo2.png"
-                width={155}
-                height={36}
+                src={prakind_logo}
+                style={{ height: "3rem" }}
                 data-retina="true"
-                alt="img"
+                alt="logo"
                 className="logo_sticky"
               />
             </a>
@@ -122,11 +115,6 @@ export default function Login() {
                   <span className="checkmark" />
                 </label>
               </div>
-              {/* <div className="float-right mt-1">
-                <a id="forgot" href="/#">
-                  Lupa Password?
-                </a>
-              </div> */}
             </div>
             <Button
               sx={{
@@ -158,3 +146,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default Login;

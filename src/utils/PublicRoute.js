@@ -1,21 +1,6 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import { isLogin, isUser, isAdmin } from "./Auth";
-
-// const PublicRoute = ({ component: Component, restricted, ...rest }) => {
-//   return (
-//     <Route
-//       {...rest}
-//       render={(props) =>
-//         !isLogin() && restricted ? (
-//           <Component {...props} />
-//         ) : (
-//           <Redirect to={{ pathname:"/", from: props.location }} />
-//         )
-//       }
-//     />
-//   );
-// };
+import { isLogin, isAdmin } from "./Auth";
 
 const PublicRoute = ({ component: Component, isNotFound, restricted, ...rest }) => {
   return (

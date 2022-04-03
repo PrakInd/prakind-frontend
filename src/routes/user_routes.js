@@ -1,11 +1,11 @@
-import Profile from "../pages/user/Profile";
-import ErrorPage from "../pages/ErrorPage";
-import ApplicantFiles from "../pages/user/ApplicantFiles";
-import FormRegister from "../pages/user/FormRegister";
-import HomeUser from "../pages/user/HomeUser";
-import ProfileRead from "../pages/user/ProfileRead";
 import Token from "../pages/user/Token";
+import ErrorPage from "../pages/ErrorPage";
+import Profile from "../pages/user/Profile";
+import HomeUser from "../pages/user/HomeUser";
 import MyActivity from "../pages/user/MyActivity";
+import ProfileRead from "../pages/user/ProfileRead";
+import FormRegister from "../pages/user/FormRegister";
+import ApplicantFiles from "../pages/user/ApplicantFiles";
 
 export const USER_ROUTES = [
   {

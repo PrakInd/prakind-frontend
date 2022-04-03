@@ -25,7 +25,7 @@ export const UPDATE_USER = (user_id) => `${BASE_URL}/users/${user_id}`;
 export const DELETE_USER = (user_id) => `${BASE_URL}/users/${user_id}`;
 export const USER_UPLOAD_IMAGE = (user_id) => {
   return `${BASE_URL}/users/${user_id}/upload-image`;
-}
+};
 
 // Groups
 export const SHOW_GROUPS = `${BASE_URL}/groups`;
@@ -42,7 +42,7 @@ export const UPDATE_PROFILE = (profile_id) => `${BASE_URL}/profiles/${profile_id
 export const DELETE_PROFILE = (profile_id) => `${BASE_URL}/profiles/${profile_id}`;
 export const PROFILE_UPLOAD_DOCS = (profile_id, doc_ext) => {
   return `${BASE_URL}/profiles/${profile_id}/upload/${doc_ext}`;
-}
+};
 
 // Companies
 export const SHOW_COMPANIES = `${BASE_URL}/companies`;
@@ -77,8 +77,8 @@ export const APPLICATION_UPLOAD_CERTIFICATE = (application_id) => {
 export const SHOW_APPLICANT_FILES = `${BASE_URL}/applicant-files`;
 export const SHOW_APPLICANT_FILE = (applicant_file_id) => {
   return `${BASE_URL}/applicant-files/${applicant_file_id}`;
-}
+};
 export const CREATE_APPLICANT_FILE = `${BASE_URL}/applicant-files`;
 export const APPLICANT_FILE_UPLOAD = (applicant_file_id, doc_ext) => {
   return `${BASE_URL}/applicant-files/${applicant_file_id}/upload/${doc_ext}`;
-}
+};

@@ -25,30 +25,30 @@ Author URI: http://themeforest.net/user/Ansonika/
 /* 1.  SITE STRUCTURE */
 /*============================================================================================*/
 /*Import*/
-html {
+/* html {
   position: relative;
   min-height: 100%;
-}
+} */
 
-body {
+/* body {
   overflow-x: hidden;
-}
+} */
 
-body.sticky-footer {
+/* body.sticky-footer {
   margin-bottom: 62px;
 }
 body.sticky-footer .content-wrapper {
   min-height: calc(100vh - 62px - 62px);
-}
+} */
 
 /* body.fixed-nav {
   padding-top: 56px;
 } */
 
-.content-wrapper {
+/* .content-wrapper {
   height: auto;
-  /* padding-top: 80px; */
-}
+  padding-top: 80px;
+} */
 
 .scroll-to-top {
   position: fixed;

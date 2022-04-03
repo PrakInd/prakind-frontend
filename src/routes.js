@@ -1,24 +1,21 @@
-import HomeUser from "./pages/user/HomeUser";
+import Login from "./pages/Login";
 import Vacancy from "./pages/user/Vacancy";
+import HomeUser from "./pages/user/HomeUser";
 import DetailVacancy from "./pages/user/DetailVacancy";
 import DetailCompany from "./pages/user/DetailCompany";
-import AdminContainer from "./components/AdminContainer";
 import UserContainer from "./components/UserContainer";
-
-import Dashboard from "./pages/admin/Dashboard"
-import ProfilPerusahaan from "./pages/admin/ProfilPerusahaan"
-import ListPelamar from "./pages/admin/ListPelamar"
-import ListLowongan from "./pages/admin/ListLowongan"
-import TabelMagang from "./pages/admin/TabelMagang"
-import Lowongan from "./pages/admin/Lowongan"
-import DetailPelamar from "./pages/admin/DetailPelamar"
-
-import FormRegister from "./pages/user/FormRegister";
-import Login from "./pages/Login";
-import UploadDocs from "./pages/user/UploadDocs";
-import Profil from "./pages/user/Profil";
+import AdminContainer from "./components/AdminContainer";
+import Lowongan from "./pages/admin/Lowongan";
+import Dashboard from "./pages/admin/Dashboard";
+import TabelMagang from "./pages/admin/TabelMagang";
+import ListPelamar from "./pages/admin/ListPelamar";
+import ListLowongan from "./pages/admin/ListLowongan";
+import DetailPelamar from "./pages/admin/DetailPelamar";
+import ProfilPerusahaan from "./pages/admin/ProfilPerusahaan";
 import Apply from "./pages/user/Apply";
-
+import Profil from "./pages/user/Profil";
+import UploadDocs from "./pages/user/UploadDocs";
+import FormRegister from "./pages/user/FormRegister";
 import ErrorPage from "./pages/ErrorPage";
 
 export const APP_ROUTES = [
@@ -36,27 +33,6 @@ export const APP_ROUTES = [
     component: Login,
     restricted: true,
   },
-  // {
-  //   name: "Login",
-  //   path: "/",
-  //   exact: true,
-  //   component: Login,
-  //   restricted: true,
-  // },
-  // {
-  //   name: "User Register",
-  //   path: "/registrasi-pelamar",
-  //   exact: true,
-  //   component: RegisterUser,
-  //   restricted: true,
-  // },
-  // {
-  //   name: "Company Register",
-  //   path: "/registrasi-perusahaan",
-  //   exact: true,
-  //   component: RegisterCompany,
-  //   restricted: true,
-  // },
   {
     name: "Vacancy",
     path: "/lowongan",
@@ -78,8 +54,6 @@ export const APP_ROUTES = [
     component: DetailCompany,
     restricted: true,
   },
-
-  // ===== TESTING ===== 
   {
     name: "Master Layout Admin",
     path: "/perusahaan",

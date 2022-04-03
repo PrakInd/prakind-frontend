@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Header from "../../components/Header";
-// import Navbar from "../../components/user/Navbar";
 import FooterUser from "../../components/FooterUser";
 import PrimaryButton from "../../components/button/PrimaryButton";
 import { SearchContext } from "../../components/SearchContext/SearchContext";
+import { Link } from "react-router-dom";
 
 const HomeUser = () => {
   const history = useHistory();
@@ -60,9 +60,6 @@ const HomeUser = () => {
                       <i className="icon_pin_alt" />
                     </div>
                   </div>
-                  {/* <div className="col-lg-2">
-                    <input type="submit" className="btn_search" defaultValue="Cari" />
-                  </div> */}
                   <div className="col-lg-2">
                     <button type="submit">Cari</button>
                   </div>
@@ -71,7 +68,7 @@ const HomeUser = () => {
 
             </div>
 
-            <a href="/lowongan">
+            <Link to="/lowongan">
               <PrimaryButton 
                 style={{
                   width: "15%",
@@ -83,7 +80,7 @@ const HomeUser = () => {
               >
                 Lihat Info Magang
               </PrimaryButton>
-            </a>
+            </Link>
 
           </div>
         </section>

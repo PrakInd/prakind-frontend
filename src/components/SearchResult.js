@@ -18,7 +18,6 @@ const SearchResult = props => {
               <h3>
                 <NavLink to={"/lowongan/" + data.id}>{data.name}</NavLink>
               </h3>
-              {/* <h5><NavLink to={'/detail-perusahaan/' + company.id}>{vacancy.company.name}</NavLink></h5> */}
               <h6>
                 <NavLink to={"/detail-perusahaan/" + data.company.id}>{data.company.name}</NavLink>
               </h6>

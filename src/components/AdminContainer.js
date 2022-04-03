@@ -14,10 +14,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { MenuRounded, LogoutRounded } from "@mui/icons-material";
 import AdminRoute from "./AdminRoute";
-import { ADMIN_ROUTES } from "../routes/admin_routes";
-import { routes } from "./Sidebar/SidebarData";
-import prakind_logo from "../assets/logo_orange.svg";
 import { logout } from "../utils/Auth";
+import { routes } from "./SidebarData";
+import prakind_logo from "../assets/logo_orange.svg";
+import { ADMIN_ROUTES } from "../routes/admin_routes";
 
 const drawerWidth = 240;
 

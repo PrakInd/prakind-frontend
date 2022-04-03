@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "@mui/material";
 import { styled } from "@mui/system";
+import { Button } from "@mui/material";
 
 const SecondaryButton = (props) => {
   const BootstrapButton = styled(Button)({
@@ -21,11 +21,11 @@ const SecondaryButton = (props) => {
     '&:disabled': {
       backgroundColor: '#FFC300',
     },
-  })
+  });
+
   return (
     <BootstrapButton {...props} />
   );
 }
 
 export default SecondaryButton;
-
