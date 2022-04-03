@@ -1,7 +1,6 @@
 import Profile from "../pages/user/Profile";
 import ErrorPage from "../pages/ErrorPage";
 import ApplicantFiles from "../pages/user/ApplicantFiles";
-import FormRegister from "../pages/user/FormRegister";
 import HomeUser from "../pages/user/HomeUser";
 import ProfileRead from "../pages/user/ProfileRead";
 import Token from "../pages/user/Token";
@@ -14,14 +13,6 @@ export const USER_ROUTES = [
     path: "/pelamar",
     exact: true,
     component: HomeUser,
-    private: true,
-    isUser: true,
-  },
-  {
-    name: "Form Biodata",
-    path: "/pelamar/form-register",
-    exact: true,
-    component: FormRegister,
     private: true,
     isUser: true,
   },

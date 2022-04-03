@@ -137,6 +137,14 @@ const Profile = () => {
                   <div className="row">
                     <div className="col-md-12 p-0">
                       <div className="form-group">
+                        <label>Alamat Lengkap</label>
+                        <textarea style={{ height: 80 }} className="form-control" placeholder="Jl. Sukaria blok mangga no. 12, Sukolilo, Jakarta" defaultValue={""} />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-md-12 p-0">
+                      <div className="form-group">
                         <label>Asal Sekolah</label>
                         <select
                           className="w-100 input-group-select"
