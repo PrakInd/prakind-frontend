@@ -2,8 +2,8 @@ import React from "react";
 
 const Dashboard = () => {
   return (
-    <div className="content-wrapper">
-      <div className="container-fluid">
+    <div>
+      <div>
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
             Dashboard

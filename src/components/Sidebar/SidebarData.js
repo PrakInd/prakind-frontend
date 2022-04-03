@@ -1,36 +1,39 @@
 import React from 'react';
-import { 
-    DescriptionOutlined, 
-    PeopleAltOutlined, 
-    PersonAddAlt1Outlined, 
-    HistoryOutlined,
+import {
+    PeopleAltOutlined,
+    DashboardRounded,
+    GroupRounded,
+    WorkRounded,
+    HailRounded,
 } from '@mui/icons-material';
 
 export const routes = [
     {
         title: "Dashboard",
-        path: "/perusahaan/dashboard",
+        path: "/perusahaan",
         exact: true,
-        icon: <DescriptionOutlined />,
-    },
-    {
-        title: "List Lowongan",
-        path: "/perusahaan/lowongan",
-        icon: <PersonAddAlt1Outlined />,
+        icon: <DashboardRounded />,
     },
     {
         title: "Profil Perusahaan",
         path: "/perusahaan/profil",
-        icon: <HistoryOutlined />,
+        exact: true,
+        icon: <GroupRounded />,
+    },
+    {
+        title: "List Lowongan",
+        path: "/perusahaan/lowongan",
+        icon: <WorkRounded />,
     },
     {
         title: "Daftar Pelamar",
         path: "/perusahaan/pelamar",
-        icon: <PeopleAltOutlined />,
+        icon: <HailRounded />,
     },
     {
         title: "Tabel Magang",
         path: "/perusahaan/table",
+        exact: true,
         icon: <PeopleAltOutlined />,
     },
 ];

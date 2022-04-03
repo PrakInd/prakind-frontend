@@ -1,30 +1,30 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import { Switch, Link } from "react-router-dom";
+import { Switch, NavLink } from "react-router-dom";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import AppBar from "@mui/material/AppBar";
 import Drawer from "@mui/material/Drawer";
-import Toolbar from "@mui/material/Toolbar";
 import Divider from "@mui/material/Divider";
+import Toolbar from "@mui/material/Toolbar";
 import ListItem from "@mui/material/ListItem";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import { MenuRounded, LogoutRounded } from "@mui/icons-material";
 import AdminRoute from "./AdminRoute";
 import { ADMIN_ROUTES } from "../routes/admin_routes";
-import Sidebar from "../components/Sidebar/Sidebar";
-import { routes } from "../components/Sidebar/SidebarData";
-import { RouteSharp } from "@mui/icons-material";
+import { routes } from "./Sidebar/SidebarData";
+import prakind_logo from "../assets/logo_orange.svg";
 import { logout } from "../utils/Auth";
 
 const drawerWidth = 240;
 
-const AdminContainer = props => {
+const AdminContainer = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const container = window !== undefined ? () => window().document.body : undefined;
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -35,91 +35,99 @@ const AdminContainer = props => {
   };
 
   const drawer = (
-    <div>
-      <div
-        className="navbar navbar-expand-lg navbar-dark bg-default fixed-top"
-        id="mainNav"
+    <>
+      <Toolbar>
+        <img src={prakind_logo} style={{ height: "2rem" }} alt="logo" />
+      </Toolbar>
+      <Divider />
+      <div 
+        style={{ 
+          display: "flex",
+          flex: "1 1 0%",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          marginTop: "1em", marginBottom: "1em"
+        }}
       >
-        <a className="navbar-brand" href="/">
-          <img
-            src="img/logo2.png"
-            data-retina="true"
-            alt
-            width={150}
-            height={36}
-          />
-        </a>
-        <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
-            {/* <a
-              className="nav-link"
-              data-toggle="modal"
-              data-target="#exampleModal"
-            >
-              <i className="fa fa-fw fa-sign-out" />
-              Keluar
-            </a> */}
-            <button onClick={onLogout}>
-              <Link to="/">
-                Keluar
-              </Link>
-            </button>
-          </li>
-        </ul>
-      </div>
-      <List
-        style={{ backgroundColor: "#40465D", height: "auto" }}
-      >
-        {routes.map((val, index) => (
-          <Link to={val.path} key={index}>
-            <ListItem button key={val.title}>
-              <ListItemText style={{ color: "#FFF" }} primary={val.title} />
+        <div>
+          <List>
+            {routes.map((val, index) => (
+              <NavLink key={index} to={val.path}>
+                <ListItem button>
+                  <ListItemIcon sx={{ color: "white" }}>{val.icon}</ListItemIcon>
+                  <ListItemText sx={{ color: "white" }} primary={val.title} />
+                </ListItem>
+              </NavLink>
+            ))}
+          </List>
+        </div>
+        <div>
+          <NavLink to="/login" onClick={onLogout}>
+            <ListItem button>
+              <ListItemIcon sx={{ color: "white" }}><LogoutRounded /></ListItemIcon>
+              <ListItemText sx={{ color: "white" }} primary="Logout" />
             </ListItem>
-          </Link>
-        ))}
-      </List>
-    </div>
+          </NavLink>
+        </div>
+      </div>
+    </>
   );
-
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: "flex" }}>
-      {/* <CssBaseline /> */}
-      {/* <AppBar
+      <CssBaseline />
+      <AppBar
+        elevation={0}
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
+          background: "#2D3246",
+          borderBottom: "1px solid #282C3D",
+          p: "0",
         }}
       >
-        <Toolbar>
-          <Typography variant="h6" noWrap component="div">
-            Responsive drawer
-          </Typography>
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <IconButton 
+              edge="start" 
+              aria-label="open drawer" 
+              onClick={handleDrawerToggle} 
+              sx={{ marginRight: 2, color: "white", display: { sm: "none" } }}
+            >
+              <MenuRounded />
+            </IconButton>
+          </Box>
         </Toolbar>
-      </AppBar> */}
-      <Box
-        component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        aria-label="mailbox folders"
+      </AppBar>
+      <Box 
+        component="nav" 
+        aria-label="prakind routes"
+        sx={{ 
+          width: { sm: drawerWidth }, 
+          flexShrink: { sm: 0 },
+          background: "#2D3246", 
+        }} 
       >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
+          ModalProps={{ keepMounted: true }}
           sx={{
             display: { xs: "block", sm: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
             },
+            background: "#2D3246",
           }}
         >
           {drawer}
@@ -132,6 +140,7 @@ const AdminContainer = props => {
               boxSizing: "border-box",
               width: drawerWidth,
             },
+            background: "#2D3246",
           }}
           open
         >
@@ -142,20 +151,22 @@ const AdminContainer = props => {
         component="main"
         sx={{
           flexGrow: 1,
+          background: "#FFFFFF",
           width: { sm: `calc(100% - ${drawerWidth}px)` },
+          p: "1rem",
         }}
       >
-        {/* <Toolbar /> */}
+        <Toolbar />
         <Switch>
           {ADMIN_ROUTES.map((value, key) => {
             return (
-              <AdminRoute
-                key={key} //key gaboleh dihilangi karena untuk identifier map
-                component={value.component}
-                path={value.path}
-                exact={value.exact}
-                isAdmin={value.isAdmin}
-                isNotFound={value.isNotFound}
+              <AdminRoute 
+                key={key} 
+                component={value.component} 
+                path={value.path} 
+                exact={value.exact} 
+                isAdmin={value.isAdmin} 
+                isNotFound={value.isNotFound} 
               />
             );
           })}

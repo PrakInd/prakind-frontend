@@ -47,12 +47,12 @@ body.sticky-footer .content-wrapper {
 
 .content-wrapper {
   height: auto;
-  padding-top: 80px;
+  /* padding-top: 80px; */
 }
 
 .scroll-to-top {
   position: fixed;
-  right: 15px;
+  right: 16px;
   bottom: 3px;
   display: none;
   width: 50px;
@@ -467,7 +467,7 @@ footer.sticky-footer {
 body {
   background: #f8f8f8;
   color: #777 !important;
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: "Roboto", Helvetica, sans-serif;
   font-size: 14px;
   font-size: 0.875rem;
 }
@@ -490,12 +490,12 @@ p {
 }
 
 hr {
-  margin: 15px 0 30px 0;
+  margin: 16px 0 30px 0;
   border-color: #ededed;
 }
 
 hr.double {
-  margin: 15px 0 30px 0;
+  margin: 16px 0 30px 0;
   border-color: #ededed;
   border-width: 2px;
 }
@@ -528,7 +528,7 @@ a.btn_1,
   color: #fff;
   background: #fc5b62;
   cursor: pointer;
-  padding: 10px 15px;
+  padding: 10px 16px;
   display: inline-block;
   outline: none;
   font-size: 13px;
@@ -538,10 +538,10 @@ a.btn_1,
   -webkit-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 25px;
-  -ms-border-radius: 25px;
-  border-radius: 25px;
+  -webkit-border-radius: 24px;
+  -moz-border-radius: 24px;
+  -ms-border-radius: 24px;
+  border-radius: 24px;
   line-height: 1;
   font-weight: 500;
 }
@@ -613,7 +613,7 @@ ul.buttons li {
 
 ul.booking_list {
   list-style: none;
-  margin: 15px 0 25px 0;
+  margin: 16px 0 24px 0;
   padding: 0;
 }
 ul.booking_list li {
@@ -693,7 +693,7 @@ label.fix_spacing {
 /*-------- 3.3 Misc --------*/
 .box_general {
   background-color: #fff;
-  padding: 15px 30px 0 30px;
+  padding: 16px 30px 0 30px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -702,9 +702,9 @@ label.fix_spacing {
   color: #777;
   font-size: 14px;
   font-size: 0.875rem;
-  -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.1);
 }
 .box_general hr {
   margin-left: -30px;
@@ -721,7 +721,7 @@ label.fix_spacing {
   border-bottom: 1px solid #ededed;
   margin: 0 -30px;
   padding: 0 30px 10px 30px;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 .header_box.version_2 i {
   margin-right: 10px;
@@ -844,7 +844,7 @@ label.fix_spacing {
 .white-popup {
   position: relative;
   background: #FFF;
-  padding: 80px 25px 25px 25px;
+  padding: 80px 24px 24px 24px;
   width: auto;
   max-width: 500px;
   margin: 0 auto;
@@ -858,7 +858,7 @@ label.fix_spacing {
   width: 100%;
   display: inline-block;
   background-color: #f6f6f6;
-  padding: 15px 25px;
+  padding: 16px 24px;
 }
 
 .small-dialog-header h3 {
@@ -869,7 +869,7 @@ label.fix_spacing {
 
 /*-------- 3.4 Spacing --------*/
 .add_bottom_15 {
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
 .add_bottom_30 {
@@ -983,7 +983,7 @@ label.fix_spacing {
   background: transparent;
   width: 107%;
   padding: 5px;
-  padding-left: 15px;
+  padding-left: 16px;
   border: 0;
   border-radius: 0;
   box-shadow: none;

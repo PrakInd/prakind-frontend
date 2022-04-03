@@ -15,7 +15,6 @@ export default function Login() {
     email: "",
     password: "",
   });
-  const [user, setUser] = useState({});
   const history = useHistory();
 
   const handleChange = (event) => {
@@ -32,14 +31,9 @@ export default function Login() {
         password: input.password
       })
       .then(res => {
-        // setUserLogin({
-        //   token: res.data.access_token,
-        //   name: res.data.user.name,
-        //   role_id: res.data.user.role_id
-        // });
         console.log("res: ", res);
         login(res.data.access_token);
-        setUser(res.data.user);
+        setUserLogin(res.data.user);
         setRole(res.data.user.role_id);
         setUserId(res.data.user.id);
 
@@ -48,9 +42,6 @@ export default function Login() {
         } else if (Cookies.get("ROLE") === "2") {
           history.push("/pelamar/profil");
         }
-        // console.log("role_id: " + (Cookies.getJSON("USER")?.role_id === 1))
-
-        // history.push("/");
       })
       .catch(err => { console.log(err) })
   };

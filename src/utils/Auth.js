@@ -14,16 +14,17 @@ export const login = (jwt) => {
 
 export const setUserId = (id) => {
   Cookies.set("USERID", id);
-}
+};
 
 export const getUserId = () => {
   return Cookies.get("USERID");
-}
+};
 
 export const logout = () => {
   Cookies.remove("JWT");
   Cookies.remove("USERID");
   Cookies.remove("ROLE");
+  Cookies.remove("USER");
 };
 
 export const isLogin = () => {
@@ -52,4 +53,4 @@ export const isUser = () => {
 
 export const getToken = () => {
   return Cookies.get("JWT");
-}
+};

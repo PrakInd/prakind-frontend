@@ -47,6 +47,7 @@ export const PROFILE_UPLOAD_DOCS = (profile_id, doc_ext) => {
 // Companies
 export const SHOW_COMPANIES = `${BASE_URL}/companies`;
 export const SHOW_COMPANY = (company_id) => `${BASE_URL}/companies/${company_id}`;
+export const COMPANY_BY_USER_ID = (user_id) => `${BASE_URL}/companies/profile/${user_id}`;
 export const CREATE_COMPANY = `${BASE_URL}/companies`;
 export const UPDATE_COMPANY = (company_id) => `${BASE_URL}/companies/${company_id}`;
 export const DELETE_COMPANY = (company_id) => `${BASE_URL}/companies/${company_id}`;
@@ -56,8 +57,9 @@ export const COMPANY_UPLOAD_LOGO = (company_id) => {
 
 // Vacancies
 export const SHOW_VACANCIES = `${BASE_URL}/vacancies`;
+export const VACANCY_BY_USER_ID = (user_id) => `${BASE_URL}/vacancies/list/${user_id}`; 
 export const SHOW_VACANCY = (vacancy_id) => `${BASE_URL}/vacancies/${vacancy_id}`;
-export const CREATE_VACANCY = `${BASE_URL}/vacancies`;
+export const CREATE_VACANCY = (user_id) => `${BASE_URL}/vacancies/${user_id}`;
 export const UPDATE_VACANCY = (vacancy_id) => `${BASE_URL}/vacancies/${vacancy_id}`;
 export const DELETE_VACANCY = (vacancy_id) => `${BASE_URL}/vacancies/${vacancy_id}`;
 
