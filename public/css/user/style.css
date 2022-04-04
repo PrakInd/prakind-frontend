@@ -48,42 +48,6 @@ Author URI: http://themeforest.net/user/Ansonika/
 /*============================================================================================*/
 /* MAIN NAVIGATION */
 /* All styles for screen size over 992px*/
-
-.Tabs {
-  display: inline-block;
-  list-style: none;
-  margin-bottom: -1px;
-  padding: 0.5rem 0.75rem;
-  color: #000;
-  width: 30%;
-}
-
-ul.nav li {
-  width: 50%;
-  padding: 1rem;
-  list-style: none;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.7s;
-  font-size: 1rem;
-}
-
-ul.nav li:hover {
-  background: #FFC300;
-}
-
-ul.nav li.active {
-  background-color: #FC9400;
-  border: solid #ccc;
-  border-width: 1px 1px 0 1px;
-}
-
-/* .FirstTab p,
-.SecondTab p {
-  font-size: 2rem;
-  text-align: center;
-} */
-
 @media only screen and (min-width: 992px) {
   nav#menu.main-menu {
     display: block !important;
@@ -4973,13 +4937,8 @@ img.thumb_visit {
   }
 }
 
-<<<<<<< HEAD
 .cbp_tmtimeline>li .cbp_tmlabel {
-  margin: 0 0 15px 25%;
-=======
-.cbp_tmtimeline > li .cbp_tmlabel {
   margin: 0 0 16px 25%;
->>>>>>> 0a00625c2417c6420b801ab377e7d0a95612c14d
   background: #eef3f7;
   padding: 20px;
   position: relative;
@@ -7232,18 +7191,9 @@ ul.list_feat li p {
   -moz-box-shadow: none;
   box-shadow: none;
 }
-<<<<<<< HEAD
 
 .hero_single.version_3 .wrapper .main_search .custom-search-input-2 .form-group {
-  margin-bottom: 15px;
-=======
-.hero_single.version_3
-  .wrapper
-  .main_search
-  .custom-search-input-2
-  .form-group {
   margin-bottom: 16px;
->>>>>>> 0a00625c2417c6420b801ab377e7d0a95612c14d
 }
 
 .hero_single.version_3 .wrapper .main_search .custom-search-input-2 i {

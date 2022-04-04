@@ -29,14 +29,14 @@ const ProfileIconMenu = () => {
   const onLogout = () => {
     logout();
   };
-  
+
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: "2em" }}>
         <Link to="/">
           <Typography color={"white"}>Home</Typography>
         </Link>
-        <Link to="/aktivitas">
+        <Link to="/aktivitasku">
           <Typography color={"white"}>Aktivitasku</Typography>
         </Link>
         <Tooltip title="Account settings">
@@ -87,24 +87,14 @@ const ProfileIconMenu = () => {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Avatar /> Profile
-        </MenuItem>
-        <MenuItem>
-          <Avatar /> My account
+          <Link to="/pelamar/profil-edit">
+            <ListItemIcon>
+              <Avatar />
+            </ListItemIcon>
+            Akun Saya
+          </Link>
         </MenuItem>
         <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
         <MenuItem>
           <Link to="/login" onClick={onLogout}>
             <ListItemIcon>
@@ -119,3 +109,4 @@ const ProfileIconMenu = () => {
 }
 
 export default ProfileIconMenu;
+

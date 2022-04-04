@@ -1,9 +1,11 @@
 import Token from "../pages/user/Token";
 import ErrorPage from "../pages/ErrorPage";
-import ApplicantFiles from "../pages/user/ApplicantFiles";
+import Profile from "../pages/user/Profile";
 import HomeUser from "../pages/user/HomeUser";
 import MyActivity from "../pages/user/MyActivity";
-import ApplicantFilesGroup from "../pages/user/ApplicantFilesGroup";
+import ProfileRead from "../pages/user/ProfileRead";
+import ProfileEdit from "../pages/user/ProfileEdit";
+import ApplicantFiles from "../pages/user/ApplicantFiles";
 
 export const USER_ROUTES = [
   {
@@ -23,18 +25,18 @@ export const USER_ROUTES = [
     isUser: true,
   },
   {
-    name: "Upload Dokumen Group",
-    path: "/pelamar/upload-dokumen-kelompok",
+    name: "Akun Saya",
+    path: "/pelamar/profil",
     exact: true,
-    component: ApplicantFilesGroup,
+    component: Profile,
     private: true,
     isUser: true,
   },
   {
     name: "Akun Saya",
-    path: "/pelamar/profil",
+    path: "/pelamar/profil-edit",
     exact: true,
-    component: Profile,
+    component: ProfileEdit,
     private: true,
     isUser: true,
   },
@@ -72,3 +74,4 @@ export const USER_ROUTES = [
     isNotFound: true,
   },
 ];
+

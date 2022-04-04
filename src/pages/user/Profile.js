@@ -1,59 +1,61 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { SHOW_PROFILE } from "../../constants/urls";
+import { CREATE_PROFILE } from "../../constants/urls";
+import { RadioGroup, FormControlLabel, Radio } from "@mui/material";
 import FooterUser from "../../components/FooterUser";
 import Header from "../../components/Header";
+import { Container, Row } from "react-grid-system";
 import PrimaryButton from "../../components/button/PrimaryButton";
+import { useHistory } from "react-router-dom";
 import { getToken, getUserId } from "../../utils/Auth";
-import { Button } from "@mui/material";
 
 const Profile = () => {
+  const [validation, setValidation] = useState([]);
   const [user, setUser] = useState({});
   const [profile, setProfile] = useState({});
   const [institution, setInstitution] = useState({});
-  const [saving, setSaving] = useState(false);
+  const history = useHistory();
 
-  const handleChange = (event) => {
-    let value = event.target.value;
-    let name = event.target.name;
-
+  const handleChange = e => {
+    const name = e.target.name;
+    const value = e.target.value;
     setUser({ ...user, [name]: value });
-  };
+    setProfile({ ...profile, [name]: value });
+    setInstitution({ ...institution, [name]: value });
+  }
 
-  useEffect(() => {
+  const handleCreateProfile = e => {
+    e.preventDefault();
+
     axios
-      .get(SHOW_PROFILE(getUserId()), {
+      .post(CREATE_PROFILE(getUserId()), {
+        name: user.name,
+        address: profile.address,
+        institution_name: institution.name,
+        level: institution.level,
+        semester: profile.semester,
+        gpa: profile.gpa,
+        cv: profile.cv,
+        transcript: profile.transcript,
+        portofolio: profile.portfolio,
+      }, {
         headers: { Authorization: `Bearer ${getToken()}` },
       })
       .then(res => {
-        console.log(res)
-        setProfile(res.data.data);
-        setUser(res.data.data.user);
-        setInstitution(res.data.data.institution);
+        console.log("res", res);
       })
-      .catch(err => console.log(err))
-
-    return () => {
-      setProfile({});
-      setUser({});
-      setInstitution({});
-    }
-  }, []);
-
-  const handleSave = (e) => {
-    e.preventDefault();
-    console.log("name", user.name);
-    console.log("institution_id", user.institution_id);
-    console.log("semester", profile.semester);
-    console.log("gpa", profile.gpa);
-  }
+      .catch(err => {
+        setValidation(err.response.data);
+        console.log(err);
+      })
+  };
 
   return (
     <div>
       <Header />
       <div
         className="container-fluid"
-        style={{ width: "50%", paddingTop: "7%" }}
+        style={{ width: "50%", paddingTop: "3%" }}
       >
         <div className="box_general padding_bottom">
           <div className="header_box version_2">
@@ -62,25 +64,27 @@ const Profile = () => {
               Profil Saya
             </h2>
           </div>
-          <div className="row">
-            <div className="col-md-12 d-flex flex-row justify-content-between flex-wrap">
-              <div className="col-lg-3 col-md-12 p-0">
-                <div className="form-group">
-                  <img
-                    src={user.avatar}
-                    alt="profile-picture"
-                    style={{
-                      width: 144,
-                      height: 144,
-                      objectFit: "cover",
-                      borderRadius: 8,
-                      boxShadow: "0 0 0 1px #CED4DA",
-                    }}
-                  />
+
+          <form onSubmit={handleCreateProfile}>
+            <div className="row">
+              <div className="col-md-12 d-flex flex-row justify-content-between flex-wrap">
+                <div className="col-lg-3 col-md-12 p-0">
+                  <div className="form-group">
+                    <img
+                      src="/../../img/avatar.jpg"
+                      //src={image}
+                      alt="profile-picture"
+                      style={{
+                        width: 144,
+                        height: 144,
+                        objectFit: "cover",
+                        borderRadius: 8,
+                        boxShadow: "0 0 0 1px #CED4DA",
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="col-md-9">
-                <form>
+                <div className="col-md-9">
                   <div className="row-md-12">
                     <input
                       type="file"
@@ -88,6 +92,8 @@ const Profile = () => {
                       name="image"
                       id="image"
                       className="form-control p-0"
+                      // onChange={handleImageChange}
+                      onChange={handleChange}
                     />
                   </div>
                   <div className="row-md-12">
@@ -96,11 +102,9 @@ const Profile = () => {
                   <div className="row-md-12">
                     <PrimaryButton style={{ color: "#fff", fontWeight: "normal" }}>Unggah</PrimaryButton>
                   </div>
-                </form>
+                </div>
               </div>
-            </div>
-            <div className="col-md-12">
-              <form>
+              <div className="col-md-12">
                 <div className="col-md-12 add_top_30">
                   <div className="row">
                     <div className="col-md-12 p-0">
@@ -110,15 +114,16 @@ const Profile = () => {
                           type="text"
                           className="form-control"
                           placeholder="Nama Lengkap"
-                          name="user_id"
+                          name="name"
                           id="name"
-                          defaultValue={user.name}
                           onChange={handleChange}
                         />
+                        {validation.name && <div className="alert alert-danger">{validation.name[0]}</div>}
                       </div>
                     </div>
                   </div>
-                  <div className="row">
+                  {/* /row*/}
+                  {/* <div className="row">
                     <div className="col-md-12 p-0">
                       <div className="form-group">
                         <label>Email</label>
@@ -128,41 +133,43 @@ const Profile = () => {
                           placeholder="Email"
                           name="email"
                           id="email"
-                          value={user.email}
-                          disabled
                         />
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="row">
                     <div className="col-md-12 p-0">
                       <div className="form-group">
                         <label>Alamat Lengkap</label>
-                        <textarea style={{ height: 80 }} className="form-control" placeholder="Jl. Sukaria blok mangga no. 12, Sukolilo, Jakarta" defaultValue={""} />
+                        <textarea
+                          style={{ height: 80 }}
+                          name="address"
+                          id="address"
+                          className="form-control"
+                          placeholder="Alamt Lengkap"
+                          onChange={handleChange} />
+                        {validation.address && <div className="alert alert-danger">{validation.address[0]}</div>}
+
                       </div>
                     </div>
                   </div>
+                  {/* /row*/}
                   <div className="row">
                     <div className="col-md-12 p-0">
                       <div className="form-group">
                         <label>Asal Sekolah</label>
-                        <select
-                          className="w-100 input-group-select"
-                          style={{
-                            height: "42px",
-                            borderRadius: "3px",
-                            padding: "10px",
-                            borderColor: "#d2d8dd",
-                          }}
-                        >
-                          <option defaultValue="">Pilih Sekolah</option>
-                          <option>SMANSA</option>
-                          <option>SMALA</option>
-                          )
-                        </select>
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="Asal Sekolah/Institusi"
+                          name="institution_name"
+                          id="institution_name"
+                          onChange={handleChange} />
+                        {validation.institution_name && <div className="alert alert-danger">{validation.institution_name[0]}</div>}
                       </div>
                     </div>
                   </div>
+                  {/* /row*/}
                   <div className="row" style={{ justifyContent: "space-between" }}>
                     <div className="col-md-5 p-0">
                       <div className="form-group">
@@ -177,8 +184,8 @@ const Profile = () => {
                           }}
                         >
                           <option defaultValue="">Pilih Kategori Sekolah</option>
-                          <option>Sekolah Kejuruan Menengah se-derajat</option>
-                          <option>Universitas/Politeknik</option>
+                          <option onChange={handleChange} name="level" id="smk" value="SMK">Sekolah Kejuruan Menengah se-derajat</option>
+                          <option onChange={handleChange} name="level" id="university" value="Universitas" >Universitas/Politeknik</option>
                           )
                         </select>
                       </div>
@@ -189,12 +196,10 @@ const Profile = () => {
                         <input
                           type="text"
                           className="form-control"
-                          placeholder="Nama Lengkap"
-                          name="name"
-                          id="name"
-                          defaultValue={profile.semester}
-                          onChange={handleChange}
-                        />
+                          placeholder="Semester"
+                          name="semester"
+                          id="semester"
+                          onChange={handleChange} />
                       </div>
                     </div>
                     <div className="col-md-3 p-0" style={{ marginLeft: 1 }}>
@@ -203,12 +208,10 @@ const Profile = () => {
                         <input
                           type="text"
                           className="form-control"
-                          placeholder="Nama Lengkap"
-                          name="name"
-                          id="name"
-                          defaultValue={profile.gpa}
-                          onChange={handleChange}
-                        />
+                          placeholder="Semester"
+                          name="gpa"
+                          id="gpa"
+                          onChange={handleChange} />
                       </div>
                     </div>
                   </div>
@@ -218,20 +221,18 @@ const Profile = () => {
                       <div className="col-lg-3 col-md-12 p-0">
                       </div>
                       <div className="col-md-9">
-                        <form style={{ margin: "10px" }}>
-                          <div className="row-md-12">
-                            <input
-                              type="file"
-                              style={{ border: "none" }}
-                              name="cv"
-                              id="cv"
-                              className="form-control p-0"
-                            />
-                          </div>
-                          <div className="row-md-12">
-                            Pilih file dengan ukuran maksimal 1MB
-                          </div>
-                        </form>
+                        <div className="row-md-12" style={{ marginTop: "10px" }}>
+                          <input
+                            type="file"
+                            style={{ border: "none" }}
+                            name="cv"
+                            id="cv"
+                            className="form-control p-0"
+                            onChange={handleChange} />
+                        </div>
+                        <div className="row-md-12">
+                          Pilih file dengan ukuran maksimal 1MB
+                        </div>
                       </div>
                       <PrimaryButton style={{ color: "#fff", margin: "auto", marginTop: 10, marginBottom: 10, fontWeight: "normal" }}>Unggah Dokumen</PrimaryButton>
                     </div>
@@ -243,20 +244,18 @@ const Profile = () => {
                       <div className="col-lg-3 col-md-12 p-0">
                       </div>
                       <div className="col-md-9">
-                        <form style={{ margin: "10px" }}>
-                          <div className="row-md-12">
-                            <input
-                              type="file"
-                              style={{ border: "none" }}
-                              name="image"
-                              id="image"
-                              className="form-control p-0"
-                            />
-                          </div>
-                          <div className="row-md-12">
-                            Pilih file dengan ukuran maksimal 1MB
-                          </div>
-                        </form>
+                        <div className="row-md-12" style={{ marginTop: "10px" }}>
+                          <input
+                            type="file"
+                            style={{ border: "none" }}
+                            name="transcript"
+                            id="transcript"
+                            className="form-control p-0"
+                            onChange={handleChange} />
+                        </div>
+                        <div className="row-md-12">
+                          Pilih file dengan ukuran maksimal 1MB
+                        </div>
                       </div>
                       <PrimaryButton style={{ color: "#fff", margin: "auto", marginTop: 10, marginBottom: 10, fontWeight: "normal" }}>Unggah Dokumen</PrimaryButton>
                     </div>
@@ -268,33 +267,38 @@ const Profile = () => {
                       <div className="col-lg-3 col-md-12 p-0">
                       </div>
                       <div className="col-md-9">
-                        <form style={{ margin: "10px" }}>
-                          <div className="row-md-12">
-                            <input
-                              type="file"
-                              style={{ border: "none" }}
-                              name="image"
-                              id="image"
-                              className="form-control p-0"
-                            />
-                          </div>
-                          <div className="row-md-12">
-                            Pilih file dengan ukuran maksimal 1MB
-                          </div>
-                        </form>
+                        <div className="row-md-12" style={{ marginTop: "10px" }}>
+                          <input
+                            type="file"
+                            style={{ border: "none" }}
+                            name="portofolio"
+                            id="portofolio"
+                            className="form-control p-0"
+                            onChange={handleChange} />
+                        </div>
+                        <div className="row-md-12">
+                          Pilih file dengan ukuran maksimal 1MB
+                        </div>
                       </div>
                       <PrimaryButton style={{ color: "#fff", margin: "auto", marginTop: 10, marginBottom: 10, fontWeight: "normal" }}>Unggah Dokumen</PrimaryButton>
                     </div>
                   </div>
-                  <Button onClick={handleSave}>
-                    Simpan
-                  </Button>
+
+                  <a>
+                    <PrimaryButton
+                      style={{ color: "#fff", marginTop: 10, display: "flex", float: "right" }}
+                      type="submit"
+                    >
+                      Simpan
+                    </PrimaryButton>
+                  </a>
                 </div>
-              </form>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
+      {/* /.container-fluid*/}
       <FooterUser />
     </div>
   );

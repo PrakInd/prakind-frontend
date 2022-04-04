@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Button from '@mui/material/Button';
-import { 
-  COMPANY_BY_USER_ID, 
-  UPDATE_COMPANY, 
-  COMPANY_UPLOAD_LOGO, 
-  SERVER_NAME_DEV 
+import {
+  COMPANY_BY_USER_ID,
+  UPDATE_COMPANY,
+  COMPANY_UPLOAD_LOGO,
+  SERVER_NAME_DEV
 } from "../../constants/urls";
-import {getToken, getUserId} from "../../utils/Auth";
+import { getToken, getUserId } from "../../utils/Auth";
 import Swal from "sweetalert2";
 
 const ProfilPerusahaan = () => {
@@ -17,7 +17,7 @@ const ProfilPerusahaan = () => {
   useEffect(() => {
     axios
       .get(COMPANY_BY_USER_ID(parseInt(getUserId())), {
-        header: {Authorization: `Bearer ${getToken()}` },
+        header: { Authorization: `Bearer ${getToken()}` },
       })
       .then(res => {
         setCompany(res.data.data);
@@ -58,22 +58,22 @@ const ProfilPerusahaan = () => {
         headers: { Authorization: `Bearer ${getToken()}` }
       }),
       axios.post(COMPANY_UPLOAD_LOGO(company.id), formData, {
-        headers: { 
+        headers: {
           Authorization: `Bearer ${getToken()}`,
-          'Content-Type': 'multipart/form-data' 
+          'Content-Type': 'multipart/form-data'
         }
       })
     ])
-    .then(res => {
-      console.log(res[1]);
-      setCompany({ ...company, logo: URL.createObjectURL(res[1].data.data.logo) })
-      Swal.fire(
-        'Sukses',
-        'Profil berhasil diperbarui',
-        'success'
-      )
-    })
-    .catch(err => console.log(err))
+      .then(res => {
+        console.log(res[1]);
+        setCompany({ ...company, logo: URL.createObjectURL(res[1].data.data.logo) })
+        Swal.fire(
+          'Sukses',
+          'Profil berhasil diperbarui',
+          'success'
+        )
+      })
+      .catch(err => console.log(err))
     Swal.fire({
       icon: 'error',
       title: 'Gagal',
@@ -86,7 +86,7 @@ const ProfilPerusahaan = () => {
       <div>
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-          PrakInd / Profil Perusahaan
+            PrakInd / Profil Perusahaan
           </li>
         </ol>
 
@@ -103,29 +103,29 @@ const ProfilPerusahaan = () => {
               <div className="form-group">
                 {/* <div className="row" > */}
                 <label>Logo Perusahaan</label>
-                </div>
-                  <img
-                    src={`${SERVER_NAME_DEV}/${company.logo}`}
-                    alt="company-logo"
-                    style={{
-                      width: 144,
-                      height: 144,
-                      objectFit: "cover",
-                      borderRadius: 8,
-                      boxShadow: "0 0 0 1px #CED4DA",
-                      marginBottom: "24px",
-                    }}
-                  />
-                <div className="row-md-12">
-                    <input
-                      type="file"
-                      style={{ border: "none" }}
-                      name="image"
-                      id="image"
-                      className="form-control p-0"
-                      onChange={onImageChange}
-                    />
-                    <label class="pt-0">Pilih file dengan ukuran maksimal 1MB</label>
+              </div>
+              <img
+                src={`${SERVER_NAME_DEV}/${company.logo}`}
+                alt="company-logo"
+                style={{
+                  width: 144,
+                  height: 144,
+                  objectFit: "cover",
+                  borderRadius: 8,
+                  boxShadow: "0 0 0 1px #CED4DA",
+                  marginBottom: "24px",
+                }}
+              />
+              <div className="row-md-12">
+                <input
+                  type="file"
+                  style={{ border: "none" }}
+                  name="image"
+                  id="image"
+                  className="form-control p-0"
+                  onChange={onImageChange}
+                />
+                <label class="pt-0">Pilih file dengan ukuran maksimal 1MB</label>
               </div>
             </div>
             <div className="col-md-8 add_top_30">
@@ -218,16 +218,16 @@ const ProfilPerusahaan = () => {
                 </div>
               </div>
             </div>
-            <Button 
+            <Button
               sx={{
                 marginX: "12px",
                 width: "100%",
-                backgroundColor: "#FC9400", 
-                '&:hover':{ backgroundColor: "#FFC300", color: "#3F4456"}
-              }} 
+                backgroundColor: "#FC9400",
+                '&:hover': { backgroundColor: "#FFC300", color: "#3F4456" }
+              }}
               variant="contained"
               type="submit"
-              
+
             >
               Edit
             </Button>

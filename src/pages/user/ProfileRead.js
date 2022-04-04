@@ -9,7 +9,6 @@ import { Container, Row } from "react-grid-system";
 import PrimaryButton from "../../components/button/PrimaryButton";
 import { getToken, getUserId } from "../../utils/Auth";
 
-
 const ProfileRead = () => {
   // const { id } = useParams();
   const [user, setUser] = useState({});
@@ -158,3 +157,4 @@ const ProfileRead = () => {
 }
 
 export default ProfileRead;
+

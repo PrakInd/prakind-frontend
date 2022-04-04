@@ -21,9 +21,9 @@ const FirstTab = () => {
     <div className="FirstTab">
       {/* <SearchResult /> */}
       <p>First Tab!! Hurray!!</p>
-      <p>Raden, ini aku berusaha memunculkan card dari lowongan yang dia apply, tapi tapi ..</p>
       {/* First tab content will go here */}
     </div>
   );
 };
 export default FirstTab;
+

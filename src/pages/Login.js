@@ -126,7 +126,7 @@ const Login = () => {
                 display: "block",
                 marginBottom: "5px",
                 backgroundColor: "#FC9400",
-                '&:hover':{ backgroundColor: "#FFC300", color: "#3F4456"}
+                '&:hover': { backgroundColor: "#FFC300", color: "#3F4456" }
               }}
               variant="contained"
               onClick={e => validateLogin(e)}
@@ -136,7 +136,7 @@ const Login = () => {
             <div className="text-center add_top_10">
               Anda baru di Prakind ?{" "}
               <Link to="/register">
-                <p sx={{fontWeight: "600", display: "flex", fontColor: "#FC9400"}}>Daftar</p>
+                <p sx={{ fontWeight: "600", display: "flex", fontColor: "#FC9400" }}>Daftar</p>
               </Link>
             </div>
           </form>
