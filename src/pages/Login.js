@@ -66,7 +66,7 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div id="login_bg">
       <nav id="menu" className="fake_menu" />
       <div id="login">
         <aside>

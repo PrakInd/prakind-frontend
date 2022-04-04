@@ -34,7 +34,7 @@ const Lowongan = () => {
 
   const handleCreateVacancy = e => {
     e.preventDefault();
-//     console.log("vacancy", vacancy);
+    console.log("vacancy", vacancy);
 //     const formData = new FormData();
 // 
 //     formData.append('name', name);
@@ -47,27 +47,27 @@ const Lowongan = () => {
 //     formData.append('periodStart', periodStart);
 //     formData.append('periodEnd', periodEnd);
 
-    axios
-      .post(CREATE_VACANCY(getUserId()), {
-        name: vacancy.name,
-        description: vacancy.description,
-        requirements: vacancy.requirements,
-        location: vacancy.location,
-        sector: vacancy.sector,
-        type: vacancy.type,
-        paid: vacancy.paid,
-        period_start: vacancy.period_start,
-        period_end: vacancy.period_end
-      }, {
-        headers: { Authorization: `Bearer ${getToken()}` },
-      })
-      .then(res => {
-        console.log("res", res);
-      })
-      .catch(err => {
-        setValidation(err.response.data);
-        console.log(err);
-      })
+    // axios
+    //   .post(CREATE_VACANCY(getUserId()), {
+    //     name: vacancy.name,
+    //     description: vacancy.description,
+    //     requirements: vacancy.requirements,
+    //     location: vacancy.location,
+    //     sector: vacancy.sector,
+    //     type: vacancy.type,
+    //     paid: vacancy.paid,
+    //     period_start: vacancy.period_start,
+    //     period_end: vacancy.period_end
+    //   }, {
+    //     headers: { Authorization: `Bearer ${getToken()}` },
+    //   })
+    //   .then(res => {
+    //     console.log("res", res);
+    //   })
+    //   .catch(err => {
+    //     setValidation(err.response.data);
+    //     console.log(err);
+    //   })
   };
 
   return (
@@ -169,20 +169,32 @@ const Lowongan = () => {
                   <div className="form-group">
                     <label>Tipe</label>
                     <br />
-                    <input type="radio" id="online" name="type" value="Online" onChange={handleChange} />
-                    <label for="online">Online</label>
-                    <input type="radio" id="offline" name="type" value="Offline" onChange={handleChange} />
-                    <label for="offline">Offline</label>
+                    <div>
+                      <input type="radio" id="online" name="type" value="Online" onChange={handleChange} />
+                      <label style={{marginLeft: "4px"}} for="online">Online</label>
+                      <input type="radio" id="offline" name="type" value="Offline" onChange={handleChange} style={{ marginLeft:"24px" }}/>
+                      <label style={{marginLeft: "4px"}} for="offline">Offline</label>
+                      {/* <input type="radio" id="online" value="Online" onChange={handleChange}/>
+                      <span style={{marginLeft: "4px"}}>Online</span>
+                      <input type="radio" id="offline" value="Offline" onChange={handleChange} style={{ marginLeft:"24px" }}/>
+                      <span style={{marginLeft: "4px"}}>Offline</span> */}
+                    </div>
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="form-group">
                     <label>Uang Saku</label>
                     <br />
-                    <input type="radio" id="ya" name="paid" value="Ya" onChange={handleChange}  />
-                    <label for="ya">Iya</label>
-                    <input type="radio" id="tidak" name="paid" value="Tidak" onChange={handleChange}  />
-                    <label for="tidak">Tidak</label>
+                    <div>
+                      <input type="radio" id="ya" name="paid" value="Iya" onChange={handleChange} />
+                      <label style={{marginLeft: "4px"}} for="online">Iya</label>
+                      <input type="radio" id="tidak" name="paid" value="Tidak" onChange={handleChange} style={{ marginLeft:"24px" }}/>
+                      <label style={{marginLeft: "4px"}} for="offline">Tidak</label>
+                      {/* <input type="radio" id="ya" value="Ya" onChange={handleChange}/>
+                      <span style={{marginLeft: "4px"}}>Iya</span>
+                      <input type="radio" id="tidak" value="Tidak" onChange={handleChange} style={{ marginLeft:"24px" }}/>
+                      <span style={{marginLeft: "4px"}}>Tidak</span> */}
+                    </div>
                   </div>
                 </div>
               </div>

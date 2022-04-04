@@ -1,15 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { getToken, getUserId } from "../../utils/Auth";
+import { VACANCY_BY_USER_ID } from "../../constants/urls";
 
 const Dashboard = () => {
+  const [vacancies, setVacancies] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(VACANCY_BY_USER_ID(parseInt(getUserId())), {
+        headers: { Authorization: `Bearer ${getToken()}` }
+      })
+      .then(res => {
+        console.log("res", res);
+        // setVacancies()
+      })
+  })
   return (
     <div>
       <div>
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            Dashboard
+            PrakInd / Dashboard
           </li>
         </ol>
         <div className="row">
+          {}
           <div className="col-xl-3 col-sm-6 mb-3">
             <div className="card dashboard text-white bg-primary o-hidden h-100">
               <div className="card-body">
@@ -31,6 +47,7 @@ const Dashboard = () => {
               </a>
             </div>
           </div>
+
           <div className="col-xl-3 col-sm-6 mb-3">
             <div className="card dashboard text-white bg-warning o-hidden h-100">
               <div className="card-body">

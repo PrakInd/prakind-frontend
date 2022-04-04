@@ -8,6 +8,7 @@ import {
   SERVER_NAME_DEV 
 } from "../../constants/urls";
 import {getToken, getUserId} from "../../utils/Auth";
+import Swal from "sweetalert2";
 
 const ProfilPerusahaan = () => {
   const [company, setCompany] = useState({});
@@ -66,8 +67,18 @@ const ProfilPerusahaan = () => {
     .then(res => {
       console.log(res[1]);
       setCompany({ ...company, logo: URL.createObjectURL(res[1].data.data.logo) })
+      Swal.fire(
+        'Sukses',
+        'Profil berhasil diperbarui',
+        'success'
+      )
     })
     .catch(err => console.log(err))
+    Swal.fire({
+      icon: 'error',
+      title: 'Gagal',
+      text: 'Profil gagal diperbarui',
+    })
   };
 
   return (
@@ -75,7 +86,7 @@ const ProfilPerusahaan = () => {
       <div>
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            Profil Perusahaan
+          PrakInd / Profil Perusahaan
           </li>
         </ol>
 
@@ -216,6 +227,7 @@ const ProfilPerusahaan = () => {
               }} 
               variant="contained"
               type="submit"
+              
             >
               Edit
             </Button>

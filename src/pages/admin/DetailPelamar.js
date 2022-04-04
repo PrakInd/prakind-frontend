@@ -1,13 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Button from '@mui/material/Button';
+import { 
+  SHOW_APPLICATION, 
+  SHOW_APPLICANT_FILE,
+  APPLICATION_BY_USER_ID,
+  APPLICANT_FILE_BY_USER_ID, 
+} from "../../constants/urls";
+import { getToken } from "../../utils/Auth";
+import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const DetailPelamar = () => {
+  const [applicant, setApplication] = useState({});
+  const [file, setFile] = useState({});
+  const params = useParams();
+  const userId = params.id;
+
+  useEffect(() => {
+    console.log(params);
+    console.log(userId);
+
+    axios.all([
+      axios.get(APPLICATION_BY_USER_ID(userId), {
+        headers: { Authorization: `Bearer ${getToken()}` }
+      }),
+      axios.get(APPLICANT_FILE_BY_USER_ID(userId), {
+        headers: { Authorization: `Bearer ${getToken()}` }
+      })
+    ])
+    .then(res => {
+      console.log("application:", res[0]);
+      console.log("applicant file:", res[1]);
+    })
+    .catch(err => console.log(err))
+
+    return () => {
+      setApplication([]);
+      setFile([]);
+    }
+  }, []);
+
   return (
     <div className="content-wrapper">
       <div className="container-fluid">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            Profil Pelamar
+            PrakInd / Profil Pelamar
           </li>
         </ol>
         <div className="box_general padding_bottom">
@@ -20,7 +59,7 @@ const DetailPelamar = () => {
           <div className="row">
             <div className="col-md-4">
               <div className="form-group">
-                <label>Logo Perusahaan</label>
+                <label>Foto Profil</label>
                 <form action="/file-upload" className="dropzone" />
               </div>
             </div>
@@ -28,7 +67,7 @@ const DetailPelamar = () => {
               <div className="row">
                 <div className="col-md-12">
                   <div className="form-group">
-                    <label>Nama Perusahaan</label>
+                    <label>Nama Pelamar</label>
                     <input
                       type="text"
                       className="form-control"
@@ -100,10 +139,16 @@ const DetailPelamar = () => {
             </div>
             <Button sx={{
               marginX: "12px",
-              width: "100%",
+              width: "50%",
               backgroundColor: "#FC9400", 
               '&:hover':{ backgroundColor: "#FFC300", color: "#3F4456"}}} 
-              variant="contained" >Simpan</Button>
+              variant="contained" >Terima</Button>
+            <Button sx={{
+              marginX: "12px",
+              width: "50%",
+              backgroundColor: "#FC9400", 
+              '&:hover':{ backgroundColor: "#FFC300", color: "#3F4456"}}} 
+              variant="contained" >Tolak</Button>
           </div>
         </div>
       </div>

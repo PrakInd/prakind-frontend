@@ -96,7 +96,7 @@ const RegisterPerusahaan = () => {
                         <input
                           className="form-control"
                           type="text"
-                          placeholder="Masukkan Nama Perusahaan"
+                          placeholder="Masukkan Nama Perusahaan "
                           value={name}
                           onChange={(e) => setName(e.target.value)} />
                         {validation.name && (

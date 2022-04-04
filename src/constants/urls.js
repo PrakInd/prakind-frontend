@@ -66,6 +66,7 @@ export const DELETE_VACANCY = (vacancy_id) => `${BASE_URL}/vacancies/${vacancy_i
 // Applications (Pengajuan)
 export const SHOW_APPLICATIONS = `${BASE_URL}/applications`;
 export const SHOW_APPLICATION = (application_id) => `${BASE_URL}/applications/${application_id}`;
+export const APPLICATION_BY_USER_ID = (user_id) => `${BASE_URL}/applications/detail-applicants/${user_id}`;
 export const CREATE_APPLICATION = `${BASE_URL}/applications`;
 export const UPDATE_APPLICATION = (application_id) => `${BASE_URL}/applications/${application_id}`;
 export const DELETE_APPLICATION = (application_id) => `${BASE_URL}/applications/${application_id}`;
@@ -75,7 +76,10 @@ export const APPLICATION_UPLOAD_CERTIFICATE = (application_id) => {
 
 // Applicant Files
 export const SHOW_APPLICANT_FILES = `${BASE_URL}/applicant-files`;
-export const SHOW_APPLICANT_FILE = (applicant_file_id) => {
+export const SHOW_APPLICANT_FILE = (user_id) => {
+  return `${BASE_URL}/applicant-files/detail-applicant-files/${user_id}`;
+};
+export const APPLICANT_FILE_BY_USER_ID = (applicant_file_id) => {
   return `${BASE_URL}/applicant-files/${applicant_file_id}`;
 };
 export const CREATE_APPLICANT_FILE = `${BASE_URL}/applicant-files`;

@@ -27,7 +27,7 @@ const ListLowongan = () => {
       <div className="container-fluid">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            List Lowongan
+            PrakInd / List Lowongan
           </li>
         </ol>
         <div className="box_general">

@@ -11,6 +11,7 @@ const NotifikasiCard = ({ notifikasi }) => {
                 </div>
                 <div className="mr-5">
                     <h5>5 New Applicants on Mobile Developer</h5>
+                    <h5>5 New Applicants on Mobile Developer</h5>
                 </div>
             </div>
             <a className="card-footer text-white clearfix small z-1" href="messages.html">
