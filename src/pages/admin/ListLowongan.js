@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Button from '@mui/material/Button';
-import { SHOW_VACANCIES } from "../../constants/urls";
-import { getToken } from "../../utils/Auth";
+import { getToken, getUserId } from "../../utils/Auth";
+import { 
+  VACANCY_BY_USER_ID, 
+  // SERVER_NAME_DEV 
+} from "../../constants/urls";
+import { Link } from "react-router-dom";
 
 const ListLowongan = () => {
   const [vacancies, setVacancies] = useState([]);
 
   useEffect(() => {
     axios
-      .get(SHOW_VACANCIES, {
+      .get(VACANCY_BY_USER_ID(getUserId()), {
         headers: { Authorization: `Bearer ${getToken()}` }
       })
       .then(res => {
-        console.log(res);
         setVacancies(res.data.data);
       })
       .catch(err => console.log(err));
@@ -24,7 +27,7 @@ const ListLowongan = () => {
       <div className="container-fluid">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            List Lowongan
+            PrakInd / List Lowongan
           </li>
         </ol>
         <div className="box_general">
@@ -38,19 +41,18 @@ const ListLowongan = () => {
               }} 
               variant="contained" 
             >
-              Buat Lowongan
+              <Link to="/perusahaan/lowongan/tambah">Buat Lowongan</Link>
             </Button>
           </div>
           
-          {/* CARD */}
           <div className="list_general">
             <ul>
               {vacancies.map((val, index) => {
                 return (
                   <li>
-                    <figure>
-                      <img src={val.company.logo} alt="company-logo" />
-                    </figure>
+                    {/* <figure>
+                      <img src={`${SERVER_NAME_DEV}/${val.company.logo}`} alt="company-logo" />
+                    </figure> */}
                     <small>{val.sector}</small>
                     <h4>{val.name}</h4>
                     <p>{val.description}</p>
@@ -81,31 +83,30 @@ const ListLowongan = () => {
           </div>
         </div>
 
-        {/* PAGINATION */}
         <nav aria-label="...">
           <ul className="pagination pagination-sm add_bottom_30">
             <li className="page-item disabled">
-              <a className="page-link" href="#" tabIndex={-1}>
+              <a className="page-link" href="#0" tabIndex={-1}>
                 Previous
               </a>
             </li>
             <li className="page-item">
-              <a className="page-link" href="#">
+              <a className="page-link" href="#0">
                 1
               </a>
             </li>
             <li className="page-item">
-              <a className="page-link" href="#">
+              <a className="page-link" href="#0">
                 2
               </a>
             </li>
             <li className="page-item">
-              <a className="page-link" href="#">
+              <a className="page-link" href="#0">
                 3
               </a>
             </li>
             <li className="page-item">
-              <a className="page-link" href="#">
+              <a className="page-link" href="#0">
                 Next
               </a>
             </li>

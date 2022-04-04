@@ -4,9 +4,9 @@ import Dashboard from "../pages/admin/Dashboard";
 import ListPelamar from "../pages/admin/ListPelamar";
 import TabelMagang from "../pages/admin/TabelMagang";
 import ListLowongan from "../pages/admin/ListLowongan";
-import ProfilPerusahaan from "../pages/admin/ProfilPerusahaan";
-import PengaturanAdmin from "../pages/admin/PengaturanAdmin";
 import DetailPelamar from "../pages/admin/DetailPelamar";
+import PengaturanAdmin from "../pages/admin/PengaturanAdmin";
+import ProfilPerusahaan from "../pages/admin/ProfilPerusahaan";
 
 export const ADMIN_ROUTES = [
   {

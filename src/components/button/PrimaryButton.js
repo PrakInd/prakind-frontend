@@ -1,6 +1,6 @@
 import React from "react";
-import { LoadingButton } from "@mui/lab";
 import { styled } from "@mui/system";
+import { LoadingButton } from "@mui/lab";
 
 const PrimaryButton = (props) => {
   const BootstrapButton = styled(LoadingButton)({
@@ -20,11 +20,11 @@ const PrimaryButton = (props) => {
     '&:disabled': {
       backgroundColor: '#FFC300',
     },
-  })
+  });
+
   return (
     <BootstrapButton {...props} />
   )
 }
 
 export default PrimaryButton;
-

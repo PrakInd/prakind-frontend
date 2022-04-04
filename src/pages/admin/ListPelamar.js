@@ -32,7 +32,7 @@ const ListPelamar = () => {
       <div className="container-fluid">
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            List Pelamar
+            PrakInd / List Pelamar
           </li>
         </ol>
         <div className="box_general">

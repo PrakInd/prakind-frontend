@@ -25,7 +25,7 @@ export const UPDATE_USER = (user_id) => `${BASE_URL}/users/${user_id}`;
 export const DELETE_USER = (user_id) => `${BASE_URL}/users/${user_id}`;
 export const USER_UPLOAD_IMAGE = (user_id) => {
   return `${BASE_URL}/users/${user_id}/upload-image`;
-}
+};
 
 // Groups
 export const SHOW_GROUPS = `${BASE_URL}/groups`;
@@ -42,11 +42,12 @@ export const UPDATE_PROFILE = (profile_id) => `${BASE_URL}/profiles/${profile_id
 export const DELETE_PROFILE = (profile_id) => `${BASE_URL}/profiles/${profile_id}`;
 export const PROFILE_UPLOAD_DOCS = (profile_id, doc_ext) => {
   return `${BASE_URL}/profiles/${profile_id}/upload/${doc_ext}`;
-}
+};
 
 // Companies
 export const SHOW_COMPANIES = `${BASE_URL}/companies`;
 export const SHOW_COMPANY = (company_id) => `${BASE_URL}/companies/${company_id}`;
+export const COMPANY_BY_USER_ID = (user_id) => `${BASE_URL}/companies/profile/${user_id}`;
 export const CREATE_COMPANY = `${BASE_URL}/companies`;
 export const UPDATE_COMPANY = (company_id) => `${BASE_URL}/companies/${company_id}`;
 export const DELETE_COMPANY = (company_id) => `${BASE_URL}/companies/${company_id}`;
@@ -56,14 +57,16 @@ export const COMPANY_UPLOAD_LOGO = (company_id) => {
 
 // Vacancies
 export const SHOW_VACANCIES = `${BASE_URL}/vacancies`;
+export const VACANCY_BY_USER_ID = (user_id) => `${BASE_URL}/vacancies/list/${user_id}`; 
 export const SHOW_VACANCY = (vacancy_id) => `${BASE_URL}/vacancies/${vacancy_id}`;
-export const CREATE_VACANCY = `${BASE_URL}/vacancies`;
+export const CREATE_VACANCY = (user_id) => `${BASE_URL}/vacancies/${user_id}`;
 export const UPDATE_VACANCY = (vacancy_id) => `${BASE_URL}/vacancies/${vacancy_id}`;
 export const DELETE_VACANCY = (vacancy_id) => `${BASE_URL}/vacancies/${vacancy_id}`;
 
 // Applications (Pengajuan)
 export const SHOW_APPLICATIONS = `${BASE_URL}/applications`;
 export const SHOW_APPLICATION = (application_id) => `${BASE_URL}/applications/${application_id}`;
+export const APPLICATION_BY_USER_ID = (user_id) => `${BASE_URL}/applications/detail-applicants/${user_id}`;
 export const CREATE_APPLICATION = `${BASE_URL}/applications`;
 export const UPDATE_APPLICATION = (application_id) => `${BASE_URL}/applications/${application_id}`;
 export const DELETE_APPLICATION = (application_id) => `${BASE_URL}/applications/${application_id}`;
@@ -73,10 +76,13 @@ export const APPLICATION_UPLOAD_CERTIFICATE = (application_id) => {
 
 // Applicant Files
 export const SHOW_APPLICANT_FILES = `${BASE_URL}/applicant-files`;
-export const SHOW_APPLICANT_FILE = (applicant_file_id) => {
+export const SHOW_APPLICANT_FILE = (user_id) => {
+  return `${BASE_URL}/applicant-files/detail-applicant-files/${user_id}`;
+};
+export const APPLICANT_FILE_BY_USER_ID = (applicant_file_id) => {
   return `${BASE_URL}/applicant-files/${applicant_file_id}`;
-}
+};
 export const CREATE_APPLICANT_FILE = `${BASE_URL}/applicant-files`;
 export const APPLICANT_FILE_UPLOAD = (applicant_file_id, doc_ext) => {
   return `${BASE_URL}/applicant-files/${applicant_file_id}/upload/${doc_ext}`;
-}
+};

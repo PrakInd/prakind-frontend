@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
-import { CREATE_COMPANY } from "../constants/urls";
+import { useHistory, Link } from "react-router-dom";
 import Button from '@mui/material/Button';
+import { CREATE_COMPANY } from "../constants/urls";
+import prakind_logo from "../assets/logo_orange2.svg";
 
-export default function RegisterPerusahaan() {
+const RegisterPerusahaan = () => {
     const [logo, setLogo] = useState("");
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
@@ -12,9 +13,7 @@ export default function RegisterPerusahaan() {
     const [website, setWebsite] = useState("");
     const [mountEmp, setMount] = useState("");
     const [desc, setDesc] = useState("");
-
     const [validation, setValidation] = useState([]);
-
     const history = useHistory();
 
     const registerPerusahaanHandler = async (e) => {
@@ -46,16 +45,15 @@ export default function RegisterPerusahaan() {
       <div id="register">
         <aside>
           <figure>
-            <a href="index.html">
+            <Link to="/">
               <img
-                src="img/logo2.png"
-                width={155}
-                height={36}
+                src={prakind_logo}
+                style={{ height: "3rem" }}
                 data-retina="true"
-                alt
+                alt="logo"
                 className="logo_sticky"
               />
-            </a>
+            </Link>
           </figure>
           <div className="content-wrapper">
             <div className="box_general padding_bottom">
@@ -68,7 +66,7 @@ export default function RegisterPerusahaan() {
                   <img
                     src="/../../img/avatar.jpg"
                     // src={company.logo}
-                    alt="profile-picture"
+                    alt="company-logo"
                     style={{
                       width: 144,
                       height: 144,
@@ -98,7 +96,7 @@ export default function RegisterPerusahaan() {
                         <input
                           className="form-control"
                           type="text"
-                          placeholder="Masukkan Nama Perusahaan"
+                          placeholder="Masukkan Nama Perusahaan "
                           value={name}
                           onChange={(e) => setName(e.target.value)} />
                         {validation.name && (
@@ -207,7 +205,8 @@ export default function RegisterPerusahaan() {
                   variant="contained" 
                   onClick={registerPerusahaanHandler}
                 >
-                  Daftar Perusahaan</Button>
+                  Daftar Perusahaan
+                </Button>
               </div>
             </div>
         </div>
@@ -216,4 +215,6 @@ export default function RegisterPerusahaan() {
       </div>
     </div>
   );
-}
+};
+
+export default RegisterPerusahaan;

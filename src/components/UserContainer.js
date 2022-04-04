@@ -1,6 +1,6 @@
 import * as React from "react";
-import UserRoute from "./UserRoute";
 import { Switch } from "react-router-dom";
+import UserRoute from "./UserRoute";
 import { USER_ROUTES } from "../routes/user_routes";
 
 const UserContainer = () => {

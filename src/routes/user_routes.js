@@ -1,9 +1,7 @@
-import Profile from "../pages/user/Profile";
+import Token from "../pages/user/Token";
 import ErrorPage from "../pages/ErrorPage";
 import ApplicantFiles from "../pages/user/ApplicantFiles";
 import HomeUser from "../pages/user/HomeUser";
-import ProfileRead from "../pages/user/ProfileRead";
-import Token from "../pages/user/Token";
 import MyActivity from "../pages/user/MyActivity";
 import ApplicantFilesGroup from "../pages/user/ApplicantFilesGroup";
 

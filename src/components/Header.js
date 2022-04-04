@@ -1,95 +1,154 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Menu from '@mui/material/Menu';
+import { Container } from "@mui/material";
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import MenuItem from "@mui/material/MenuItem";
+import MenuIcon from "@material-ui/icons/Menu";
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { isLogin } from "../utils/Auth";
+import ProfileIconMenu from "./ProfileIconMenu";
+import prakind_logo from "../assets/logo_orange2.svg";
+import PrimaryButton from "../components/button/PrimaryButton";
 
-const Header = () => {
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  title: {
+    [theme.breakpoints.down("xs")]: {
+      flexGrow: 1
+    }
+  },
+  logo: {
+    [theme.breakpoints.down("xs")]: {
+      flexGrow: 1
+    }
+  },
+  headerOptions: {
+    display: "flex",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    gap: "4em",
+  }
+}));
+
+const Header = props => {
+  const { history } = props;
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+
+  const handleMenu = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClick = pageURL => {
+    history.push(pageURL);
+    setAnchorEl(null);
+  };
+
+  const menuItems = [
+    {
+      menuTitle: "Masuk",
+      pageURL: "/login"
+    },
+    {
+      menuTitle: "Daftar",
+      pageURL: "/register"
+    },
+    {
+      menuTitle: "Perusahaan",
+      pageURL: "/regist-perusahaan"
+    }
+  ];
+
   return (
-    <div id="page">
-      <header className="header menu_fixed sticky">
-        <div id="logo">
-          <a href="/">
-            <img
-              src="/../../img/logo2.png"
-              width="160"
-              height="50"
-              alt=""
-              class="logo_normal"
-            ></img>
-            <img
-              src="/../../img/logo2.png"
-              width="160"
-              height="50"
-              alt=""
-              class="logo_sticky"
-            ></img>
-          </a>
-        </div>
-        <div className="d-flex flex-row justify-content-end align-items-center">
-          {/* /top_menu */}
-          <a href="#menu" className="btn_mobile">
-            <div className="hamburger hamburger--spin" id="hamburger">
-              <div className="hamburger-box">
-                <div className="hamburger-inner" />
+    <div className={classes.root}>
+      <AppBar position="sticky" sx={{ p: "0", background: "#2D3246" }}>
+        <Container maxWidth="xl">
+          <Toolbar sx={{
+            p: "0",
+            display: "flex",
+            justifyContent: "space-between",
+          }}>
+            <Link to="/">
+              <div
+                className={classes.logo}
+                style={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+              >
+                <img src={prakind_logo} style={{ height: "2rem" }} alt="logo" />
               </div>
-            </div>
-          </a>
-          <nav id="menu" className="main-menu">
-            <ul>
-              <li>
-                <span>
-                  <a href="/">Kegiatanku</a>
-                </span>
-              </li>
-              <li>
-                <span>
-                  <a href="/login">Login</a>
-                </span>
-              </li>
-
-              {/* <li>
-                <span>
-                  <a href="#0">Outlet</a>
-                </span>
-                <ul>
-                  <li>
-                    <Link to="/outlet">Rias Pedia Outlet</Link>
-                  </li>
-                  <li>
-                    <Link to="/detailOutlet">Rias Pedia Detail Outlet</Link>
-                  </li>
-                </ul>
-              </li> */}
-              <li>
-                <span>
-                  {/* <a href="/profileclient" className="p-0 "> */}
-                  <img
-                    src="../../img/avatar.jpg"
-                    alt=""
-                    style={{
-                      width: 40,
-                      height: 40,
-                      objectFit: "cover",
-                      borderRadius: "50%",
-                      marginLeft: "24px",
-                    }}
-                  />
-                  {/* </a> */}
-                </span>
-                <ul>
-                  <li >
-                    <Link to="/pelamar/profil">Profil</Link>
-                  </li>
-                  <li>
-                    <Link to="/login">Keluar</Link>
-                  </li>
-                </ul>
-              </li>
-              {/* <li>
-                <a href="/" class="logout nav-link text-danger"><i class="fa fa-fw fa-sign-out text-danger" ></i>Keluar</a>
-              </li> */}
-            </ul>
-          </nav>
-        </div>
-      </header>
+            </Link>
+            {isMobile ? (
+              <>
+                <IconButton
+                  edge="start"
+                  className={classes.menuButton}
+                  color="inherit"
+                  aria-label="menu"
+                  onClick={handleMenu}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right"
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right"
+                  }}
+                  open={open}
+                  onClose={() => setAnchorEl(null)}
+                >
+                  {menuItems.map(menuItem => {
+                    const { menuTitle, pageURL } = menuItem;
+                    return (
+                      <MenuItem onClick={() => handleMenuClick(pageURL)}>
+                        {menuTitle}
+                      </MenuItem>
+                    );
+                  })}
+                </Menu>
+              </>
+            ) : (
+              isLogin() ? (
+                <ProfileIconMenu />
+              ) : (
+                <div className={classes.headerOptions}>
+                  <Link to="/login">
+                    <Typography color={"white"}>Masuk</Typography>
+                  </Link>
+                  <Link to="/register">
+                    <Typography color={"white"}>Daftar</Typography>
+                  </Link>
+                  <Link to="/regist-perusahaan">
+                    <PrimaryButton
+                      style={{
+                        background: "#FC9400",
+                        paddingLeft: "3em",
+                        paddingRight: "3em"
+                      }}>
+                      Perusahaan
+                    </PrimaryButton>
+                  </Link>
+                </div>
+              )
+            )}
+          </Toolbar>
+        </Container>
+      </AppBar>
     </div>
   );
 };
