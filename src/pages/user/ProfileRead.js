@@ -86,6 +86,12 @@ const ProfileRead = () => {
               <form>
                 <div className="col-md-12">
                   <div className="row" style={{ justifyContent: "space-between" }}>
+                    <div className="col-md-12 p-0">
+                      <div className="form-group">
+                        <label>Alamat</label>
+                        <p>{profile.address}</p>
+                      </div>
+                    </div>
                     <div className="col-md-5 p-0">
                       <div className="form-group">
                         <label>Asal Sekolah</label>

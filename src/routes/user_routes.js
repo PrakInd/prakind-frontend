@@ -1,11 +1,9 @@
 import Token from "../pages/user/Token";
 import ErrorPage from "../pages/ErrorPage";
-import Profile from "../pages/user/Profile";
+import ApplicantFiles from "../pages/user/ApplicantFiles";
 import HomeUser from "../pages/user/HomeUser";
 import MyActivity from "../pages/user/MyActivity";
-import ProfileRead from "../pages/user/ProfileRead";
-import FormRegister from "../pages/user/FormRegister";
-import ApplicantFiles from "../pages/user/ApplicantFiles";
+import ApplicantFilesGroup from "../pages/user/ApplicantFilesGroup";
 
 export const USER_ROUTES = [
   {
@@ -17,18 +15,18 @@ export const USER_ROUTES = [
     isUser: true,
   },
   {
-    name: "Form Biodata",
-    path: "/pelamar/form-register",
-    exact: true,
-    component: FormRegister,
-    private: true,
-    isUser: true,
-  },
-  {
     name: "Upload Dokumen",
     path: "/pelamar/upload-dokumen",
     exact: true,
     component: ApplicantFiles,
+    private: true,
+    isUser: true,
+  },
+  {
+    name: "Upload Dokumen Group",
+    path: "/pelamar/upload-dokumen-kelompok",
+    exact: true,
+    component: ApplicantFilesGroup,
     private: true,
     isUser: true,
   },

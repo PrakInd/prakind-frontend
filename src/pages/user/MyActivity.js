@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FooterUser from "../../components/FooterUser";
 import Header from "../../components/Header";
-import { BottomNavigation, BottomNavigationAction } from "@mui/material"
+import PropTypes from 'prop-types';
+import FirstTab from "../../components/AllTabs/FirstTab";
+import SecondTab from "../../components/AllTabs/SecondaryTab";
+
 
 const MyActivity = () => {
-  const [value, setValue] = useState("");
+  const [activeTab, setActiveTab] = useState("tab1");
+  const handleTab1 = () => {
+    // update the state to tab1
+    setActiveTab("tab1");
+  };
+  const handleTab2 = () => {
+    // update the state to tab2
+    setActiveTab("tab2");
+  };
+
 
   return (
     <>
@@ -16,33 +28,27 @@ const MyActivity = () => {
           <div className="header_box version_2">
             <h2>Aktifitasku</h2>
           </div>
-          <div>
-            <BottomNavigation
-              showLabels
-              value={value}
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
-              sx={{
-                color: "black",
-                justifyContent: "left",
-                '&& .Mui-selected, && .Mui-selected:hover': {
-                  bgcolor: '#FC9400',
-                  color: "black",
-                  border: "transparent",
-                },
-                '&& .MuiBottomNavigationAction-label': {
-                  fontSize: 16,
-                }
-              }}
-            >
-              <BottomNavigationAction value="" label="Kegiatan Aktif" />
-              <BottomNavigationAction value="antri" label="Status Pendaftaran" />
-            </BottomNavigation>
+          <div className="Tabs">
+            {/*Tab nav */}
+            <ul className="nav">
+              <li className={activeTab === "tab1" ? "active" : ""}
+                onClick={handleTab1}>
+                Kegiatan Aktif              </li>
+              <li className={activeTab === "tab2" ? "active" : ""}
+                onClick={handleTab2}>
+                Status Pendaftaran
+              </li>
+            </ul>
+
+            <div className="outlet">
+
+              {activeTab === "tab1" ? <FirstTab /> : <SecondTab />}
+
+            </div>
+
           </div>
         </div>
         <div>
-
         </div>
       </div>
       <FooterUser />
@@ -51,3 +57,4 @@ const MyActivity = () => {
 }
 
 export default MyActivity;
+

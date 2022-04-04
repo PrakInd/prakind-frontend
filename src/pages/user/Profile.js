@@ -1,14 +1,53 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { USER_UPLOAD_IMAGE, ME_API } from "../../constants/urls";
-import { RadioGroup, FormControlLabel, Radio } from "@mui/material";
+import { SHOW_PROFILE } from "../../constants/urls";
 import FooterUser from "../../components/FooterUser";
 import Header from "../../components/Header";
-import { Container, Row } from "react-grid-system";
 import PrimaryButton from "../../components/button/PrimaryButton";
+import { getToken, getUserId } from "../../utils/Auth";
+import { Button } from "@mui/material";
 
+const Profile = () => {
+  const [user, setUser] = useState({});
+  const [profile, setProfile] = useState({});
+  const [institution, setInstitution] = useState({});
+  const [saving, setSaving] = useState(false);
 
-const Profil = () => {
+  const handleChange = (event) => {
+    let value = event.target.value;
+    let name = event.target.name;
+
+    setUser({ ...user, [name]: value });
+  };
+
+  useEffect(() => {
+    axios
+      .get(SHOW_PROFILE(getUserId()), {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
+      .then(res => {
+        console.log(res)
+        setProfile(res.data.data);
+        setUser(res.data.data.user);
+        setInstitution(res.data.data.institution);
+      })
+      .catch(err => console.log(err))
+
+    return () => {
+      setProfile({});
+      setUser({});
+      setInstitution({});
+    }
+  }, []);
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    console.log("name", user.name);
+    console.log("institution_id", user.institution_id);
+    console.log("semester", profile.semester);
+    console.log("gpa", profile.gpa);
+  }
+
   return (
     <div>
       <Header />
@@ -28,8 +67,7 @@ const Profil = () => {
               <div className="col-lg-3 col-md-12 p-0">
                 <div className="form-group">
                   <img
-                    src="/../../img/avatar.jpg"
-                    //src={image}
+                    src={user.avatar}
                     alt="profile-picture"
                     style={{
                       width: 144,
@@ -50,7 +88,6 @@ const Profil = () => {
                       name="image"
                       id="image"
                       className="form-control p-0"
-                    // onChange={handleImageChange}
                     />
                   </div>
                   <div className="row-md-12">
@@ -73,14 +110,14 @@ const Profil = () => {
                           type="text"
                           className="form-control"
                           placeholder="Nama Lengkap"
-                          name="name"
+                          name="user_id"
                           id="name"
-                        // value={input.name}
+                          defaultValue={user.name}
+                          onChange={handleChange}
                         />
                       </div>
                     </div>
                   </div>
-                  {/* /row*/}
                   <div className="row">
                     <div className="col-md-12 p-0">
                       <div className="form-group">
@@ -91,52 +128,41 @@ const Profil = () => {
                           placeholder="Email"
                           name="email"
                           id="email"
-                        // value={input.email}
-                        // onChange={handleChange}
+                          value={user.email}
+                          disabled
                         />
                       </div>
                     </div>
                   </div>
-                  {/* /row*/}
                   <div className="row">
                     <div className="col-md-12 p-0">
                       <div className="form-group">
-                        <Container
-                          size={8}
-                          direction="vertical"
-                          style={{ width: "100%" }}
-                        >
-                          <label>Jenis Kelamin</label>
-                          <RadioGroup
-                          // onChange={onChangeGender} value={gender}
-                          >
-                            <Row style={{ width: "100%", marginLeft: 20 }}>
-                              <FormControlLabel value="lakilaki" control={<Radio />} label="Laki-laki" />
-                              <FormControlLabel value="perempuan" control={<Radio />} label="Perempuan" />
-                            </Row>
-                          </RadioGroup>
-                        </Container>
+                        <label>Alamat Lengkap</label>
+                        <textarea style={{ height: 80 }} className="form-control" placeholder="Jl. Sukaria blok mangga no. 12, Sukolilo, Jakarta" defaultValue={""} />
                       </div>
                     </div>
                   </div>
-                  {/* /row*/}
                   <div className="row">
                     <div className="col-md-12 p-0">
                       <div className="form-group">
                         <label>Asal Sekolah</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Asal Sekolah/Institusi"
-                          name="institution"
-                          id="institution"
-                        // value={input.name}
-                        />
+                        <select
+                          className="w-100 input-group-select"
+                          style={{
+                            height: "42px",
+                            borderRadius: "3px",
+                            padding: "10px",
+                            borderColor: "#d2d8dd",
+                          }}
+                        >
+                          <option defaultValue="">Pilih Sekolah</option>
+                          <option>SMANSA</option>
+                          <option>SMALA</option>
+                          )
+                        </select>
                       </div>
                     </div>
                   </div>
-
-                  {/* /row*/}
                   <div className="row" style={{ justifyContent: "space-between" }}>
                     <div className="col-md-5 p-0">
                       <div className="form-group">
@@ -163,10 +189,11 @@ const Profil = () => {
                         <input
                           type="text"
                           className="form-control"
-                          placeholder="Semester"
-                          name="semester"
-                          id="semester"
-                        // value={input.name}
+                          placeholder="Nama Lengkap"
+                          name="name"
+                          id="name"
+                          defaultValue={profile.semester}
+                          onChange={handleChange}
                         />
                       </div>
                     </div>
@@ -176,10 +203,11 @@ const Profil = () => {
                         <input
                           type="text"
                           className="form-control"
-                          placeholder="Semester"
-                          name="semester"
-                          id="semester"
-                        // value={input.name}
+                          placeholder="Nama Lengkap"
+                          name="name"
+                          id="name"
+                          defaultValue={profile.gpa}
+                          onChange={handleChange}
                         />
                       </div>
                     </div>
@@ -195,10 +223,9 @@ const Profil = () => {
                             <input
                               type="file"
                               style={{ border: "none" }}
-                              name="image"
-                              id="image"
+                              name="cv"
+                              id="cv"
                               className="form-control p-0"
-                            // onChange={handleImageChange}
                             />
                           </div>
                           <div className="row-md-12">
@@ -224,7 +251,6 @@ const Profil = () => {
                               name="image"
                               id="image"
                               className="form-control p-0"
-                            // onChange={handleImageChange}
                             />
                           </div>
                           <div className="row-md-12">
@@ -250,7 +276,6 @@ const Profil = () => {
                               name="image"
                               id="image"
                               className="form-control p-0"
-                            // onChange={handleImageChange}
                             />
                           </div>
                           <div className="row-md-12">
@@ -261,21 +286,19 @@ const Profil = () => {
                       <PrimaryButton style={{ color: "#fff", margin: "auto", marginTop: 10, marginBottom: 10, fontWeight: "normal" }}>Unggah Dokumen</PrimaryButton>
                     </div>
                   </div>
-
-
-                  <a>
-                    <PrimaryButton style={{ color: "#fff", marginTop: 10, display: "flex", float: "right" }}>Simpan</PrimaryButton>
-                  </a>
+                  <Button onClick={handleSave}>
+                    Simpan
+                  </Button>
                 </div>
               </form>
             </div>
           </div>
         </div>
       </div>
-      {/* /.container-fluid*/}
       <FooterUser />
     </div>
   );
 }
 
-export default Profil;
+export default Profile;
+

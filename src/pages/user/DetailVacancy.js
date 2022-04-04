@@ -129,14 +129,11 @@ const DetailVacancy = () => {
                         <MenuItem defaultValue="" style={{ fontWeight: "bold" }}>Kategori Magang</MenuItem>
                         <Divider />
                         <a href="/pelamar/profil-review"><MenuItem onClick={handleClose}>Individu</MenuItem></a>
-                        <a href="/pelamar/generate-token"><MenuItem onClick={handleClose}>Kelompok</MenuItem></a>
+                        <a href="/pelamar/upload-dokumen-kelompok"><MenuItem onClick={handleClose}>Kelompok</MenuItem></a>
                       </Menu>
                       <SecondaryButton className="col-lg-4" style={{ marginLeft: 10 }}>
                         <ShareIcon fontSize="small" /> &ensp;Bagikan
                       </SecondaryButton>
-                      {/* <SecondaryButton>
-                        <BookmarkBorder fontSize="small" /> &ensp;Simpan
-                      </SecondaryButton> */}
                     </div>
                   </div>
                   <hr />

@@ -73,7 +73,7 @@ const Header = props => {
     <div className={classes.root}>
       <AppBar position="sticky" sx={{ p: "0", background: "#2D3246" }}>
         <Container maxWidth="xl">
-          <Toolbar sx={{ 
+          <Toolbar sx={{
             p: "0",
             display: "flex",
             justifyContent: "space-between",
@@ -134,11 +134,11 @@ const Header = props => {
                     <Typography color={"white"}>Daftar</Typography>
                   </Link>
                   <Link to="/regist-perusahaan">
-                    <PrimaryButton 
-                      style={{ 
-                        background: "#FC9400", 
-                        paddingLeft: "3em", 
-                        paddingRight: "3em" 
+                    <PrimaryButton
+                      style={{
+                        background: "#FC9400",
+                        paddingLeft: "3em",
+                        paddingRight: "3em"
                       }}>
                       Perusahaan
                     </PrimaryButton>

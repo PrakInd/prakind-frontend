@@ -10,7 +10,7 @@ const SearchResult = props => {
         <div className="row no-gutters">
           <div className="col-lg-2">
             <figure >
-              <img src="img/teknologi.jpeg" className="img-fluid" alt="my-img" style={{ justifyContent: "center" }} />
+              <img src={data.company.logo} className="img-fluid" alt="my-img" style={{ justifyContent: "center", marginTop: "5%", marginBottom: "auto", marginLeft: "5%" }} />
             </figure>
           </div>
           <div className="col-lg-10">
