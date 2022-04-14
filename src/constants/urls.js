@@ -23,6 +23,7 @@ export const SHOW_USER = (user_id) => `${BASE_URL}/users/${user_id}`;
 export const CREATE_USER = `${BASE_URL}/users`;
 export const UPDATE_USER = (user_id) => `${BASE_URL}/users/${user_id}`;
 export const DELETE_USER = (user_id) => `${BASE_URL}/users/${user_id}`;
+export const SHOW_PHOTO = (photo) => `${SERVER_NAME_DEV}/${photo}`;
 export const USER_UPLOAD_IMAGE = (user_id) => {
   return `${BASE_URL}/users/${user_id}/upload-image`;
 };
@@ -37,11 +38,12 @@ export const DELETE_GROUP = (group_id) => `${BASE_URL}/groups/${group_id}`;
 // Profiles
 export const SHOW_PROFILES = `${BASE_URL}/profiles`;
 export const SHOW_PROFILE = (profile_id) => `${BASE_URL}/profiles/${profile_id}`;
+export const PROFILE_BY_USER_ID = (user_id) => `${BASE_URL}/profiles/detail/${user_id}`;
 export const CREATE_PROFILE = `${BASE_URL}/profiles`;
 export const UPDATE_PROFILE = (profile_id) => `${BASE_URL}/profiles/${profile_id}`;
 export const DELETE_PROFILE = (profile_id) => `${BASE_URL}/profiles/${profile_id}`;
-export const PROFILE_UPLOAD_DOCS = (profile_id, doc_ext) => {
-  return `${BASE_URL}/profiles/${profile_id}/upload/${doc_ext}`;
+export const PROFILE_UPLOAD_DOCS = (user_id, doc_ext) => {
+  return `${BASE_URL}/profiles/${user_id}/upload/${doc_ext}`;
 };
 
 // Companies

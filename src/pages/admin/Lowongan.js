@@ -47,27 +47,27 @@ const Lowongan = () => {
 //     formData.append('periodStart', periodStart);
 //     formData.append('periodEnd', periodEnd);
 
-    // axios
-    //   .post(CREATE_VACANCY(getUserId()), {
-    //     name: vacancy.name,
-    //     description: vacancy.description,
-    //     requirements: vacancy.requirements,
-    //     location: vacancy.location,
-    //     sector: vacancy.sector,
-    //     type: vacancy.type,
-    //     paid: vacancy.paid,
-    //     period_start: vacancy.period_start,
-    //     period_end: vacancy.period_end
-    //   }, {
-    //     headers: { Authorization: `Bearer ${getToken()}` },
-    //   })
-    //   .then(res => {
-    //     console.log("res", res);
-    //   })
-    //   .catch(err => {
-    //     setValidation(err.response.data);
-    //     console.log(err);
-    //   })
+    axios
+      .post(CREATE_VACANCY(getUserId()), {
+        name: vacancy.name,
+        description: vacancy.description,
+        requirements: vacancy.requirements,
+        location: vacancy.location,
+        sector: vacancy.sector,
+        type: vacancy.type,
+        paid: vacancy.paid,
+        period_start: vacancy.period_start,
+        period_end: vacancy.period_end
+      }, {
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
+      .then(res => {
+        console.log("res", res);
+      })
+      .catch(err => {
+        setValidation(err.response.data);
+        console.log(err);
+      })
   };
 
   return (

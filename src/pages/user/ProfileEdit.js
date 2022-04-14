@@ -6,6 +6,7 @@ import Header from "../../components/Header";
 import PrimaryButton from "../../components/button/PrimaryButton";
 import { useHistory } from "react-router-dom";
 import { getToken, getUserId } from "../../utils/Auth";
+import avatar from "../../assets/avatar.jpg";
 
 const ProfileEdit = () => {
   const [name, setName] = useState("");
@@ -64,8 +65,8 @@ const ProfileEdit = () => {
               <div className="col-lg-3 col-md-12 p-0">
                 <div className="form-group">
                   <img
-                    src="/../../img/avatar.jpg"
-                    //src={image}
+                    // src="/../../img/avatar.jpg"
+                    src={avatar}
                     alt="profile-picture"
                     style={{
                       width: 144,

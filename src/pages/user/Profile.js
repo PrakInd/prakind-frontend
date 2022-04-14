@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { CREATE_PROFILE } from "../../constants/urls";
-import { RadioGroup, FormControlLabel, Radio } from "@mui/material";
+import { CREATE_PROFILE, PROFILE_BY_USER_ID, PROFILE_UPLOAD_DOCS, SERVER_NAME_DEV, SHOW_USER, UPDATE_PROFILE, USER_UPLOAD_IMAGE } from "../../constants/urls";
+import { RadioGroup, FormControlLabel, Radio, Button } from "@mui/material";
 import FooterUser from "../../components/FooterUser";
 import Header from "../../components/Header";
 import { Container, Row } from "react-grid-system";
@@ -11,43 +11,142 @@ import { getToken, getUserId } from "../../utils/Auth";
 
 const Profile = () => {
   const [validation, setValidation] = useState([]);
-  const [user, setUser] = useState({});
   const [profile, setProfile] = useState({});
-  const [institution, setInstitution] = useState({});
-  const history = useHistory();
+  const [document, setDocument] = useState(null);
+  const [user, setUser] = useState({});
+  const [image, setImage] = useState(null);
+  const [newProfile, setNewProfile] = useState({
+    user_id: '',
+    institution_id: '',
+    address: '',
+    phone: '',
+    gpa: '',
+    semester: '',
+  });
+
+  useEffect(() => {
+    axios.all([
+      axios.get(SHOW_USER(getUserId()), {
+        headers: { Authorization: `Bearer ${getToken()}` }
+      }),
+      axios.get(PROFILE_BY_USER_ID(getUserId()), {
+        headers: { Authorization: `Bearer ${getToken()}` }
+      })
+    ])
+    .then(res => {
+      console.log("show user", res[0]);
+      setUser(res[0].data.data);
+      console.log("profile by user", res[1]);
+      setProfile(res[1].data.data);
+    })
+    .catch(err => console.log(err))
+
+    return [
+      setUser({}),
+      setProfile({})
+    ];
+  }, []);
 
   const handleChange = e => {
     const name = e.target.name;
     const value = e.target.value;
-    setUser({ ...user, [name]: value });
-    setProfile({ ...profile, [name]: value });
-    setInstitution({ ...institution, [name]: value });
-  }
+
+    setNewProfile({ ...newProfile, [name]: value });
+  };
+
+  const onImageChange = e => {
+    setImage(e.target.files[0]);
+  };
+
+  const onFileChange = e => {
+    setDocument(e.target.files[0]);
+  };
+
+  const handleUploadAvatar = e => {
+    e.preventDefault();
+    console.log("img:", image);
+    let formData = new FormData();
+    formData.append('avatar', image);
+
+    axios.post(USER_UPLOAD_IMAGE(getUserId()), formData, {
+      headers: { Authorization: `Bearer ${getToken()}` }
+    })
+  };
+
+  const handleUploadCV = e => {
+    e.preventDefault();
+    console.log("doc:", document);
+    let formData = new FormData();
+    formData.append('cv', document);
+    
+    axios
+      .post(PROFILE_UPLOAD_DOCS(getUserId(), "cv"), formData, {
+        headers: { Authorization: `Bearer ${getToken()}` }
+      })
+      .then(res => {
+        console.log("Upload cv response:", res);
+      })
+      .catch(err => console.log(err))
+  };
+
+  const handleUploadTranscript = e => {
+    e.preventDefault();
+    console.log("doc:", document);
+    let formData = new FormData();
+    formData.append('transcript', document);
+    
+    axios
+      .post(PROFILE_UPLOAD_DOCS(getUserId(), "transcript"), formData, {
+        headers: { Authorization: `Bearer ${getToken()}` }
+      })
+      .then(res => {
+        console.log("Upload transcript response:", res);
+      })
+      .catch(err => console.log(err))
+  };
+
+  const handleUploadPortfolio = e => {
+    e.preventDefault();
+    console.log("doc:", document);
+    let formData = new FormData();
+    formData.append('portfolio', document);
+    
+    axios
+      .post(PROFILE_UPLOAD_DOCS(getUserId(), "portfolio"), formData, {
+        headers: { Authorization: `Bearer ${getToken()}` }
+      })
+      .then(res => {
+        console.log("Upload portfolio response:", res);
+      })
+      .catch(err => console.log(err))
+  };
 
   const handleCreateProfile = e => {
     e.preventDefault();
+    console.log(profile);
+    let formData = new FormData();
+    formData.append('avatar', image);
 
-    axios
-      .post(CREATE_PROFILE(getUserId()), {
-        name: user.name,
+    axios.all([
+      axios.post(UPDATE_PROFILE(getUserId()), {
+        user_id: getUserId(),
+        institution_id: profile.institution_id,
         address: profile.address,
-        institution_name: institution.name,
-        level: institution.level,
-        semester: profile.semester,
+        phone: profile.phone,
         gpa: profile.gpa,
-        cv: profile.cv,
-        transcript: profile.transcript,
-        portofolio: profile.portfolio,
+        semester: profile.semester
       }, {
-        headers: { Authorization: `Bearer ${getToken()}` },
+        headers: { Authorization: `Bearer ${getToken()}` }
+      }),
+      axios.post(USER_UPLOAD_IMAGE(getUserId()), formData, {
+        headers: { Authorization: `Bearer ${getToken()}` }
       })
-      .then(res => {
-        console.log("res", res);
-      })
-      .catch(err => {
-        setValidation(err.response.data);
-        console.log(err);
-      })
+    ])
+    .then(res => {
+      console.log("res 0", res[0]);
+      console.log("res 1", res[1]);
+    })
+    .catch(err => console.log(err))
   };
 
   return (
@@ -65,14 +164,14 @@ const Profile = () => {
             </h2>
           </div>
 
+          {/* FORM */}
           <form onSubmit={handleCreateProfile}>
             <div className="row">
               <div className="col-md-12 d-flex flex-row justify-content-between flex-wrap">
                 <div className="col-lg-3 col-md-12 p-0">
                   <div className="form-group">
                     <img
-                      src="/../../img/avatar.jpg"
-                      //src={image}
+                      src={user.avatar ? `${SERVER_NAME_DEV}/${user.avatar}` : "/../../img/avatar.jpg"}
                       alt="profile-picture"
                       style={{
                         width: 144,
@@ -92,20 +191,25 @@ const Profile = () => {
                       name="image"
                       id="image"
                       className="form-control p-0"
-                      // onChange={handleImageChange}
-                      onChange={handleChange}
+                      onChange={onImageChange}
                     />
                   </div>
                   <div className="row-md-12">
-                    <label class="pt-0">Pilih file dengan ukuran maksimal 1MB</label>
+                    <label className="pt-0">Pilih file dengan ukuran maksimal 1MB</label>
                   </div>
                   <div className="row-md-12">
-                    <PrimaryButton style={{ color: "#fff", fontWeight: "normal" }}>Unggah</PrimaryButton>
+                  <Button 
+                    sx={{ background: "#FFC300", color: "#2D3246", fontWeight: "bold" }}
+                    onClick={handleUploadAvatar}
+                  >
+                    Unggah Foto
+                  </Button>
                   </div>
                 </div>
               </div>
               <div className="col-md-12">
                 <div className="col-md-12 add_top_30">
+
                   <div className="row">
                     <div className="col-md-12 p-0">
                       <div className="form-group">
@@ -116,27 +220,14 @@ const Profile = () => {
                           placeholder="Nama Lengkap"
                           name="name"
                           id="name"
+                          defaultValue={user.name}
                           onChange={handleChange}
                         />
                         {validation.name && <div className="alert alert-danger">{validation.name[0]}</div>}
                       </div>
                     </div>
                   </div>
-                  {/* /row*/}
-                  {/* <div className="row">
-                    <div className="col-md-12 p-0">
-                      <div className="form-group">
-                        <label>Email</label>
-                        <input
-                          type="email"
-                          className="form-control"
-                          placeholder="Email"
-                          name="email"
-                          id="email"
-                        />
-                      </div>
-                    </div>
-                  </div> */}
+
                   <div className="row">
                     <div className="col-md-12 p-0">
                       <div className="form-group">
@@ -146,14 +237,15 @@ const Profile = () => {
                           name="address"
                           id="address"
                           className="form-control"
-                          placeholder="Alamt Lengkap"
-                          onChange={handleChange} />
+                          placeholder="Alamat Lengkap"
+                          defaultValue={profile.address}
+                          onChange={handleChange} 
+                        />
                         {validation.address && <div className="alert alert-danger">{validation.address[0]}</div>}
-
                       </div>
                     </div>
                   </div>
-                  {/* /row*/}
+
                   <div className="row">
                     <div className="col-md-12 p-0">
                       <div className="form-group">
@@ -164,12 +256,14 @@ const Profile = () => {
                           placeholder="Asal Sekolah/Institusi"
                           name="institution_name"
                           id="institution_name"
-                          onChange={handleChange} />
+                          // defaultValue={profile.institution.name}
+                          onChange={handleChange} 
+                        />
                         {validation.institution_name && <div className="alert alert-danger">{validation.institution_name[0]}</div>}
                       </div>
                     </div>
                   </div>
-                  {/* /row*/}
+
                   <div className="row" style={{ justifyContent: "space-between" }}>
                     <div className="col-md-5 p-0">
                       <div className="form-group">
@@ -190,6 +284,7 @@ const Profile = () => {
                         </select>
                       </div>
                     </div>
+
                     <div className="col-md-3 p-0" style={{ marginLeft: 1 }}>
                       <div className="form-group">
                         <label>Semester</label>
@@ -199,9 +294,12 @@ const Profile = () => {
                           placeholder="Semester"
                           name="semester"
                           id="semester"
-                          onChange={handleChange} />
+                          defaultValue={profile.semester}
+                          onChange={handleChange} 
+                        />
                       </div>
                     </div>
+                    
                     <div className="col-md-3 p-0" style={{ marginLeft: 1 }}>
                       <div className="form-group">
                         <label>IPK</label>
@@ -211,10 +309,14 @@ const Profile = () => {
                           placeholder="Semester"
                           name="gpa"
                           id="gpa"
-                          onChange={handleChange} />
+                          defaultValue={profile.gpa}
+                          onChange={handleChange} 
+                        />
                       </div>
                     </div>
+
                   </div>
+
                   <div className="form-group">
                     <label>Curriculum Vitae</label>
                     <div className="col-md-12 d-flex flex-row justify-content-between flex-wrap" style={{ border: "2px dotted" }}>
@@ -228,13 +330,20 @@ const Profile = () => {
                             name="cv"
                             id="cv"
                             className="form-control p-0"
-                            onChange={handleChange} />
+                            defaultValue={profile.cv}
+                            onChange={onFileChange} 
+                          />
                         </div>
                         <div className="row-md-12">
                           Pilih file dengan ukuran maksimal 1MB
                         </div>
                       </div>
-                      <PrimaryButton style={{ color: "#fff", margin: "auto", marginTop: 10, marginBottom: 10, fontWeight: "normal" }}>Unggah Dokumen</PrimaryButton>
+                      <Button 
+                        sx={{ background: "#FFC300", color: "#2D3246", fontWeight: "bold" }}
+                        onClick={handleUploadCV}
+                      >
+                        Unggah CV
+                      </Button>
                     </div>
                   </div>
 
@@ -251,13 +360,20 @@ const Profile = () => {
                             name="transcript"
                             id="transcript"
                             className="form-control p-0"
-                            onChange={handleChange} />
+                            defaultValue={profile.transcript}
+                            onChange={onFileChange} 
+                          />
                         </div>
                         <div className="row-md-12">
                           Pilih file dengan ukuran maksimal 1MB
                         </div>
                       </div>
-                      <PrimaryButton style={{ color: "#fff", margin: "auto", marginTop: 10, marginBottom: 10, fontWeight: "normal" }}>Unggah Dokumen</PrimaryButton>
+                      <Button 
+                        sx={{ background: "#FFC300", color: "#2D3246", fontWeight: "bold" }}
+                        onClick={handleUploadTranscript}
+                      >
+                        Unggah Transcript
+                      </Button>
                     </div>
                   </div>
 
@@ -274,35 +390,39 @@ const Profile = () => {
                             name="portofolio"
                             id="portofolio"
                             className="form-control p-0"
-                            onChange={handleChange} />
+                            defaultValue={profile.portfolio}
+                            onChange={onFileChange} 
+                          />
                         </div>
                         <div className="row-md-12">
                           Pilih file dengan ukuran maksimal 1MB
                         </div>
                       </div>
-                      <PrimaryButton style={{ color: "#fff", margin: "auto", marginTop: 10, marginBottom: 10, fontWeight: "normal" }}>Unggah Dokumen</PrimaryButton>
+                      <Button 
+                        sx={{ background: "#FFC300", color: "#2D3246", fontWeight: "bold" }}
+                        onClick={handleUploadPortfolio}
+                      >
+                        Unggah Portfolio
+                      </Button>
                     </div>
                   </div>
 
-                  <a>
-                    <PrimaryButton
-                      style={{ color: "#fff", marginTop: 10, display: "flex", float: "right" }}
-                      type="submit"
-                    >
-                      Simpan
-                    </PrimaryButton>
-                  </a>
+                  <Button 
+                    sx={{ background: "#FFC300", color: "#2D3246", fontWeight: "bold" }}
+                    type="submit"
+                  >
+                    Simpan
+                  </Button>
                 </div>
               </div>
             </div>
           </form>
+
         </div>
       </div>
-      {/* /.container-fluid*/}
       <FooterUser />
     </div>
   );
 }
 
 export default Profile;
-

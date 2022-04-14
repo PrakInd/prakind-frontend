@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Button from '@mui/material/Button';
@@ -7,6 +7,7 @@ import { login } from "../utils/Auth";
 import { LOGIN_API } from "../constants/urls";
 import prakind_logo from "../assets/logo_orange2.svg"
 import { setUserLogin, setRole, setUserId } from "../utils/Auth";
+import { UserContext } from "../contexts/UserContext";
 
 const Login = () => {
   const [input, setInput] = useState({
@@ -14,6 +15,7 @@ const Login = () => {
     password: "",
   });
   const history = useHistory();
+  const [search, setUser] = useContext(UserContext);
 
   const handleChange = (event) => {
     let value = event.target.value;
@@ -30,7 +32,7 @@ const Login = () => {
       })
       .then(res => {
         login(res.data.access_token);
-        setUserLogin(res.data.user);
+        setUser(res.data.user);
         setRole(res.data.user.role_id);
         setUserId(res.data.user.id);
 
@@ -89,6 +91,7 @@ const Login = () => {
                 className="form-control"
                 name="email"
                 id="email"
+                placeholder="Masukkan email anda"
                 value={input.email}
                 onChange={handleChange}
               />
@@ -101,6 +104,7 @@ const Login = () => {
                 className="form-control"
                 name="password"
                 id="password"
+                placeholder="Masukkan password anda"
                 value={input.password}
                 onChange={handleChange}
                 onKeyPress={enterPressed}

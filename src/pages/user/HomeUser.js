@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import Header from "../../components/Header";
 import FooterUser from "../../components/FooterUser";
 import PrimaryButton from "../../components/button/PrimaryButton";
-import { SearchContext } from "../../components/SearchContext/SearchContext";
+import { SearchContext } from "../../contexts/SearchContext";
 import { Link } from "react-router-dom";
 
 const HomeUser = () => {

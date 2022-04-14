@@ -58,7 +58,7 @@ export const USER_ROUTES = [
   },
   {
     name: "Aktifitasku",
-    path: "/pelamar/aktifitasku",
+    path: "/pelamar/aktivitasku",
     exact: true,
     component: MyActivity,
     private: true,

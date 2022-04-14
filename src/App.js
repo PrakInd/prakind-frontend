@@ -19,7 +19,8 @@ import DetailCompany from "./pages/user/DetailCompany";
 import UserContainer from "./components/UserContainer";
 import AdminContainer from "./components/AdminContainer";
 import RegisterPerusahaan from "./pages/RegisterPerusahaan";
-import { SearchProvider } from "./components/SearchContext/SearchContext";
+import { SearchProvider } from "./contexts/SearchContext";
+import { UserProvider } from "./contexts/UserContext";
 
 const theme = createTheme({
   components: {
@@ -30,6 +31,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        text: {
+          color: "white"
+        }
+      }
+    }
   },
   typography: {
     fontFamily: [
@@ -44,9 +52,6 @@ const theme = createTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(","),
-    // button: {
-    //   textTransform: 'none'
-    // }
   },
 })
 
@@ -54,23 +59,25 @@ function App() {
   return (
     <StyledEngineProvider>
       <ThemeProvider theme={theme}>
-        <SearchProvider>
-          <Router>
-            <Switch>
-              <Route exact restricted path="/" component={HomeUser} />
-              <Route exact restricted path="/login" component={Login} />
-              <Route exact restricted path="/register" component={RegisterUser} />
-              <Route exact restricted path="/regist-perusahaan" component={RegisterPerusahaan} />
-              <Route exact restricted path="/lowongan" component={Vacancy} />
-              <Route exact restricted path="/lowongan/:id" component={DetailVacancy} />
-              <Route exact restricted path="/detail-perusahaan/:id" component={DetailCompany} />
-              <Route isUser private path="/pelamar" component={UserContainer} />
-              <Route isAdmin private path="/perusahaan" component={AdminContainer} />
-              <Route exact private isNotFound restricted path="/*" component={ErrorPage} />
-              <Route exact private isNotFound restricted path="/error" component={ErrorPage} />
-            </Switch>
-          </Router>
-        </SearchProvider>
+        <UserProvider>
+          <SearchProvider>
+            <Router>
+              <Switch>
+                <Route exact restricted path="/" component={HomeUser} />
+                <Route exact restricted path="/login" component={Login} />
+                <Route exact restricted path="/register" component={RegisterUser} />
+                <Route exact restricted path="/regist-perusahaan" component={RegisterPerusahaan} />
+                <Route exact restricted path="/lowongan" component={Vacancy} />
+                <Route exact restricted path="/lowongan/:id" component={DetailVacancy} />
+                <Route exact restricted path="/detail-perusahaan/:id" component={DetailCompany} />
+                <Route isUser private path="/pelamar" component={UserContainer} />
+                <Route isAdmin private path="/perusahaan" component={AdminContainer} />
+                <Route exact private isNotFound restricted path="/*" component={ErrorPage} />
+                <Route exact private isNotFound restricted path="/error" component={ErrorPage} />
+              </Switch>
+            </Router>
+          </SearchProvider>
+        </UserProvider>
       </ThemeProvider>
     </StyledEngineProvider>
   );

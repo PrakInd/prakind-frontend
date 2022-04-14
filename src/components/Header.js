@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Menu from '@mui/material/Menu';
-import { Container } from "@mui/material";
+import { Avatar, Button, Container, Divider, ListItemIcon } from "@mui/material";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import MenuItem from "@mui/material/MenuItem";
@@ -10,10 +10,12 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { isLogin } from "../utils/Auth";
+import { isLogin, logout } from "../utils/Auth";
 import ProfileIconMenu from "./ProfileIconMenu";
 import prakind_logo from "../assets/logo_orange2.svg";
 import PrimaryButton from "../components/button/PrimaryButton";
+import { Logout, MenuBook } from "@mui/icons-material";
+import { UserContext } from "../contexts/UserContext";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,7 +35,13 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     justifyContent: "space-evenly",
     alignItems: "center",
-    gap: "4em",
+    gap: "1.5em"
+  },
+  button: {
+    backgroundColor: "#2D3246",
+    "&:hover": {
+      color: "#FC9400"
+    }
   }
 }));
 
@@ -44,6 +52,7 @@ const Header = props => {
   const open = Boolean(anchorEl);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+  const [user] = useContext(UserContext);
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -56,17 +65,13 @@ const Header = props => {
 
   const menuItems = [
     {
-      menuTitle: "Masuk",
-      pageURL: "/login"
+      title: "Masuk",
+      path: "/login"
     },
     {
-      menuTitle: "Daftar",
-      pageURL: "/register"
+      title: "Daftar",
+      path: "/register"
     },
-    {
-      menuTitle: "Perusahaan",
-      pageURL: "/regist-perusahaan"
-    }
   ];
 
   return (
@@ -87,62 +92,85 @@ const Header = props => {
               </div>
             </Link>
             {isMobile ? (
-              <>
-                <IconButton
-                  edge="start"
-                  className={classes.menuButton}
-                  color="inherit"
-                  aria-label="menu"
-                  onClick={handleMenu}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right"
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right"
-                  }}
-                  open={open}
-                  onClose={() => setAnchorEl(null)}
-                >
-                  {menuItems.map(menuItem => {
-                    const { menuTitle, pageURL } = menuItem;
-                    return (
-                      <MenuItem onClick={() => handleMenuClick(pageURL)}>
-                        {menuTitle}
-                      </MenuItem>
-                    );
-                  })}
-                </Menu>
-              </>
+              !isLogin() ? (
+                <>
+                  <IconButton
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    onClick={handleMenu}
+                    sx={{ "&:hover": { color: "#FC9400" } }}
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                  <Menu
+                    anchorEl={anchorEl}
+                    id="menu-appbar"
+                    open={open}
+                    onClose={() => setAnchorEl(null)}
+                    onClick={() => setAnchorEl(null)}
+                    PaperProps={{
+                      elevation: 0,
+                      sx: {
+                        overflow: 'visible',
+                        filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                        mt: 1.5,
+                        '& .MuiAvatar-root': {
+                          width: 32,
+                          height: 32,
+                          ml: -0.5,
+                          mr: 1,
+                        },
+                        '&:before': {
+                          content: '""',
+                          display: 'block',
+                          position: 'absolute',
+                          top: 0,
+                          right: 14,
+                          width: 10,
+                          height: 10,
+                          bgcolor: 'background.paper',
+                          transform: 'translateY(-50%) rotate(45deg)',
+                          zIndex: 0,
+                        },
+                      },
+                    }}
+                    transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                    anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                  >
+                    {menuItems.map(menuItem => {
+                      const { title, path } = menuItem;
+                      return (
+                        <Link to={path}>
+                          <MenuItem>
+                            { title }
+                          </MenuItem>
+                        </Link>
+                      );
+                    })}
+                  </Menu>
+                </>
+              ) : (
+                <ProfileIconMenu />
+              )
             ) : (
               isLogin() ? (
                 <ProfileIconMenu />
               ) : (
                 <div className={classes.headerOptions}>
-                  <Link to="/login">
-                    <Typography color={"white"}>Masuk</Typography>
-                  </Link>
-                  <Link to="/register">
-                    <Typography color={"white"}>Daftar</Typography>
-                  </Link>
-                  <Link to="/regist-perusahaan">
-                    <PrimaryButton
-                      style={{
-                        background: "#FC9400",
-                        paddingLeft: "3em",
-                        paddingRight: "3em"
-                      }}>
-                      Perusahaan
-                    </PrimaryButton>
-                  </Link>
+                  {menuItems.map(menuItem => {
+                    const { title, path } = menuItem;
+                    return (
+                      <Link to={path}>
+                        <Button 
+                          color="primary" 
+                          className={classes.button}
+                        >
+                          { title }
+                        </Button>
+                      </Link>
+                    );
+                  })}
                 </div>
               )
             )}

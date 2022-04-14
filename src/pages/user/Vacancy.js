@@ -4,7 +4,7 @@ import Filter from "../../components/Filter";
 import FooterUser from "../../components/FooterUser";
 import { SHOW_VACANCIES } from "../../constants/urls";
 import SearchResults from "../../components/SearchResults";
-import { SearchContext } from "../../components/SearchContext/SearchContext";
+import { SearchContext } from "../../contexts/SearchContext";
 import Header from "../../components/Header";
 
 const Vacancy = () => {

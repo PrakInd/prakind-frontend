@@ -12,11 +12,20 @@ import Typography from '@mui/material/Typography';
 import Settings from '@mui/icons-material/Settings';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { Assignment, Person } from '@mui/icons-material';
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { logout } from "../utils/Auth";
+import default_avatar from "../assets/avatar.jpg";
+import { UserContext } from '../contexts/UserContext';
+import { SHOW_PHOTO } from '../constants/urls';
 
 const ProfileIconMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+  const [user] = React.useContext(UserContext);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -26,30 +35,39 @@ const ProfileIconMenu = () => {
     setAnchorEl(null);
   };
 
-  const onLogout = () => {
-    logout();
-  };
+  const menuItems = [
+    {
+      title: "Aktivitasku",
+      path: "/pelamar/aktivitasku",
+      icon: <Assignment />
+    },
+    {
+      title: "Profil",
+      path: "/pelamar/profil",
+      icon: <Person />
+    }
+  ];
 
   return (
     <React.Fragment>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: "2em" }}>
-        <Link to="/">
-          <Typography color={"white"}>Home</Typography>
-        </Link>
-        <Link to="/aktivitasku">
-          <Typography color={"white"}>Aktivitasku</Typography>
-        </Link>
-        <Tooltip title="Account settings">
-          <IconButton
-            onClick={handleClick}
-            size="small"
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-          >
-            <Avatar sx={{ width: 32, height: 32 }}></Avatar>
-          </IconButton>
-        </Tooltip>
+      <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+        {!isMobile && <Typography>{user.name}</Typography>}
+        <IconButton
+          onClick={handleClick}
+          size="small"
+          sx={{ ml: 2 }}
+          aria-controls={open ? 'account-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+        >
+          <Avatar sx={{ width: "2rem", height: "2rem" }}>
+            <img 
+              style={{ width: "2rem", height: "2rem" }} 
+              src={user.avatar === 'avatar.jpg' ? default_avatar : SHOW_PHOTO(user.avatar)} 
+              alt="user-profile-pic" 
+            />
+          </Avatar>
+        </IconButton>
       </Box>
       <Menu
         anchorEl={anchorEl}
@@ -86,27 +104,31 @@ const ProfileIconMenu = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>
-          <Link to="/pelamar/profil-edit">
-            <ListItemIcon>
-              <Avatar />
-            </ListItemIcon>
-            Akun Saya
-          </Link>
-        </MenuItem>
+        {menuItems.map(menuItem => {
+          const { title, path, icon } = menuItem;
+          return (
+            <Link to={path}>
+              <MenuItem>
+                  <ListItemIcon>
+                    { icon }
+                  </ListItemIcon>
+                  { title }
+              </MenuItem>
+            </Link>
+          );
+        })}
         <Divider />
-        <MenuItem>
-          <Link to="/login" onClick={onLogout}>
+        <Link to="/" onClick={logout}>
+          <MenuItem>
             <ListItemIcon>
-              <Logout fontSize="small" />
+              <Logout />
             </ListItemIcon>
             Logout
-          </Link>
-        </MenuItem>
+          </MenuItem>
+        </Link>
       </Menu>
     </React.Fragment>
   );
 }
 
 export default ProfileIconMenu;
-

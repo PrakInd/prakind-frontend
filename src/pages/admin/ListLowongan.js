@@ -17,6 +17,7 @@ const ListLowongan = () => {
         headers: { Authorization: `Bearer ${getToken()}` }
       })
       .then(res => {
+        console.log(res);
         setVacancies(res.data.data);
       })
       .catch(err => console.log(err));
